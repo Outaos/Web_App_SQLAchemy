@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 style= 'font-size: 36px; font-family: Arial; color:white; text-align:center; margin-bottom: -10px; margin-left:10px; text-shadow: 1px 1px whitesmoke'>{% block title %} Index {% endblock %}</h1>
+    <h1 style= 'font-size: 36px; font-family: Arial; color:white; text-align:center; margin-bottom: -10px; margin-left:10px; text-shadow: 1px 1px whitesmoke'>Hello World!</h1>
+    <h2 style= 'font-size: 36px; font-family: Arial; color:white; text-align:center; margin-bottom: -10px; margin-left:10px; text-shadow: 1px 1px whitesmoke'>Welcome to FlaskApp!</h2>
+
+    <!-- -->
+            <!-- Leaflet sidebar  V1 CSS -->
+            <link  href="{{url_for('static', filename = 'leaflet-sidebar-master/L.Control.Sidebar.css')}}" rel="stylesheet">
+            <!-- Leaflet sidebar V1 js -->
+            <link  href="{{url_for('static', filename = 'leaflet-sidebar-master/L.Control.Sidebar.js')}}" rel="stylesheet" >       
+    
+            <!-- Leaflet legend CSS -->
+            <link  href="{{url_for('static', filename = 'Leaflet.Legend-master/leaflet.legend.css')}}" rel="stylesheet">
+            <!-- Leaflet legend js -->
+            <link  href="{{url_for('static', filename = 'Leaflet.Legend-master/leaflet.legend.js')}}" rel="stylesheet">      
+            
+    
+            
+            <!-- leaflet search  -->
+            <link href="{{url_for('static', filename = 'leaflet-search-master/leaflet-search.css')}}" rel="stylesheet"> 
+            <link href="{{url_for('static', filename = 'leaflet-search-master/style.css')}}" rel="stylesheet"> 
+            <link href="{{url_for('static', filename = 'leaflet-search-master/leaflet-search.js')}}" rel="stylesheet">
+{% endblock %}

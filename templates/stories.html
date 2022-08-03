@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        
+       
+        <title>A location-based game to rediscover your city</title>              
+    
+        <!-- Leafet CSS -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+        integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+        crossorigin=""/>
+        <!--  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"/>  -->
+        <!--Leaflet js -->    
+        <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+        integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+        crossorigin=""></script>
+        <!--  <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>   -->
+        
+        <!-- Turf js -->
+        <script src='https://unpkg.com/@turf/turf@6.3.0/turf.min.js'></script> 
+        
+        <link rel="stylesheet"  href="../static/leaflet-sidebar-master/L.Control.Sidebar.css"  /> <!-- Leaflet sidebar  V1 CSS -->        
+        <script src="../static/leaflet-sidebar-master/L.Control.Sidebar.js"></script> <!-- Leaflet sidebar V1 js -->
+    
+        <link rel="stylesheet"  href="../static/Leaflet.Legend-master/leaflet.legend.css"  /> <!-- Leaflet legend CSS -->      
+        <script src="../static/Leaflet.Legend-master/leaflet.legend.js"></script> <!-- Leaflet legend js -->
+    
+    
+        <!-- leaflet search  -->
+        <link rel="stylesheet" href="../static/leaflet-search-master/leaflet-search.css" /> <!-- ADDED -->
+        <link rel="stylesheet" href="../static/leaflet-search-master/style.css" /> <!-- ADDED -->
+        <script src="../static/leaflet-search-master/leaflet-search.js"></script> <!-- ADDED -->
+        
+        <!-- Ajax font-awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+        <!-- Set size to fit mobile browser -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    
+        <style>
+
+                         /* set the size web page to full size */
+                html, body {
+                    padding:0;
+                    margin: 0;
+                    width: 100%;
+                    height: 100%;
+                }
+                /* set the size of the map */
+                #map {
+                    width: 100%;
+                    height: 85%;
+                }
+    
+                #open_slidebar {
+                    background-image: url("../static/pics/menuBlack.png"); 
+                    border: none; 
+                    height: 33px;
+                    width: 35px; 
+                    margin-top: 37px;
+                    margin-right: 15px;
+                    position: absolute;
+                    top: 0;
+                    right: 0; 
+                    background-color: #ebebf0; 
+                }
+                
+                .figureborder { 
+                    border-style: solid; 
+                    border-color:#898989;
+                    padding: 2px;
+                    border-width: thin; 
+                    background-color: #DCDADA;  
+                } 
+    
+                /*  NOT SURE I NEED THIS */
+                /* Button style */
+                button {
+                    background: #0084ff;
+                    border: none;
+                    border-radius: 5px;
+                    padding: 8px 14px;
+                    font-size: 15px;
+                    color: #fff;
+                }
+    
+                #banner-message.alt {
+                    background: #0084ff;
+                    color: #fff;
+                    margin-top: 40px;
+                    width: 200px;
+                }
+    
+                #banner-message.alt button {
+                    background: #fff;
+                    color: #000;
+                }
+
+        </style>
+    </head>
+
+    
+    <!-- Set background colour --> 
+    <!--style="background-color: #061529"-->
+    <body onload="initMap()", style="background-color: #061529"> 
+
+        <h1 style= 'font-size: 36px; font-family: Arial; color:white; text-align:center; margin-bottom: -10px; margin-left:10px; text-shadow: 1px 1px whitesmoke'> Manc Stories </h1>                          
+        
+        <!-- A button to switch to the sidebar -->
+        <button type= "button" id= "open_slidebar"></button>
+
+        <br>  
+        
+        <!-- A division to hold the map -->
+		<div id='map'></div>
+
+        <!-- Load Leaflet -->
+
+
+        <!-- Create a sidebar --> 
+        <div id="sidebar_settings">
+            <h1 style="background-color:white ; color:#061529; text-shadow: 1px 1px white; padding-left:5px;">Invaders discovered:</h1> 				<!-- currently contains miscellaneous stuff --> 
+			<p id="score" style="text-align: center;"></p>
+			<hr>
+            <h1 style="background-color:white ; color:#061529; text-shadow: 1px 1px white; padding-left:5px;">Distance walked:</h1> 				<!-- currently contains miscellaneous stuff --> 
+			<p id="dist_tracker" style="text-align: center;"></p>
+            <hr>                    
+			<h1 style="background-color: white ;text-shadow: 1px 1px #061529; padding-right:5px;"> Gameflow </h1> 
+			<p> 1. Walk around central Manchester to discover stories. <br> 2. Touch the 'feet' icon to see how far you are from the nearest story. <br> 3. Once you enter an invisible geofence the hint will popup and the geofence will appear on the map. <br> 4. After listening to the story you are welcome to rate it. <br> 5. Dare to add you own stories to the game. <br> 6. Share your stories with friends!</p> 
+			<hr>
+
+		</div>
+        
+
+
+        
+        <script>
+
+            // global variable for map
+            let map;
+            // Set location variable to 'null' to account for no info when user just enters the game
+            let position = null; 
+
+            //Counter for score 					
+			let geofence_tracker = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];  
+
+            //Counter for score 					
+			//let distance_tracker = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]; 
+
+            // initialise empty array for updated coords
+            let locationList = []
+
+            // A function to set the flag variable to 'false' for every buffer in enterBuffer_b
+            let enterBuffer_b
+            let flag_b
+            let flag_a
+
+            
+            // Variable for arrays of buffers
+            let dots, outofBufferB, b_buffers, a_buffers;
+
+            // variables for the arrays of popups
+            let b_popups, popup_audio
+
+            // Variable for the square grid
+            let cover;
+
+            let geoLine;
+
+
+
+            // Style the geofences
+            const midStyle = {
+                "color": "#2E86C1",
+                "weight": 0,
+                "fillOpacity": 0.3
+            };
+
+            const innerStyle = {
+                "color": "#2E86C1", 
+                "weight": 0, 
+                "fillOpacity":0.3   
+            };
+
+            // Style the entered geofences
+            const enterstyleIn = { 
+                "color": "#0E6655",    // green
+                "weight": 3,
+                "fillOpacity": 0.6
+            };
+
+            const enterstyleMid = { 
+                "color": "#2E86C1",   // blue
+                "weight": 3,
+                "fillOpacity": 0.8
+            };
+
+
+
+
+
+
+        /**
+         * Initialise the map (called when the body has loaded)
+         */
+        function initMap(){
+
+            //sample data values for populate map
+						var data = [
+							{"loc":[53.484220,-2.235480], "title":"story 1"},
+							{"loc":[53.484076,-2.237332], "title":"story 2"},
+							{"loc":[53.483652,-2.235030], "title":"story 3"},
+							{"loc":[53.477002,-2.236600], "title":"story 4"},
+							{"loc":[53.473867,-2.240346], "title":"coral"},
+							{"loc":[41.219190,13.062145], "title":"cyan"},
+							{"loc":[41.344190,13.242145], "title":"darkblue"},	
+							{"loc":[41.679190,13.122145], "title":"darkred"},
+							{"loc":[41.329190,13.192145], "title":"darkgray"},
+							{"loc":[41.379290,13.122545], "title":"dodgerblue"},
+							{"loc":[41.409190,13.362145], "title":"gray"},
+							{"loc":[41.794008,12.583884], "title":"green"},	
+							{"loc":[41.805008,12.982884], "title":"greenyellow"},
+							{"loc":[41.536175,13.273590], "title":"red"},
+							{"loc":[41.516175,13.373590], "title":"rosybrown"},
+							{"loc":[41.506175,13.173590], "title":"royalblue"},
+							{"loc":[41.836175,13.673590], "title":"salmon"},
+							{"loc":[41.796175,13.570590], "title":"seagreen"},
+							{"loc":[41.436175,13.573590], "title":"seashell"},
+							{"loc":[41.336175,13.973590], "title":"silver"},
+							{"loc":[41.236175,13.273590], "title":"skyblue"},
+							{"loc":[41.546175,13.473590], "title":"yellow"},
+							{"loc":[41.239190,13.032145], "title":"white"}
+						];
+
+            // Map tiles 
+            map = L.map('map');
+            const mapCentre = L.latLng(53.4808,-2.2426);
+            map.setView(mapCentre,16); //13
+            // Change tiles
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+							attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+						}).addTo(map);
+
+            
+            // Add a scale to the map
+            L.control.scale().addTo(map);
+
+            var markersLayer = new L.LayerGroup();	//layer contain searched elements
+            map.addLayer(markersLayer);
+            
+            var controlSearch = new L.Control.Search({
+                position:'topright',		
+                layer: markersLayer,
+                initial: false,
+                zoom: 18,
+                marker: false
+            });
+
+            map.addControl( controlSearch );
+
+                ////////////populate map with markers from sample data
+                for(i in data) {
+                    var title = data[i].title,	//value searched
+                        loc = data[i].loc,		//position found
+                        marker = new L.Marker(new L.latLng(loc), {title: title} );//se property searched
+                    marker.bindPopup('title: '+ title );
+                    markersLayer.addLayer(marker);
+                };
+                
+            
+            
+            
+            
+            // Sidebar 
+            var sidebar_settings = L.control.sidebar('sidebar_settings', {
+                position: 'right' 
+            }); 
+            map.addControl(sidebar_settings);     
+        
+            document.getElementById("open_slidebar").onclick = Toggle; 
+            
+            function Toggle () { 
+                sidebar_settings.toggle();  
+            };
+
+
+
+            
+
+
+
+            /*
+            // TRACK PLAYER'S LOCATION  *************************************************************************************************
+            */
+            // Leaflet function that tracks player's geolocation
+            map.locate({setView: false, maxZoom: 16, watch: true, enableHighAccuracy: true});   // setView to false to make a map more managable
+
+
+            /*/////////////////////////////////////////////////////////
+            //INFO ON BUFFERS AND POPUPS
+            *//////////////////////////////////////////////////////////
+            //Icon class for custom icons 
+            let manIcon = L.Icon.extend({
+                options: {
+                    iconSize: [37,37],    
+                    iconAnchor: [23,37],
+                    popupAnchor: [-5, -37] 
+                }
+            });
+
+            const dot = new manIcon({iconUrl: '../static/pics/dot.png'});
+            
+            /*
+            // SPACE INVADERS  *************************************************************************************************
+            */
+            // Invader # 1 back_turner
+            const dot_1  = turf.point([-2.237332,53.484076]);                                        // Wang Ying store = [53.487068,-2.228138]       
+            const a_buff_1 = turf.buffer(dot_1, 0.01, {units:'kilometers',steps:24});              // UoM autolocation = [53.490878,-2.228104]
+            const b_buff_1 = turf.buffer(dot_1, 0.05, {units:'kilometers', steps:24});                 
+                
+            L.geoJSON(a_buff_1,{style: innerStyle}).addTo(map); 
+            L.geoJSON(b_buff_1, {style: midStyle}).addTo(map); 										
+
+            const story_1 = L.marker([53.484076,-2.237332], {icon:dot}).bindPopup().addTo(map);
+    
+            // Buffer 'b' popups
+            const b_pop_1_info = ("<h1 style ='text-align:center; color: #263985'> You are very close to Back Turner Street invader!</h1><b> Walk to the corner of Back Turner and Back Thomas streets to catch that sneaky creature.</b> <br> <b> Please take a screenshot of the picture below, it will be handy! </b> <iframe src='../static/pics/01_back_turner.jpg' width='300' height='300' frameborder='0' ></iframe>")   //Add content using HTML tags  width='300' height='300'
+            const b_pop_1 = story_1.bindPopup(b_pop_1_info, { 
+                maxWidth: 320,				 
+                maxHeight: 400
+            });
+            /*
+            // Buffer 'b' popups
+            const a_pop_1_info = ("<h1 style ='text-align:center; color: #263985'> You are very close to Back Turner Street invader!</h1><b> Walk to the corner of Back Turner and Back Thomas streets to catch that sneaky creature.</b> <br> <b> This is how it looks: </b> <iframe src='pics/01_back_turner.jpg' width='300' height='300' frameborder='0' ></iframe>")   //Add content using HTML tags  width='300' height='300'
+            const a_pop_1 = story_1.bindPopup(a_pop_1_info, { 
+                maxWidth: 320,				 
+                maxHeight: 400
+            });
+            */
+
+            story_1.off('click'); 
+
+
+
+            // Invader # 2  02_oak_street
+            const dot_2  = turf.point([-2.226204,53.493350]);                           // Christabel = [53.493350,-2.226204]  Rochdale road [53.493023,-2.224488]
+            const a_buff_2 = turf.buffer(dot_2, 0.01, {units:'kilometers',steps:24});
+            const b_buff_2 = turf.buffer(dot_2, 0.05, {units:'kilometers', steps:24});  
+            
+            var story_2 = L.marker([53.493350,-2.226204], {icon:dot}).bindPopup().addTo(map);  
+            
+            L.geoJSON(a_buff_2,{style: innerStyle}).addTo(map);
+            L.geoJSON(b_buff_2, {style: midStyle}).addTo(map); 														 
+
+            // Buffer 'b' popups
+            const b_pop_2_info = ("<h1 style ='text-align:center; color: #263985'> You are very close to Oak Street invader!</h1><b> Walk to the corner of Oak and Copperas streets to catch that little one!</b> <br> <b>  Please take a screenshot of the picture below, it will be handy! </b> <iframe src='../static/pics/02_oak_street.jpg' width='300' height='300' frameborder='0' ></iframe>")   //<iframe src='pics/02_oak_street_rs.jpg' width='300' height='300' frameborder='0' ></iframe>
+            const b_pop_2 = story_2.bindPopup(b_pop_2_info, { 
+                maxWidth: 320,				 
+                maxHeight: 400
+            });
+            /*
+            // Buffer 'a' popups
+            const a_pop_2_info = ("<h1 style ='text-align:center; color: #263985'> Well done. You found Oak Street invader!</h1><br> <iframe src='pics/02_oak_street.jpg' width='300' height='300' frameborder='0' ></iframe>")   //<iframe src='pics/02_oak_street_rs.jpg' width='300' height='300' frameborder='0' ></iframe>
+            const a_pop_2 = story_2.bindPopup(a_pop_2_info, { 
+                maxWidth: 320,				 
+                maxHeight: 400
+            });
+            */
+
+            story_2.off('click'); 
+
+            
+            // Invader # 3  03_tib_street
+            const dot_3  = turf.point([-2.235635,53.466701]);                            // St Patric school [53.489761,-2.224294]// ALB  [53.466781,-2.235710]
+            const a_buff_3 = turf.buffer(dot_3, 0.01, {units:'kilometers',steps:24});                       // Christabel compound [53.489711,-2.224214]
+            const b_buff_3 = turf.buffer(dot_3, 0.05, {units:'kilometers', steps:24});   
+    
+            var story_3 = L.marker([53.466701,-2.235635], {icon:dot}).bindPopup().addTo(map);   //, {icon:oak}   .addTo(map)
+            
+            L.geoJSON(a_buff_3,{style: innerStyle}).addTo(map);
+            L.geoJSON(b_buff_3, {style: midStyle}).addTo(map); 										
+
+
+            // Buffer 'b' popups
+            const b_pop_3_info = ("<h1 style ='text-align:center; color: #263985'> You are very close to Tib Street invader!</h1><b> Walk to the corner of Tib and Dorsey streets to catch that coloured monster!</b><br> <b> Please take a screenshot of the picture below, it will be handy! </b><iframe src='../static/pics/03_tib_street.jpg' width='300' height='300' frameborder='0' ></iframe>")   //<iframe src='pics/02_oak_street_rs.jpg' width='300' height='300' frameborder='0' ></iframe>
+            const b_pop_3 = story_3.bindPopup(b_pop_3_info, { 
+                maxWidth: 320,				 
+                maxHeight: 400
+            });
+            /*
+            // Buffer 'a' popups
+            const a_pop_3_info = ("<h1 style ='text-align:center; color: #263985'> You are very close to Tib Street invader!</h1><b> Walk to the corner of Tib and Dorsey streets to catch that coloured monster!</b><br> <b> This is how it looks: </b><iframe src='pics/03_tib_street.jpg' width='300' height='300' frameborder='0' ></iframe>")   //<iframe src='pics/02_oak_street_rs.jpg' width='300' height='300' frameborder='0' ></iframe>
+            const a_pop_3 = story_3.bindPopup(a_pop_3_info, { 
+                maxWidth: 320,				 
+                maxHeight: 400
+            });
+            */
+
+            story_3.off('click'); 
+
+
+            // Invader # 4    04_gay_park
+            const dot_4  = turf.point([-2.236600,53.477002]);                           // false uni location [-2.225728,53.467265] // tunnel entrance [-2.229317,53.492024]
+            const a_buff_4 = turf.buffer(dot_4, 0.01, {units:'kilometers',steps:24});     // Christabel compound [53.492633,-2.226148]
+            const b_buff_4 = turf.buffer(dot_4, 0.05, {units:'kilometers', steps:24});   
+   
+            var story_4 = L.marker([53.477002,-2.236600], {icon:dot}).bindPopup().addTo(map);   //, {icon:oak}   .addTo(map)
+           
+            L.geoJSON(a_buff_4,{style: innerStyle}).addTo(map);
+            L.geoJSON(b_buff_4, {style: midStyle}).addTo(map); 										
+
+            // Buffer 'b' popups
+            const b_pop_4_info = ("<h1 style ='text-align:center; color: #263985'> You are very close to the gayest invader of them all!</h1><b> Walk along Canal Street until you can see Sackville Garden, he is hiding on the wall! </b><br> <b> Please take a screenshot of the picture below, it will be handy! </b><iframe src='../static/pics/04_gay_park.jpg' width='300' height='300' frameborder='0' ></iframe>")   //<iframe src='pics/02_oak_street_rs.jpg' width='300' height='300' frameborder='0' ></iframe>
+            const b_pop_4 = story_4.bindPopup(b_pop_4_info, { 
+                maxWidth: 320,				 
+                maxHeight: 400
+            });
+            /*
+            // Buffer 'a' popups
+            const a_pop_4_info = ("<h1 style ='text-align:center; color: #263985'> Well done! You found the gayest invader of them all!</h1> <br> <iframe src='pics/12_canal_street.jpg' width='300' height='300' frameborder='0' ></iframe>")   //<iframe src='pics/02_oak_street_rs.jpg' width='300' height='300' frameborder='0' ></iframe>
+            const a_pop_4 = story_4.bindPopup(a_pop_4_info, { 
+                maxWidth: 320,				 
+                maxHeight: 400
+            });
+            */
+
+
+            story_4.off('click'); 
+
+            // Invader # 5    05_railway_bridge_oxford
+            const dot_5  = turf.point([-2.240346,53.473867]);                         
+            const a_buff_5 = turf.buffer(dot_5, 0.01, {units:'kilometers',steps:24});     
+            const b_buff_5 = turf.buffer(dot_5, 0.05, {units:'kilometers', steps:24});   
+   
+            var story_5 = L.marker([53.473867,-2.240346], {icon:dot}).bindPopup().addTo(map);   
+           
+            L.geoJSON(a_buff_5,{style: innerStyle}).addTo(map);
+            L.geoJSON(b_buff_5, {style: midStyle}).addTo(map); 										
+
+            // Buffer 'b' popups
+            const b_pop_5_info = ("<h1 style ='text-align:center; color: #263985'> You are very close to Oxford Bridge invader!</h1><b> Walk along Oxford Street until you can see the railway bridge, he is hiding on the bridge! </b><br> <b> Please take a screenshot of the picture below, it will be handy! </b><iframe src='../static/pics/05_railway_bridge_oxford.jpg' width='300' height='300' frameborder='0' ></iframe>")   //<iframe src='pics/02_oak_street_rs.jpg' width='300' height='300' frameborder='0' ></iframe>
+            const b_pop_5 = story_5.bindPopup(b_pop_5_info, { 
+                maxWidth: 320,				 
+                maxHeight: 400
+            });
+
+            story_5.off('click'); 
+
+
+            // Invader # 6    06_grosvenor_street
+            const dot_6  = turf.point([-2.237087,53.470342]);                          
+            const a_buff_6 = turf.buffer(dot_6, 0.01, {units:'kilometers',steps:24});     
+            const b_buff_6 = turf.buffer(dot_6, 0.05, {units:'kilometers', steps:24});   
+   
+            var story_6 = L.marker([53.470342,-2.237087], {icon:dot}).bindPopup().addTo(map);   
+           
+            L.geoJSON(a_buff_6,{style: innerStyle}).addTo(map);
+            L.geoJSON(b_buff_6, {style: midStyle}).addTo(map); 										
+
+            // Buffer 'b' popups
+            const b_pop_6_info = ("<h1 style ='text-align:center; color: #263985'> You are very close to Grosvenor Street invader!</h1><b> Walk to the corner of Oxford and Grosvenor streets to catch that coloured monster! </b><br> <b> Please take a screenshot of the picture below, it will be handy! </b><iframe src='../static/pics/06_grosvenor_street.jpg' width='300' height='300' frameborder='0' ></iframe>")   
+            const b_pop_6 = story_6.bindPopup(b_pop_6_info, { 
+                maxWidth: 320,				 
+                maxHeight: 400
+            });
+
+            story_6.off('click'); 
+
+
+            // Invader # 7    07_umist_campus
+            const dot_7  = turf.point([-2.233808,53.475262]);                          
+            const a_buff_7 = turf.buffer(dot_7, 0.01, {units:'kilometers',steps:24});     
+            const b_buff_7 = turf.buffer(dot_7, 0.05, {units:'kilometers', steps:24});   
+   
+            var story_7 = L.marker([53.475262,-2.233808], {icon:dot}).bindPopup().addTo(map);   
+           
+            L.geoJSON(a_buff_7,{style: innerStyle}).addTo(map);
+            L.geoJSON(b_buff_7, {style: midStyle}).addTo(map); 										
+
+            // Buffer 'b' popups
+            const b_pop_7_info = ("<h1 style ='text-align:center; color: #263985'> You are very close to Umist_Campus invader!</h1><b> Walk to the Umist Campus,he is hiding on corner of railway arch next to Renold Building! </b><br> <b> Please take a screenshot of the picture below, it will be handy! </b><iframe src='../static/pics/07_umist_campus.jpg' width='300' height='300' frameborder='0' ></iframe>")  
+            const b_pop_7 = story_7.bindPopup(b_pop_7_info, { 
+                maxWidth: 320,				 
+                maxHeight: 400
+            });
+
+            story_7.off('click'); 
+
+
+            // Invader # 8    08_dantzic_street
+            const dot_8  = turf.point([-2.240295,53.484612]);                          
+            const a_buff_8 = turf.buffer(dot_8, 0.01, {units:'kilometers',steps:24});     
+            const b_buff_8 = turf.buffer(dot_8, 0.05, {units:'kilometers', steps:24});   
+   
+            var story_8 = L.marker([53.484612,-2.240295], {icon:dot}).bindPopup().addTo(map);   
+           
+            L.geoJSON(a_buff_8,{style: innerStyle}).addTo(map);
+            L.geoJSON(b_buff_8, {style: midStyle}).addTo(map); 										
+
+            // Buffer 'b' popups
+            const b_pop_8_info = ("<h1 style ='text-align:center; color: #263985'> You are very close to Printworks invader!</h1><b> Walk to the corner of Dantzic Street and Withy Grove to catch that coloured monster! </b><br> <b> Please take a screenshot of the picture below, it will be handy! </b><iframe src='../static/pics/08_dantzic_street.jpg' width='300' height='300' frameborder='0' ></iframe>")  
+            const b_pop_8 = story_8.bindPopup(b_pop_8_info, { 
+                maxWidth: 320,				 
+                maxHeight: 400
+            });
+
+            story_8.off('click'); 
+
+
+            // Invader # 12    12_canal_street
+            const dot_12  = turf.point([-2.238385,53.476159]);                          
+            const a_buff_12 = turf.buffer(dot_12, 0.01, {units:'kilometers',steps:24});     
+            const b_buff_12 = turf.buffer(dot_12, 0.05, {units:'kilometers', steps:24});   
+   
+            var story_12 = L.marker([53.476159,-2.238385], {icon:dot}).bindPopup().addTo(map);   
+           
+            L.geoJSON(a_buff_12,{style: innerStyle}).addTo(map);
+            L.geoJSON(b_buff_12, {style: midStyle}).addTo(map); 										
+
+            // Buffer 'b' popups
+            const b_pop_12_info = ("<h1 style ='text-align:center; color: #263985'> You are very close to the gayest invader of them all! </h1><b> Walk to the corner of Canal and Princess streets, he is hiding on the bridge! </b><br> <b> Please take a screenshot of the picture below, it will be handy! </b><iframe src='../static/pics/12_canal_street.jpg' width='300' height='300' frameborder='0' ></iframe>")  
+            const b_pop_12 = story_12.bindPopup(b_pop_12_info, { 
+                maxWidth: 320,				 
+                maxHeight: 400
+            });
+
+            story_12.off('click'); 
+
+
+            // Invader # 13    13_short_street
+            const dot_13  = turf.point([-2.236577,53.482467]);                          
+            const a_buff_13 = turf.buffer(dot_13, 0.01, {units:'kilometers',steps:24});     
+            const b_buff_13 = turf.buffer(dot_13, 0.05, {units:'kilometers', steps:24});   
+   
+            var story_13 = L.marker([53.482467,-2.236577], {icon:dot}).bindPopup().addTo(map);   
+           
+            L.geoJSON(a_buff_13,{style: innerStyle}).addTo(map);
+            L.geoJSON(b_buff_13, {style: midStyle}).addTo(map); 										
+
+            // Buffer 'b' popups
+            const b_pop_13_info = ("<h1 style ='text-align:center; color: #263985'> You are very close to Short Street invader!</h1><b> Walk along Short Street to catch that coloured monster! He is tangled in wires! </b><br> <b> Please take a screenshot of the picture below, it will be handy! </b><iframe src='../static/pics/13_short_street.jpg' width='300' height='300' frameborder='0' ></iframe>")  
+            const b_pop_13 = story_13.bindPopup(b_pop_13_info, { 
+                maxWidth: 320,				 
+                maxHeight: 400
+            });
+
+            story_13.off('click');  
+
+
+
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            // Adding audio Popup
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            // Add a song icon
+            const audioIcon = L.icon({
+                iconUrl: "../pinkMusic.png",
+                iconSize: [50, 58], // size of the icon
+                iconAnchor: [20, 58], // changed marker icon position
+                popupAnchor: [0, -60], // changed popup position
+            });
+            
+
+            const customPopup1 =
+            //'<iframe width="360" height="310" src="https://www.youtube.com/embed/glKDhBuoRUs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+            '<b>Well done! You found Back Turner Invader!</b><br><b>Please listen to a story</b><br><iframe src="../static/media/house_of_rising_sun.mp3" width="300" height="60" frameborder="0" ></iframe>';
+            // specify popup options
+            const customOptions1 = {
+            maxWidth: "auto", // set max-width
+            className: "customPopup", // name custom popup
+            };
+            const house_of_rising_sun = L.marker([53.492633,-2.226148], {icon: audioIcon}).bindPopup(customPopup1, customOptions1);
+            // create popup contents
+
+            // create popup contents
+            const customPopup2 =
+            //'<iframe width="360" height="310" src="https://www.youtube.com/embed/glKDhBuoRUs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+            '<b>Well done! You found Oak Street Invader!</b><br><b>Please listen to a story</b><br><iframe src="../static/media/take_you_dancing_mp3.mp3" width="300" height="60" frameborder="0" ></iframe>';
+            // specify popup options
+            const customOptions2 = {
+            maxWidth: "auto", // set max-width
+            className: "customPopup", // name custom popup
+            };
+            const gotta_let_you_go = L.marker([53.461433,-2.224273], {icon: audioIcon}).bindPopup(customPopup2, customOptions2);
+
+            // create popup contents
+            const customPopup3 =
+            //'<iframe width="360" height="310" src="https://www.youtube.com/embed/glKDhBuoRUs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+            '<b>Well done! You found Tib Street Invader!</b><br><iframe src="../static/media/dont_look_back_in_anger.mp3" width="300" height="60" frameborder="0" ></iframe>';
+            // specify popup options
+            const customOptions3 = {
+            maxWidth: "auto", // set max-width
+            className: "customPopup", // name custom popup
+            };
+            const dont_look_back_in_anger = L.marker([53.492234,-2.226117], {icon: audioIcon}).bindPopup(customPopup3, customOptions3);
+
+            // create popup contents
+            const customPopup4 =
+            //'<iframe width="360" height="310" src="https://www.youtube.com/embed/glKDhBuoRUs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+            '<b>Well done! You found Gay Invader!</b><br><iframe src="../static/media/house_of_rising_sun.mp3" width="300" height="60" frameborder="0" ></iframe>';
+            // specify popup options
+            const customOptions4 = {
+            maxWidth: "auto", // set max-width
+            className: "customPopup", // name custom popup
+            };
+            const rhinestone_eyes = L.marker([53.492024,-2.229317], {icon: audioIcon}).bindPopup(customPopup4, customOptions4);
+
+
+            /*
+            // Geofences   ///////////////
+            */
+
+            // To inform a player if she's not in the geofence     
+            // Areas outside of the largest buffers  
+            outofBufferB = [b_buff_1, b_buff_2, b_buff_3, b_buff_4,b_buff_5, b_buff_6, b_buff_7, b_buff_8,b_buff_12, b_buff_13];
+            // Points in the centre of each buffer
+            dots = turf.featureCollection([dot_1, dot_2, dot_3, dot_4,dot_5, dot_6, dot_7, dot_8,dot_12, dot_13]);
+
+            // OUTER buffers list (larger buffers)
+            b_buffers = [b_buff_1, b_buff_2, b_buff_3, b_buff_4,b_buff_5, b_buff_6, b_buff_7, b_buff_8,b_buff_12, b_buff_13];   
+            // OUTER buffers' popups
+            b_popups = [b_pop_1, b_pop_2, b_pop_3, b_pop_4,b_pop_5, b_pop_6, b_pop_7, b_pop_8,b_pop_12, b_pop_13]; 
+            // INNER buffers' popups
+            // a_popups = [a_pop_1, a_pop_2, a_pop_3, a_pop_4]; 
+
+            // INNER buffers list (smaller buffers) 
+            a_buffers = [a_buff_1,a_buff_2, a_buff_3, a_buff_4,a_buff_5,a_buff_6, a_buff_7, a_buff_8,a_buff_12,a_buff_13];
+            // Audio popups
+            popup_audio = [rhinestone_eyes, gotta_let_you_go, dont_look_back_in_anger, house_of_rising_sun] 
+
+            
+            // SQUARE GRID
+            // specify units for measurement
+            let gridOptions = {units: 'kilometers'};
+            // get grid as a turf polygon 
+            let grid = turf.squareGrid([-2.275069,53.456925,-2.204545,53.504266], 0.1, gridOptions);   // Manchester City Centre [-2.257649,53.459561,-2.220493,53.494114]
+            // turn grid into geoJson to display on a map
+            cover = L.geoJson(grid, {style: {color:'#000000', fill: '#89CFF0', fillOpacity: 0.6, weight: 0.0}}).addTo(map); 
+            
+
+
+
+            // A function to set the flag variable to 'false' for every buffer in enterBuffer_b 
+            enterBuffer_b = [];
+                for (let i=0; i<b_buffers.length; i++){
+                    enterBuffer_b.push(false);}
+
+            flag_b = [];
+                for (let i=0; i<b_buffers.length; i++){
+                    flag_b.push(false);}
+
+            flag_a = [];
+                for (let i=0; i<a_buffers.length; i++){
+                    flag_a.push(false);}
+
+
+
+            // Location error function 
+            function onLocationError(e) {         
+                alert(e.message); 
+            } 
+            map.on('locationerror', onLocationError);
+
+            // bind listeners
+            map.on('locationfound', onLocationFound);
+            map.on('locationerror', onLocationError);
+
+                        /////////////////////////////////////////////////////////////////////////////////////////////////////
+            // LEGEND WITH ALL HIDDEN INVADERS
+            
+            //Legend
+            L.control.Legend({           
+                    position: "bottomright", 
+                    collapsed: true,      
+                    legends: [{ 
+                        label : "Back Turner Man_1", 
+                        type: "image", 
+                        url: "../static/pics/man_1_back_turner.jpg",  
+                    },{ 
+                        label: "Oak Man_2", 
+                        type: "image", 
+                        url: "../static/pics/man_2_oak.jpg", 
+                    },{ 
+                        label: "Tib Man_3", 
+                        type: "image", 
+                        url: "../static/pics/man_3_tib.jpg", 
+                    },{ 
+                        label: "Canal Man_12", 
+                        type: "image", 
+                        url: "../static/pics/man_12_canal.jpg",
+                    },{ 
+                        label: "Oxford Man_5", 
+                        type: "image", 
+                        url: "../static/pics/man_5.jpg", 
+                    },{ 
+                        label: "Dantzic Man_8", 
+                        type: "image", 
+                        url: "../static/pics/man_8.jpg", 
+                    },{ 
+                        label: "Back Pic. Man_10", 
+                        type: "image", 
+                        url: "../static/pics/man_10.jpg", 
+                    },{ 
+                        label: "Short Man_13", 
+                        type: "image", 
+                        url: "../static/pics/man_13.jpg", 
+                    },{ 
+                        label: "China Man_14", 
+                        type: "image", 
+                        url: "../static/pics/man_14.jpg", 
+                    },{ 
+                        label: "Cooper Man_15", 
+                        type: "image", 
+                        url: "../static/pics/man_15.jpg", 
+                    },{ 
+                        label: "Man_16", 
+                        type: "image", 
+                        url: "../static/pics/man_16.jpg", 
+                    },{ 
+                        label: "Balloon Man_18", 
+                        type: "image", 
+                        url: "../static/pics/man_18.jpg", 
+                    },{ 
+                        label: "Catlow Man_19", 
+                        type: "image", 
+                        url: "../static/pics/man_19.jpg", 
+                    },{ 
+                        label: "Dale Man_20", 
+                        type: "image", 
+                        url: "../static/pics/man_20_dale.jpg", 
+                    },{ 
+                        label: "Hart Man_23", 
+                        type: "image", 
+                        url: "../static/pics/man_23.jpg", 
+                    },{ 
+                        label: "Portland Man_24", 
+                        type: "image", 
+                        url: "../static/pics/man_24.jpg", 
+                    },{ 
+                        label: "Castle Man_27", 
+                        type: "image", 
+                        url: "../static/pics/man_27.jpg", 
+                    },{ 
+                        label: "Hewitt Man_28", 
+                        type: "image", 
+                        url: "../static/pics/man_28.jpg", 
+                    },{ 
+                        label: "Albion Man_29", 
+                        type: "image", 
+                        url: "../static/pics/man_29.jpg", 
+                    },{ 
+                        label: "Pic. Gardens Man_30", 
+                        type: "image", 
+                        url: "../static/pics/man_30_pic_gardens.jpg", 
+                    },]
+                }).addTo(map);
+                //////////////////////////////////////////////////////////////////////////////////////////////////////
+        };
+
+
+            
+
+
+            /*
+            // GEOLOCATION FUNCTION   *************************************************************************************************
+            */
+            function onLocationFound(e) { 
+
+                /*
+                // Player's location   ///////////////
+                */
+
+                // use turf to create a turf.Point() object (which is stored as GeoJSON) Create a turf point to be able to interact with the other features 
+                player = turf.point([e.latlng.lng, e.latlng.lat]);		 	 
+                // Geolocation icon
+                const playerIcon = L.icon({     
+                    iconUrl: '../static/feet.png',   
+                    iconSize: [37,37],    
+                    iconAnchor: [17, 37],  
+                    popupAnchor: [0,-37],
+                })
+                // Print the coords to the console. DELETE LATER ON
+                console.log("Your current position is at:" +e.latlng);  
+                // This accounts for the geolocation when the user just opens the game
+                if (position == null) {                        
+                    position = L.marker(e.latlng, {icon:playerIcon}).addTo(map);
+                // Update the geolocation when the current location is known
+                } else { 
+                    position.setLatLng(e.latlng); 
+                }
+
+                // Push the person's location to the array
+                locationList.push([e.latlng.lng, e.latlng.lat]);  // [e.latlng.lng, e.latlng.lat]
+                console.log(locationList);
+
+                // Create a lineString
+                let myLine = turf.lineString(locationList, {name:"user track"});   // Array.from(coordsArray) // Uncaught Error: coordinates must be an array of two or more positions
+                // let myLineJson = L.geoJson(myLine);
+                // Simplify the line using a turf function 
+                const options = {tolerance: 0.000001, highQuality: false}; //0.000833
+                let simplified = turf.simplify(myLine, options);
+
+                // calculate the length of the user track
+                playerPath = turf.lineDistance(simplified, 'kilometers');   //length(simplified);
+                console.log(playerPath);
+                document.getElementById("dist_tracker").innerHTML = playerPath;
+
+
+
+                // Remove the privious layer every time the location updates
+                if (geoLine) {
+                    geoLine.remove();
+                    };
+                // add a Json line to the map
+                geoLine = L.geoJson(simplified, {style: {       // simplified
+                                                weight: 1,
+                                                color: 'red',
+                                                fillOpacity: 1,
+                                                fillColor: 'lightgrey',
+                                            }}).addTo(map);
+
+                /*                            
+                // Function to connect coords every 50 meters
+                for (i=0; i<locationList.length; i++){
+                let myLine = turf.lineString([locationList[0], locationList[i]], {name:"user track"});
+                
+                let geoLine = L.geoJson(myLine, {style: {
+                                                weight: 0.5,
+                                                color: 'red',
+                                                fillOpacity: 1,
+                                                fillColor: 'lightgrey',
+                                            }}).addTo(map);                // {type: "Point", coordinates: [13.42493130000003, 52.50074619999999 ]}
+                console.log(geoLine)
+                const options = {tolerance: 0.000833, highQuality: false}; 
+                let simplified = turf.simplify(geoLine, options).addTo(map);     // Uncaught Error: unknown GeoJSON type
+                };
+                */
+                
+                
+
+
+
+                // calculate the nearest point
+                var nearest = turf.nearestPoint(player, dots);
+                
+                // For loop to assess if current location is outside the buffers and if yes add a popup notifying the user about the time to the target
+                for ( let i=0; i<outofBufferB.length; i++) {
+                    inside = turf.booleanWithin(player, outofBufferB[i],)
+                    if (inside === false) { 
+                        let distance = Math.round(turf.distance(player,nearest,{units:'kilometers'})*1000)/1000;  //var
+                        // 5 km/hr is an average speed of a person
+                        let time_dist =  Math.round(60*distance)/5;             
+						position.bindPopup("<h1 style ='text-align:center; color: #061529'>Yes! There are space invaders hiding here!</h1> <b>The nearest invader is about: " + time_dist.toString()+" minutes away!</b>", {maxWidth: 200});
+                        }
+                    else {
+                        position.bindPopup("<strong>You very close.</strong><br />Keep exploring!.<br> <b> Walking towards the centre of the circle would help. </b>", {maxWidth: 500});
+                    }
+                }
+                // Calculate nearest point function info
+                // https://stackoverflow.com/questions/56306097/get-nearest-point-from-another-one-in-javascript
+                // nearest point info
+                // https://www.npmjs.com/package/@turf/nearest-point
+           
+
+                // BUFFER B
+                for (let i=0; i<b_buffers.length; i++){
+                    
+                    // TESTING: add to the map (and remove previous one to avoid accumulation)
+                    geoJSON = L.geoJSON(b_buffers[i]).addTo(map);
+                    if (geoJSON) map.removeLayer(geoJSON);
+                    
+
+                    // are we in the geofence?
+                    const currentlyWithin_b = turf.booleanWithin(player, b_buffers[i]);
+
+
+                    // if we were NOT within the buffer at the last location
+                    if (!flag_b[i]) {
+
+                        // enter the geofence
+                        if (currentlyWithin_b){
+                        
+                            // Open a popup
+                            b_popups[i].openPopup();
+                            // create marker object
+                            L.geoJSON(b_buffers[i], {style: enterstyleMid}).addTo(map);
+                            
+                            // update the flag
+                            flag_b[i] = true;
+                        
+                        // still outside the geofence
+                        }; 
+
+                    // if we WERE within the buffer at the last location
+                    } else {
+
+                        // update the flag
+                        flag_b[i] = currentlyWithin_b;
+                    }
+                    
+
+                };
+
+
+                // BUFFER A
+                for (let i=0; i<a_buffers.length; i++){
+                    
+                    // TESTING: add to the map (and remove previous one to avoid accumulation)
+                    geoJSON = L.geoJSON(a_buffers[i]).addTo(map);
+                    if (geoJSON) map.removeLayer(geoJSON);
+                    
+
+                    // are we in the geofence?
+                    const currentlyWithin_a = turf.booleanWithin(player, a_buffers[i]);
+
+                    // if we were NOT within the buffer at the last location
+                    if (!flag_a[i]) {
+
+                        // enter the geofence
+                        if (currentlyWithin_a){
+
+                            /* do something here (popups etc...) */
+                            // a_popups[i].openPopup();
+                            // create marker object
+                            L.geoJSON(a_buffers[i], {style: enterstyleIn}).addTo(map);
+                            // update the flag
+                            flag_a[i] = true;
+                        
+                        // still outside the geofence
+                        }; 
+
+                    // if we WERE within the buffer at the last location
+                    } else {
+
+                        // update the flag
+                        flag_a[i] = currentlyWithin_a;
+                    }
+
+                };
+
+                for ( let i = 0; i < a_buffers.length; i++) {       
+                    if (turf.booleanWithin(player, a_buffers[i])) {					
+                        popup_audio[i].addTo(map);   // .openPopup()
+                        if (geofence_tracker [i] == 0) {
+                            geofence_tracker[i] =1;
+                            points = 0;
+                            for(let j in geofence_tracker) {points += geofence_tracker[j]};
+                            document.getElementById("score").innerHTML = points;
+                            };		
+						};	
+                    };
+
+                
+                
+                /*/////////////////////////////////////////////////////////////////////////////////////////////////////
+                // SQUARE GRID
+                */////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                
+                // Loop through each grid square
+                cover.eachLayer(function(layer){
+
+                    // Get grid as a turf polygon
+                    let poly = turf.polygon(layer.feature.geometry.coordinates);
+
+                    // Check if avatar intersects with grid
+                    let ptIntersect = turf.booleanPointInPolygon(player, poly);
+
+                    // Get bounds of the grid and zoom to it
+                    if(ptIntersect === true){
+                        
+                        // Update the layer to ensure that only squares where the player is located are see-through
+                        layer.setStyle({fillOpacity: 0})
+                        
+                    }
+
+                });
+
+            };
+
+
+
+
+        </script>
+    </body>
+   
+</html>
+
