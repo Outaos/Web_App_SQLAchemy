@@ -134,27 +134,23 @@
             <h1 style="background-color:white ; color:#061529; text-shadow: 1px 1px white; padding-left:5px;">Invaders discovered:</h1> 				<!-- currently contains miscellaneous stuff --> 
 			<p id="score" style="text-align: center;"></p>
 			<hr>
-            <h1 style="background-color:white ; color:#061529; text-shadow: 1px 1px white; padding-left:5px;">Distance walked:</h1> 				<!-- currently contains miscellaneous stuff --> 
+            <h1 style="background-color:white ; color:#061529; text-shadow: 1px 1px white; padding-left:5px;">Distance walked (km):</h1> 				<!-- currently contains miscellaneous stuff --> 
 			<p id="dist_tracker" style="text-align: center;"></p>
             <hr>                    
 			<h1 style="background-color: white ;text-shadow: 1px 1px #061529; padding-right:5px;"> Gameflow </h1> 
-			<p> 1. Walk around central Manchester to discover stories. <br> 2. Touch the 'feet' icon to see how far you are from the nearest story. <br> 3. Once you enter an invisible geofence the hint will popup and the geofence will appear on the map. <br> 4. After listening to the story you are welcome to rate it. <br> 5. Dare to add you own stories to the game. <br> 6. Share your stories with friends!</p> 
+			<p> 1. Walk around central Manchester to find space invaders. <br> 2. Touch the 'feet' icon to see how far you are from the nearest invader. <br> 3. Once you enter an invisible geofence the hint will popup and the geofence will appear on the map. <br> 4. Feel free to use "FlashInvader" app to collect newly disocvered invaders <br> 5. If you don't know where to go use a search bar <br> 6. Type "invader " and number and the location will be shown. <br> 7. Happy exploring!</p> 
 			<hr>
+            <h1 style="background-color:white ; color:#061529; text-shadow: 1px 1px white; padding-left:5px;"> Further information</h1>
+            <p> Want to learn more? Check out the links below: </p>
+			<b>About Invader artist and his art: <a href="https://space-invaders.com/about/">Invader</a></b> 
+            <br>
+            <p> FlashInvaders app on the App Store and Google Play:</p>
+            <b>App Store: <a href="https://apps.apple.com/us/app/flashinvaders/id895180919">FlashInvaders</a></b>
+			<br>
+            <b>Google Play: <a href="https://play.google.com/store/apps/details?id=com.ltu.flashInvader&hl=en_GB&gl=US">FlashInvaders</a></b>
 
 		</div>
         
-
-        <!-- Create a star rating-->
-        
-        <span onmouseover="starmark(this)" onclick="starmark(this)" id="1one" style="font-size:40px;cursor:pointer;" class="fa fa-star checked"></span>
-        <span onmouseover="starmark(this)" onclick="starmark(this)" id="2one" style="font-size:40px;cursor:pointer;" class="fa fa-star "></span>
-        <span onmouseover="starmark(this)" onclick="starmark(this)" id="3one" style="font-size:40px;cursor:pointer;" class="fa fa-star "></span>
-        <span onmouseover="starmark(this)" onclick="starmark(this)" id="4one" style="font-size:40px;cursor:pointer;" class="fa fa-star"></span>
-        <span onmouseover="starmark(this)" onclick="starmark(this)" id="5one" style="font-size:40px;cursor:pointer;" class="fa fa-star"></span>
-        <br />
-        <textarea style="margin-top:1px;" class="form-control" rows="3" id="comment" placeholder="Enter your review"></textarea>
-
-        <button onclick="result()" type="button" style="margin-top:10px;margin-right:5px;" class="btn btn-lg btn-success">Submit</button>
         
         <script>
 
@@ -163,11 +159,8 @@
             // Set location variable to 'null' to account for no info when user just enters the game
             let position = null; 
 
-            //Counter for score 					
-			let geofence_tracker = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];  
-
-            //Counter for score 					
-			//let distance_tracker = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]; 
+            // Counter of the space invader found					
+			let geofence_tracker = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];   
 
             // initialise empty array for updated coords
             let locationList = []
@@ -227,16 +220,80 @@
          */
         function initMap(){
 
-            
+            //sample data values for populate map
+						var data = [
+							{"loc":[53.484220,-2.235480], "title":"story 1"},
+							{"loc":[53.484076,-2.237332], "title":"story 2"},
+							{"loc":[53.483652,-2.235030], "title":"story 3"},
+							{"loc":[53.477002,-2.236600], "title":"story 4"},
+							{"loc":[53.473867,-2.240346], "title":"story 5"}
+						];
 
             // Map tiles 
             map = L.map('map');
             const mapCentre = L.latLng(53.4808,-2.2426);
             map.setView(mapCentre,16); //13
             // Change tiles
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-							attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-						}).addTo(map);
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+                        subdomains: 'abcd',
+                        maxZoom: 20
+                    }).addTo(map);
+
+            //Icon class for custom icons 
+            let manIcon = L.Icon.extend({
+                options: {
+                    iconSize: [37,37],    
+                    iconAnchor: [23,37],
+                    popupAnchor: [-5, -37] 
+                }
+            });
+
+            const dot = new manIcon({iconUrl: '../static/pics/dot.png'});
+
+            // Add a scale to the map
+            L.control.scale().addTo(map);
+
+            function localData(text, callResponse)
+                {
+                //here can use custom criteria or merge data from multiple layers
+
+                callResponse(data);
+
+                return {	//called to stop previous requests on map move
+                    abort: function() {
+                        console.log('aborted request:'+ text);
+                    }
+                };
+                }
+
+                map.addControl( new L.Control.Search({sourceData: localData, text:'Color...', markerLocation:true}) );
+
+
+            /*
+            var markersLayer = new L.LayerGroup();	//layer contain searched elements
+            //map.addLayer(markersLayer);
+
+            var controlSearch = new L.Control.Search({
+                position:'topleft',	 // topright	
+                layer: markersLayer,
+                initial: false,
+                zoom: 18,
+                marker: false
+            });
+
+            map.addControl( controlSearch );
+
+                ////////////populate map with markers from sample data
+                for(i in data) {
+                    var title = data[i].title,	//value searched
+                        loc = data[i].loc,		//position found
+                        marker = new L.Marker(new L.latLng(loc), {title: title}, {icon:dot});  // The property searched
+                    marker.bindPopup('title: '+ title );
+                    markersLayer.addLayer(marker);
+                };
+                */
+            
 
             // Sidebar 
             var sidebar_settings = L.control.sidebar('sidebar_settings', {
@@ -264,16 +321,7 @@
             /*/////////////////////////////////////////////////////////
             //INFO ON BUFFERS AND POPUPS
             *//////////////////////////////////////////////////////////
-            //Icon class for custom icons 
-            let manIcon = L.Icon.extend({
-                options: {
-                    iconSize: [37,37],    
-                    iconAnchor: [23,37],
-                    popupAnchor: [-5, -37] 
-                }
-            });
 
-            const dot = new manIcon({iconUrl: '../static/pics/dot.png'});
             
             /*
             // SPACE INVADERS  *************************************************************************************************
@@ -1002,7 +1050,7 @@
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             // Add a song icon
             const audioIcon = L.icon({
-                iconUrl: "../pinkMusic.png",
+                iconUrl: "../static/pinkMusic.png",      
                 iconSize: [50, 58], // size of the icon
                 iconAnchor: [20, 58], // changed marker icon position
                 popupAnchor: [0, -60], // changed popup position
@@ -1080,7 +1128,7 @@
             // specify units for measurement
             let gridOptions = {units: 'kilometers'};
             // get grid as a turf polygon 
-            let grid = turf.squareGrid([-2.275069,53.456925,-2.204545,53.504266], 0.1, gridOptions);   // Manchester City Centre [-2.257649,53.459561,-2.220493,53.494114]
+            let grid = turf.squareGrid([-2.261447,53.467634,-2.228910,53.491787], 0.1, gridOptions);   // Manchester City Centre [-2.2614472584992407,53.467634498110534,-2.2289109906102555,53.491787507679526]
             // turn grid into geoJson to display on a map
             cover = L.geoJson(grid, {style: {color:'#000000', fill: '#89CFF0', fillOpacity: 0.6, weight: 0.0}}).addTo(map); 
 
@@ -1163,26 +1211,6 @@
                         type: "image", 
                         url: "../static/pics/man_16.jpg", 
                     },{ 
-                        label: "Balloon Man_18", 
-                        type: "image", 
-                        url: "../static/pics/man_18.jpg", 
-                    },{ 
-                        label: "Catlow Man_19", 
-                        type: "image", 
-                        url: "../static/pics/man_19.jpg", 
-                    },{ 
-                        label: "Dale Man_20", 
-                        type: "image", 
-                        url: "../static/pics/man_20_dale.jpg", 
-                    },{ 
-                        label: "Hart Man_23", 
-                        type: "image", 
-                        url: "../static/pics/man_23.jpg", 
-                    },{ 
-                        label: "Portland Man_24", 
-                        type: "image", 
-                        url: "../static/pics/man_24.jpg", 
-                    },{ 
                         label: "Castle Man_27", 
                         type: "image", 
                         url: "../static/pics/man_27.jpg", 
@@ -1204,7 +1232,29 @@
         };
 
 
-            
+            /*
+            // { 
+                        label: "Balloon Man_18", 
+                        type: "image", 
+                        url: "../static/pics/man_18.jpg", 
+                    },{ 
+                        label: "Catlow Man_19", 
+                        type: "image", 
+                        url: "../static/pics/man_19.jpg", 
+                    },{ 
+                        label: "Dale Man_20", 
+                        type: "image", 
+                        url: "../static/pics/man_20_dale.jpg", 
+                    },{ 
+                        label: "Hart Man_23", 
+                        type: "image", 
+                        url: "../static/pics/man_23.jpg", 
+                    },{ 
+                        label: "Portland Man_24", 
+                        type: "image", 
+                        url: "../static/pics/man_24.jpg", 
+                    },
+            */
 
 
             /*
@@ -1247,9 +1297,10 @@
                 let simplified = turf.simplify(myLine, options);
 
                 // calculate the length of the user track
-                playerPath = turf.lineDistance(simplified, 'kilometers');   //length(simplified);
+                playerPath = turf.lineDistance(simplified, 'kilometers');   
+                let rounded = playerPath.toFixed(3);
                 console.log(playerPath);
-                document.getElementById("dist_tracker").innerHTML = playerPath;
+                document.getElementById("dist_tracker").innerHTML = rounded;   //playerPath
 
 
 
@@ -1259,8 +1310,8 @@
                     };
                 // add a Json line to the map
                 geoLine = L.geoJson(simplified, {style: {       // simplified
-                                                weight: 1,
-                                                color: 'red',
+                                                weight: 2,     //1
+                                                color: '#1A5276',
                                                 fillOpacity: 1,
                                                 fillColor: 'lightgrey',
                                             }}).addTo(map);
@@ -1423,56 +1474,6 @@
                 });
 
             };
-
-
-
-
-
-
-
-
-
-
-
-            
-
-
-
-
-
-            /*/////////////////////////////////////////////////////////////////////////////////////////////////////
-            // STAR RATING FUNCTION
-            *///////////////////////////////////////////////////////////////////////////////////////////////////////
-                var count;
-
-                function starmark(item) {
-                count = item.id[0];
-                sessionStorage.starRating = count;
-                var subid = item.id.substring(1);
-                for (var i = 0; i < 5; i++) {
-                    if (i < count) {
-                    document.getElementById(i + 1 + subid).style.color = "orange";
-                    } else {
-                    document.getElementById(i + 1 + subid).style.color = "black";
-                    }
-                }
-                }
-
-                function result() {
-                //Rating : Count
-                //Review : Comment(id)
-                alert(
-                    "Rating : " +
-                    count +
-                    "\nReview : " +
-                    document.getElementById("comment").value
-                );
-                }
-                
-
-
-
-
 
         </script>
     </body>

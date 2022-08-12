@@ -120,15 +120,23 @@
 
         <!-- Create a sidebar --> 
         <div id="sidebar_settings">
-            <h1 style="background-color:white ; color:#061529; text-shadow: 1px 1px white; padding-left:5px;">Invaders discovered:</h1> 				<!-- currently contains miscellaneous stuff --> 
+            <h1 style="background-color:white ; color:#061529; text-shadow: 1px 1px white; padding-left:5px;">Stories discovered:</h1> 				<!-- currently contains miscellaneous stuff --> 
 			<p id="score" style="text-align: center;"></p>
 			<hr>
-            <h1 style="background-color:white ; color:#061529; text-shadow: 1px 1px white; padding-left:5px;">Distance walked:</h1> 				<!-- currently contains miscellaneous stuff --> 
+            <h1 style="background-color:white ; color:#061529; text-shadow: 1px 1px white; padding-left:5px;">Distance walked (km):</h1> 				<!-- currently contains miscellaneous stuff --> 
 			<p id="dist_tracker" style="text-align: center;"></p>
             <hr>                    
 			<h1 style="background-color: white ;text-shadow: 1px 1px #061529; padding-right:5px;"> Gameflow </h1> 
 			<p> 1. Walk around central Manchester to discover stories. <br> 2. Touch the 'feet' icon to see how far you are from the nearest story. <br> 3. Once you enter an invisible geofence the hint will popup and the geofence will appear on the map. <br> 4. After listening to the story you are welcome to rate it. <br> 5. Dare to add you own stories to the game. <br> 6. Share your stories with friends!</p> 
 			<hr>
+            <h1 style="background-color:white ; color:#061529; text-shadow: 1px 1px white; padding-left:5px;"> Further information</h1>
+            <p> Want to learn more? Check out the links below: </p>
+			<b>About Invader artist and his art: <a href="https://space-invaders.com/about/">Invader</a></b> 
+            <br>
+            <p> FlashInvaders app on the App Store and Google Play:</p>
+            <b>App Store: <a href="https://apps.apple.com/us/app/flashinvaders/id895180919">FlashInvaders</a></b>
+			<br>
+            <b>Google Play: <a href="https://play.google.com/store/apps/details?id=com.ltu.flashInvader&hl=en_GB&gl=US">FlashInvaders</a></b>
 
 		</div>
         
@@ -238,19 +246,21 @@
             const mapCentre = L.latLng(53.4808,-2.2426);
             map.setView(mapCentre,16); //13
             // Change tiles
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-							attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-						}).addTo(map);
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+                        subdomains: 'abcd',
+                        maxZoom: 20
+                    }).addTo(map);
 
             
             // Add a scale to the map
             L.control.scale().addTo(map);
 
             var markersLayer = new L.LayerGroup();	//layer contain searched elements
-            map.addLayer(markersLayer);
+            //map.addLayer(markersLayer);
             
             var controlSearch = new L.Control.Search({
-                position:'topright',		
+                position:'topleft',	 // topright	
                 layer: markersLayer,
                 initial: false,
                 zoom: 18,
