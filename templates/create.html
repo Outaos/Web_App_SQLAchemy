@@ -14,24 +14,67 @@
 		<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
 		<!-- To delete markers -->
 		<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+        <!-- leaflet search  -->
+		<link rel="stylesheet" href="../static/leaflet-search-master/leaflet-search.css" /> <!-- ADDED -->
+		<link rel="stylesheet" href="../static/leaflet-search-master/style.css" /> <!-- ADDED -->
+        <script src="../static/leaflet-search-master/leaflet-search.js"></script> <!-- ADDED -->
+
+        <!-- leaflet sidebar  -->
+        <link rel="stylesheet"  href="../static/leaflet-sidebar-master/L.Control.Sidebar.css"  /> <!-- Leaflet sidebar  V1 CSS -->        
+        <script src="../static/leaflet-sidebar-master/L.Control.Sidebar.js"></script> <!-- Leaflet sidebar V1 js -->  
 		
         <style>
-            .button {
-                background-color: rgb(114, 114, 114);
-                border: none;
-                color: whitesmoke;
-                padding: 8px 20px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 16px;
-                margin: 4px 2px;
+             /* */
+
+            /* set the size web page to full size */
+			html, body {
+				padding:0;
+				margin: 0;
+				width: 100%;
+				height: 100%;
+			}
+			/* set the size of the map */
+			#map {
+				width: 100%;
+				height: 85%;
+			}
+
+
+
+            /* CSS */
+            .button-32 {
+                background-color: whitesmoke;
+                border-radius: 12px;
+                color: #000;
                 cursor: pointer;
-            }
-           
-            body {
-            margin: 0;
-            }
+                font-weight: bold;
+                padding: 10px 15px;
+                text-align: center;
+                transition: 200ms;
+                width: 28%;
+                box-sizing: border-box;
+                border: 0;
+                font-size: 16px;
+                user-select: none;
+                -webkit-user-select: none;
+                touch-action: manipulation;
+                }
+
+                .button-32:not(:disabled):hover,
+                .button-32:not(:disabled):focus {
+                outline: 0;
+                background: #3498DB;
+                box-shadow: 0 0 0 2px rgba(0,0,0,.2), 0 3px 8px 0 rgba(0,0,0,.15);
+                }
+
+                .button-32:disabled {
+                filter: saturate(0.2) opacity(0.5);
+                -webkit-filter: saturate(0.2) opacity(0.5);
+                cursor: not-allowed;
+                };
+            
+            
     
             .center {
             display: flex;
@@ -41,23 +84,62 @@
             }
             div.relative {
                 position: relative;
-                left: 140px;
-                border: 2px solid black;
+                left: 60px;   /* 140px */
+                border: 0px solid rgb(55, 56, 57);  /* 2px solid black */
+                };
+            .search-input {
+                font-family:Courier
                 }
+                .search-input,
+                .leaflet-control-search {
+                    max-width:400px;
+                };
+
+            #open_slidebar {  
+				background-image: url("../static/pics/menuBlack.png"); 
+				border: none; 
+				height: 33px;   /* 33px */
+				width: 35px;    /* 35px */
+				margin-top: 37px;      
+				margin-right: 15px;    
+				position: relative;    /* absolute */
+				top: 0;
+				right: 0; 
+				background-color: #ebebf0; 
+			};
+
+            .figureborder { 
+				border-style: solid; 
+				border-color:#898989;
+				padding: 2px;
+				border-width: thin; 
+				background-color: #DCDADA;  
+			}; 
         </style>
     </head>
-<body>
+<body onload='initMap()'>
+
+                <!-- A button to switch to the sidebar -->
+                <button type= "button" id= "open_slidebar"></button>
+
+                <br>  
+
     <div class="relative"> 
         <form method="POST" action="/" enctype="multipart/form-data">
-            <input type="file" name="file">
-            <label for="story" style="color: black;">story:</label><input type="text" name="story" />
-            <label for="longitude" style="color: black;">Longitude:</label><input type="float" name="insert_longitude" id="insert_longitude" value="-2.807007"/>
-            <label for="latitude" style="color: black;">Latitude:</label><input type="float" name="insert_latitude" id="insert_latitude" value="54.065836"/>
+            <label for="story" style="color: whitesmoke;">Story:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><input type="file" name="file">
+            <br>
+            <label for="story" style="color: whitesmoke;">Story name:</label><input type="text" name="story" />
+            <br>
+            <label for="longitude" style="color: whitesmoke;">Longitude:&nbsp;&nbsp;&nbsp;</label><input type="float" name="insert_longitude" id="insert_longitude" value="-2.807007"/>
+            <br>
+            <label for="latitude" style="color: whitesmoke;">Latitude:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><input type="float" name="insert_latitude" id="insert_latitude" value="54.065836"/>
             <!-- id="insert_longitude" type="text" value="-2.807007" 
                 id="insert_latitude" type="text" value="54.065836"-->
+            <br>
+            <br>
 
 
-            <button class="button" onclick="makeRequest('./insert?lng=' + document.getElementById('insert_longitude').value.toString() + 
+            <button class="button-32" role="button" onclick="makeRequest('./insert?lng=' + document.getElementById('insert_longitude').value.toString() + 
             '&lat=' + document.getElementById('insert_latitude').value.toString()+'&story=' + document.getElementById('story').value.toString(),
             loadInsertResponse)">Submit</button>
             <!-- class="button" onclick="makeRequest('&story=' + document.getElementById('story').value.toString(),
@@ -68,22 +150,35 @@
         </form>
     </div>
 
-            <style>
-    
-                /* Style the map */
-                #map {
-                    width:  1900px;
-                    height: 820px;
-                }
-            </style>
+           
         </head>
-    
-        <body onload='initMap()'>
+    <!--   <body onload='initMap()'>-->
+       
+
+                                     
+
 
 
     
             <!-- This is where the map will go -->
             <div id='map'></div>
+
+            <!-- Create a sidebar --> 
+            <div id="sidebar_settings">
+                 
+                <h1 style="background-color: white ;text-shadow: 1px 1px #061529; padding-right:5px;"> Information </h1> 
+                <p> 1. Walk around central Manchester to find space invaders. <br> 2. Touch the 'feet' icon to see how far you are from the nearest invader. <br> 3. Once you enter an invisible geofence the hint will popup and the geofence will appear on the map. <br> 4. Feel free to use "FlashInvader" app to collect newly disocvered invaders <br> 5. If you don't know where to go use a search bar <br> 6. Type "invader " and number and the location will be shown. <br> 7. Happy exploring!</p> 
+                <hr>
+                <h1 style="background-color:white ; color:#061529; text-shadow: 1px 1px white; padding-left:5px;"> Further information</h1>
+                <p> Want to learn more? Check out the links below: </p>
+                <b>About Invader artist and his art: <a href="https://space-invaders.com/about/">Invader</a></b> 
+                <br>
+                <p> FlashInvaders app on the App Store and Google Play:</p>
+                <b>App Store: <a href="https://apps.apple.com/us/app/flashinvaders/id895180919">FlashInvaders</a></b>
+                <br>
+                <b>Google Play: <a href="https://play.google.com/store/apps/details?id=com.ltu.flashInvader&hl=en_GB&gl=US">FlashInvaders</a></b>
+
+            </div>
 
 
     
@@ -162,7 +257,8 @@
                     </style>
                 </head>
             
-                <body onload='initMap()'>
+                <!--  <body onload='initMap()'> -->
+               
         
         
             
@@ -188,7 +284,11 @@
                             
                             map = L.map('map').setView(mapCentre,16);
         
-                            map.addLayer(new L.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'));	//base layer
+                            map.addLayer(new L.TileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+                                                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+                                                        subdomains: 'abcd',
+                                                        maxZoom: 20
+                                                    }));	//base layer
                             /*
                             // Add the OpenStreetMap background tile
                             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -198,8 +298,31 @@
                             
                             // Add a scale to the map
                             L.control.scale().addTo(map);
-        
+
                             var popup = L.popup();
+
+                            map.addControl( new L.Control.Search({
+                                        url: 'https://nominatim.openstreetmap.org/search?format=json&q={s}',
+                                        jsonpParam: 'json_callback',
+                                        propertyName: 'display_name',
+                                        propertyLoc: ['lat','lon'],
+                                        marker: L.circleMarker([0,0],{radius:30}),
+                                        autoCollapse: true,
+                                        autoType: false,
+                                        minLength: 2
+                                    }) );
+
+                            // Sidebar 
+                            var sidebar_settings = L.control.sidebar('sidebar_settings', {
+                                position: 'right' 
+                            }); 
+                            map.addControl(sidebar_settings);     
+                        
+                            document.getElementById("open_slidebar").onclick = Toggle; 
+                            
+                            function Toggle () { 
+                                sidebar_settings.toggle();  
+                            };
         
         
             /*-------------------------------------------------------------------------------------------------------
@@ -310,3 +433,8 @@
 
 
 {% endblock %}
+
+
+
+
+

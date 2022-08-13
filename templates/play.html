@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.button {
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 60px;
+  margin: 50px 240px;
+  transition-duration: 0.2s;
+  cursor: pointer;
+}
+
+.button1 {
+  background-color: #F0F3F4;
+  color: black;
+  border: 8px solid #F1C40F;
+}
+
+.button1:hover {
+  background-color: #F1C40F;
+  color: white;
+}
+
+.button2 {
+  background-color: #F0F3F4;
+  color: black;
+  border: 8px solid #3498DB;
+}
+
+.button2:hover {
+  background-color: #3498DB;
+  color: white;
+}
+
+</style>
+</head>
+<body>
+
+<h1>The button element - Styled with CSS</h1>
+
+<p>Use the :hover selector to change the style of the button when you move the mouse over it.</p>
+<p><strong>Tip:</strong> Use the transition-duration property to determine the speed of the "hover" effect:</p>
+
+
+<form action="https://outaos.pythonanywhere.com/art">
+    <input type="submit" class="button button1" value="Invader Art" />
+</form>
+
+            <br>
+            <br>
+            <br>
+            <br>
+
+<form action="https://outaos.pythonanywhere.com/stories">
+    <input type="submit" class="button button2" value="Personal Stories" />
+</form>
+
+
+</body>
+</html>
+
+
+
+
+
+
+{% endblock %}
