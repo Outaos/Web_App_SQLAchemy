@@ -36,8 +36,8 @@
 			}
 			/* set the size of the map */
 			#map {
-				width: 100%;
-				height: 85%;
+				width: 60%;
+				height: 50%;
 			}
 
 
@@ -126,13 +126,13 @@
 
     <div class="relative"> 
         <form method="POST" action="/" enctype="multipart/form-data">
-            <label for="story" style="color: whitesmoke;">Story:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><input type="file" name="file">
+            <label for="story" style="color: whitesmoke;">1. Story:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><input type="file" name="file">
             <br>
-            <label for="story" style="color: whitesmoke;">Story name:</label><input type="text" name="story" />
+            <label for="story" style="color: whitesmoke;">2. Story name:</label><input type="text" name="story" />
             <br>
-            <label for="longitude" style="color: whitesmoke;">Longitude:&nbsp;&nbsp;&nbsp;</label><input type="float" name="insert_longitude" id="insert_longitude" value="-2.807007"/>
+            <label for="longitude" style="color: whitesmoke;">3. Longitude:&nbsp;&nbsp;&nbsp;</label><input type="float" name="insert_longitude" id="insert_longitude" value="-2.807007"/>
             <br>
-            <label for="latitude" style="color: whitesmoke;">Latitude:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><input type="float" name="insert_latitude" id="insert_latitude" value="54.065836"/>
+            <label for="latitude" style="color: whitesmoke;">3. Latitude:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><input type="float" name="insert_latitude" id="insert_latitude" value="54.065836"/>
             <!-- id="insert_longitude" type="text" value="-2.807007" 
                 id="insert_latitude" type="text" value="54.065836"-->
             <br>
@@ -250,10 +250,12 @@
                     <style>
             
                         /* Style the map */
+                       
                         #map {
-                            width:  1900px;
-                            height: 820px;
+                            width:  620px;    /* 1900px */
+                            height: 340px;     /* 820px */
                         }
+                        
                     </style>
                 </head>
             
@@ -263,7 +265,8 @@
         
             
                     <!-- This is where the map will go -->
-                    <div id='map'></div>
+                    <!-- <div id='map'></div> -->
+                    
         
         
             

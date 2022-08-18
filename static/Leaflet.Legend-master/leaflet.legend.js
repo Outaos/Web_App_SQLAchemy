@@ -198,7 +198,7 @@
     L.Control.Legend = L.Control.extend({
         options: {
             position: "topleft",  //topleft
-            title: "List of all hidden invaders", 
+            title: "Legend of names", 
             legends: [],
             symbolWidth: 24,
             symbolHeight: 24,

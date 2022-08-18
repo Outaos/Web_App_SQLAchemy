@@ -160,7 +160,7 @@
             let position = null; 
 
             // Counter of the space invader found					
-			let geofence_tracker = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];   
+			let geofence_tracker = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];   
 
             // initialise empty array for updated coords
             let locationList = []
@@ -222,11 +222,41 @@
 
             //sample data values for populate map
 						var data = [
-							{"loc":[53.484220,-2.235480], "title":"story 1"},
-							{"loc":[53.484076,-2.237332], "title":"story 2"},
-							{"loc":[53.483652,-2.235030], "title":"story 3"},
-							{"loc":[53.477002,-2.236600], "title":"story 4"},
-							{"loc":[53.473867,-2.240346], "title":"story 5"}
+							{"loc":[53.484076,-2.237332], "title":"man 1"},
+							{"loc":[53.484220,-2.235480], "title":"man 2"},
+							{"loc":[53.483652,-2.235030], "title":"man 3"},
+							{"loc":[53.477002,-2.236600], "title":"man 4"},
+							{"loc":[53.473867,-2.240346], "title":"man 5"},
+                            {"loc":[53.469403,-2.234207], "title":"man 101"},
+                            {"loc":[53.470402,-2.234862], "title":"man 102"},
+                            {"loc":[53.470342,-2.237087], "title":"man 6"},
+							{"loc":[53.475262,-2.233808], "title":"man 7"},
+							{"loc":[53.484612,-2.240295], "title":"man 8"},
+							{"loc":[53.476159,-2.238385], "title":"man 12"},
+							{"loc":[53.482467,-2.236577], "title":"man 13"},
+                            {"loc":[53.480546,-2.233309], "title":"man 14"},
+                            {"loc":[53.478991,-2.242409], "title":"man 15"},
+                            {"loc":[53.482311,-2.237543], "title":"man 17"},
+							{"loc":[53.485876,-2.239560], "title":"man 18"},
+							{"loc":[53.483486,-2.237607], "title":"man 19"},
+							{"loc":[53.479897,-2.231990], "title":"man 20"},
+							{"loc":[53.476874,-2.238815], "title":"man 23"},
+                            {"loc":[53.477529,-2.240388], "title":"man 24"},
+                            {"loc":[53.473717,-2.240817], "title":"man 25"},
+                            {"loc":[53.474461,-2.253031], "title":"man 27"},
+                            {"loc":[53.474033,-2.251388], "title":"man 28"},
+                            {"loc":[53.473985,-2.247835], "title":"man 29"},
+                            {"loc":[53.482838,-2.247762], "title":"man 32"},
+							{"loc":[53.481028,-2.233850], "title":"man 33"},
+							{"loc":[53.487003,-2.244486], "title":"man 39"},
+							{"loc":[53.486770,-2.242731], "title":"man 40"},
+							{"loc":[53.483074,-2.233595], "title":"man 41"},
+                            {"loc":[53.474978,-2.240504], "title":"man 43"},
+                            {"loc":[53.481969,-2.237163], "title":"man 45"},
+                            {"loc":[53.483042,-2.246820], "title":"man 46"},
+							{"loc":[53.480715,-2.237221], "title":"man 30"},
+                            {"loc":[53.466813,-2.235488], "title":"man 201"},
+                            {"loc":[53.466621,-2.236100], "title":"man 202"}
 						];
 
             // Map tiles 
@@ -337,7 +367,7 @@
             const invader_1 = L.marker([53.484076,-2.237332], {icon:dot}).bindPopup().addTo(map);
     
             // Buffer 'b' popups
-            const b_pop_1_info = ("<h1 style ='text-align:center; color: #263985'> You are very close to Back Turner Street invader!</h1><b> Walk to the corner of Back Turner and Back Thomas streets to catch that sneaky creature.</b> <br> <b> Please take a screenshot of the picture below, it will be handy! </b> <iframe src='../static/pics/01_back_turner.jpg' width='300' height='300' frameborder='0' ></iframe>")   //Add content using HTML tags  width='300' height='300'
+            const b_pop_1_info = ("<h1 style ='text-align:center; color: #263985'> You are very close to Back Turner Street invader!</h1><b> Walk to the corner of Back Turner and Back Thomas streets to catch that sneaky creature.</b> <br> <iframe src='../static/pics/01_back_turner.jpg' width='300' height='300' frameborder='0' ></iframe>")   //Add content using HTML tags  width='300' height='300'
             const b_pop_1 = invader_1.bindPopup(b_pop_1_info, { 
                 maxWidth: 320,				 
                 maxHeight: 400
@@ -352,7 +382,7 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_1_info =
-            '<b>You are a legend!</b><br><b>All you have to do now is look around and be attentive.</b><br><iframe src="static/media/take_you_dancing_mp3.mp3" width="300" height="60" frameborder="0" ></iframe>';
+            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will find an invader in no time. Use this image as a hint! </b><br><iframe src='../static/pics/01_back_turner.jpg' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions1 = {
             maxWidth: "auto", // set max-width
@@ -373,7 +403,7 @@
             L.geoJSON(b_buff_2, {style: midStyle}).addTo(map); 														 
 
             // Buffer 'b' popups
-            const b_pop_2_info = ("<h1 style ='text-align:center; color: #263985'> You are very close to Oak Street invader!</h1><b> Walk to the corner of Oak and Copperas streets to catch that little one!</b> <br> <b>  Please take a screenshot of the picture below, it will be handy! </b> <iframe src='../static/pics/02_oak_street.jpg' width='300' height='300' frameborder='0' ></iframe>")   //<iframe src='pics/02_oak_street_rs.jpg' width='300' height='300' frameborder='0' ></iframe>
+            const b_pop_2_info = ("<h1 style ='text-align:center; color: #263985'> You are very close to Oak Street invader!</h1><b> Walk to the corner of Oak and Copperas streets to catch that little one!</b> <br>  <iframe src='../static/pics/02_oak_street.jpg' width='300' height='300' frameborder='0' ></iframe>")   //<iframe src='pics/02_oak_street_rs.jpg' width='300' height='300' frameborder='0' ></iframe>
             const b_pop_2 = invader_2.bindPopup(b_pop_2_info, { 
                 maxWidth: 320,				 
                 maxHeight: 400
@@ -388,7 +418,7 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_2_info =
-            '<b>You are a legend!</b><br><b>All you have to do now is look around and be attentive.</b><br><iframe src="static/media/take_you_dancing_mp3.mp3" width="300" height="60" frameborder="0" ></iframe>';
+            '<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will find an invader in no time. Use this image as a hint!</b><br><iframe src="static/media/take_you_dancing_mp3.mp3" width="300" height="60" frameborder="0" ></iframe>';
             // specify popup options
             const a_customOptions2 = {
             maxWidth: "auto", // set max-width
@@ -425,7 +455,7 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_3_info =
-            '<b>You are a legend!</b><br><b>All you have to do now is look around and be attentive.</b><br><iframe src="static/media/take_you_dancing_mp3.mp3" width="300" height="60" frameborder="0" ></iframe>';
+            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will find an invader in no time. Use this image as a hint!</b><br><iframe src='../static/pics/03_tib_street.jpg' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions3 = {
             maxWidth: "auto", // set max-width
@@ -461,7 +491,7 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_4_info =
-            '<b>You are a legend!</b><br><b>All you have to do now is look around and be attentive.</b><br><iframe src="static/media/take_you_dancing_mp3.mp3" width="300" height="60" frameborder="0" ></iframe>';
+            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will find an invader in no time. Use this image as a hint!</b><br><iframe src='../static/pics/04_gay_park.jpg' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions4 = {
             maxWidth: "auto", // set max-width
@@ -497,7 +527,7 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_5_info =
-            '<b>You are a legend!</b><br><b>All you have to do now is look around and be attentive.</b><br><iframe src="static/media/take_you_dancing_mp3.mp3" width="300" height="60" frameborder="0" ></iframe>';
+            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will find an invader in no time. Use this image as a hint!</b><br><iframe src='../static/pics/05_railway_bridge_oxford.jpg' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions5 = {
             maxWidth: "auto", // set max-width
@@ -532,7 +562,7 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_6_info =
-            '<b>You are a legend!</b><br><b>All you have to do now is look around and be attentive.</b><br><iframe src="static/media/take_you_dancing_mp3.mp3" width="300" height="60" frameborder="0" ></iframe>';
+            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will find an invader in no time. Use this image as a hint!</b><br><iframe src='../static/pics/06_grosvenor_street.jpg' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions6 = {
             maxWidth: "auto", // set max-width
@@ -568,7 +598,7 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_7_info =
-            '<b>You are a legend!</b><br><b>All you have to do now is look around and be attentive.</b><br><iframe src="static/media/take_you_dancing_mp3.mp3" width="300" height="60" frameborder="0" ></iframe>';
+            "<b>You are a legend!</b><br><b>All you need now is to be attentive and you will find an invader in no time. Use this image as a hint!</b><br><iframe src='../static/pics/07_umist_campus.jpg' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions7 = {
             maxWidth: "auto", // set max-width
@@ -604,7 +634,7 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_8_info =
-            '<b>You are a legend!</b><br><b>All you have to do now is look around and be attentive.</b><br><iframe src="static/media/take_you_dancing_mp3.mp3" width="300" height="60" frameborder="0" ></iframe>';
+            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will find an invader in no time. Use this image as a hint!</b><br><iframe src='../static/pics/08_dantzic_street.jpg' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions8 = {
             maxWidth: "auto", // set max-width
@@ -640,7 +670,7 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_12_info =
-            '<b>You are a legend!</b><br><b>All you have to do now is look around and be attentive.</b><br><iframe src="static/media/take_you_dancing_mp3.mp3" width="300" height="60" frameborder="0" ></iframe>';
+            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will find an invader in no time. Use this image as a hint!</b><br><iframe src='../static/pics/12_canal_street.jpg' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions12 = {
             maxWidth: "auto", // set max-width
@@ -676,7 +706,7 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_13_info =
-            '<b>You are a legend!</b><br><b>All you have to do now is look around and be attentive.</b><br><iframe src="static/media/take_you_dancing_mp3.mp3" width="300" height="60" frameborder="0" ></iframe>';
+            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will find an invader in no time. Use this image as a hint!</b><br><iframe src='../static/pics/13_short_street.jpg' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions13 = {
             maxWidth: "auto", // set max-width
@@ -712,7 +742,7 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_14_info =
-            '<b>You are a legend!</b><br><b>All you have to do now is look around and be attentive.</b><br><iframe src="static/media/take_you_dancing_mp3.mp3" width="300" height="60" frameborder="0" ></iframe>';
+            "<b>You are a legend!</b><br><b>All you need now is to be attentive and you will find an invader in no time. Use this image as a hint!</b><br><iframe src='../static/pics/14_china_lane.jpg' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions14 = {
             maxWidth: "auto", // set max-width
@@ -748,7 +778,7 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_15_info =
-            '<b>You are a legend!</b><br><b>All you have to do now is look around and be attentive.</b><br><iframe src="static/media/take_you_dancing_mp3.mp3" width="300" height="60" frameborder="0" ></iframe>';
+            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will find an invader in no time. Use this image as a hint!</b><br><iframe src='../static/pics/15_mosley_street.jpg' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions15 = {
             maxWidth: "auto", // set max-width
@@ -784,7 +814,7 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_17_info =
-            '<b>You are a legend!</b><br><b>All you have to do now is look around and be attentive.</b><br><iframe src="static/media/take_you_dancing_mp3.mp3" width="300" height="60" frameborder="0" ></iframe>';
+            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will find an invader in no time. Use this image as a hint!</b><br><iframe src='../static/pics/17_bridgewater_place.jpg' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions17 = {
             maxWidth: "auto", // set max-width
@@ -820,7 +850,7 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_18_info =
-            '<b>You are a legend!</b><br><b>All you have to do now is look around and be attentive.</b><br><iframe src="static/media/take_you_dancing_mp3.mp3" width="300" height="60" frameborder="0" ></iframe>';
+            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will find an invader in no time. Use this image as a hint!</b><br><iframe src='../static/pics/18_balloon_street.jpg' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions18 = {
             maxWidth: "auto", // set max-width
@@ -856,7 +886,7 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_19_info =
-            '<b>You are a legend!</b><br><b>All you have to do now is look around and be attentive.</b><br><iframe src="static/media/take_you_dancing_mp3.mp3" width="300" height="60" frameborder="0" ></iframe>';
+            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will find an invader in no time. Use this image as a hint!</b><br><iframe src='../static/pics/19_catlow_lane.jpg' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions19 = {
             maxWidth: "auto", // set max-width
@@ -892,7 +922,7 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_20_info =
-            '<b>You are a legend!</b><br><b>All you have to do now is look around and be attentive.</b><br><iframe src="static/media/take_you_dancing_mp3.mp3" width="300" height="60" frameborder="0" ></iframe>';
+            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will find an invader in no time. Use this image as a hint!</b><br><iframe src='../static/pics/20_dale_street.jpg' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions20 = {
             maxWidth: "auto", // set max-width
@@ -928,7 +958,7 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_23_info =
-            '<b>You are a legend!</b><br><b>All you have to do now is look around and be attentive.</b><br><iframe src="static/media/take_you_dancing_mp3.mp3" width="300" height="60" frameborder="0" ></iframe>';
+            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will find an invader in no time. Use this image as a hint!</b><br><iframe src='../static/pics/23_hart_street.jpg' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions23 = {
             maxWidth: "auto", // set max-width
@@ -964,7 +994,7 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_24_info =
-            '<b>You are a legend!</b><br><b>All you have to do now is look around and be attentive.</b><br><iframe src="static/media/take_you_dancing_mp3.mp3" width="300" height="60" frameborder="0" ></iframe>';
+            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will find an invader in no time. Use this image as a hint!</b><br><iframe src='../static/pics/24_princess.jpg' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions24 = {
             maxWidth: "auto", // set max-width
@@ -1000,7 +1030,7 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_25_info =
-            '<b>You are a legend!</b><br><b>All you have to do now is look around and be attentive.</b><br><iframe src="static/media/take_you_dancing_mp3.mp3" width="300" height="60" frameborder="0" ></iframe>';
+            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will find an invader in no time. Use this image as a hint!</b><br><iframe src='../static/pics/25_new_wakefield_street.jpg' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions25 = {
             maxWidth: "auto", // set max-width
@@ -1036,7 +1066,7 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_27_info =
-            '<b>You are a legend!</b><br><b>All you have to do now is look around and be attentive.</b><br><iframe src="static/media/take_you_dancing_mp3.mp3" width="300" height="60" frameborder="0" ></iframe>';
+            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will find an invader in no time. Use this image as a hint!</b><br><iframe src='../static/pics/27_castle_street.jpg' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions27 = {
             maxWidth: "auto", // set max-width
@@ -1072,7 +1102,7 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_28_info =
-            '<b>You are a legend!</b><br><b>All you have to do now is look around and be attentive.</b><br><iframe src="static/media/take_you_dancing_mp3.mp3" width="300" height="60" frameborder="0" ></iframe>';
+            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will find an invader in no time. Use this image as a hint!</b><br><iframe src='../static/pics/28_hewitt_street.jpg' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions28 = {
             maxWidth: "auto", // set max-width
@@ -1108,7 +1138,7 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_29_info =
-            '<b>You are a legend!</b><br><b>All you have to do now is look around and be attentive.</b><br><iframe src="static/media/take_you_dancing_mp3.mp3" width="300" height="60" frameborder="0" ></iframe>';
+            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will find an invader in no time. Use this image as a hint!</b><br><iframe src='../static/pics/29_albion_street.jpg' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions29 = {
             maxWidth: "auto", // set max-width
@@ -1144,7 +1174,7 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_32_info =
-            '<b>You are a legend!</b><br><b>All you have to do now is look around and be attentive.</b><br><iframe src="static/media/take_you_dancing_mp3.mp3" width="300" height="60" frameborder="0" ></iframe>';
+            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will find an invader in no time. Use this image as a hint!</b><br><iframe src='../static/pics/32_college_land.jpg' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions32 = {
             maxWidth: "auto", // set max-width
@@ -1180,7 +1210,7 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_33_info =
-            '<b>You are a legend!</b><br><b>All you have to do now is look around and be attentive.</b><br><iframe src="static/media/take_you_dancing_mp3.mp3" width="300" height="60" frameborder="0" ></iframe>';
+            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will find an invader in no time. Use this image as a hint!</b><br><iframe src='../static/pics/33_newton_street.jpg' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions33 = {
             maxWidth: "auto", // set max-width
@@ -1216,7 +1246,7 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_39_info =
-            '<b>You are a legend!</b><br><b>All you have to do now is look around and be attentive.</b><br><iframe src="static/media/take_you_dancing_mp3.mp3" width="300" height="60" frameborder="0" ></iframe>';
+            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will find an invader in no time. Use this image as a hint!</b><br><iframe src='../static/pics/39_hunts_bank.jpg' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions39 = {
             maxWidth: "auto", // set max-width
@@ -1252,7 +1282,7 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_40_info =
-            '<b>You are a legend!</b><br><b>All you have to do now is look around and be attentive.</b><br><iframe src="static/media/take_you_dancing_mp3.mp3" width="300" height="60" frameborder="0" ></iframe>';
+            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will find an invader in no time. Use this image as a hint!</b><br><iframe src='../static/pics/40_walkers_croft.jpg' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions40 = {
             maxWidth: "auto", // set max-width
@@ -1288,7 +1318,7 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_41_info =
-            '<b>You are a legend!</b><br><b>All you have to do now is look around and be attentive.</b><br><iframe src="static/media/take_you_dancing_mp3.mp3" width="300" height="60" frameborder="0" ></iframe>';
+            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will find an invader in no time. Use this image as a hint!</b><br><iframe src='../static/pics/41_faraday_street.jpg' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions41 = {
             maxWidth: "auto", // set max-width
@@ -1324,7 +1354,7 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_43_info =
-            '<b>You are a legend!</b><br><b>All you have to do now is look around and be attentive.</b><br><iframe src="static/media/take_you_dancing_mp3.mp3" width="300" height="60" frameborder="0" ></iframe>';
+            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will find an invader in no time. Use this image as a hint!</b><br><iframe src='../static/pics/43_whitworth_street.jpg' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions43 = {
             maxWidth: "auto", // set max-width
@@ -1360,7 +1390,7 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_45_info =
-            '<b>You are a legend!</b><br><b>All you have to do now is look around and be attentive.</b><br><iframe src="static/media/take_you_dancing_mp3.mp3" width="300" height="60" frameborder="0" ></iframe>';
+            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will find an invader in no time. Use this image as a hint!</b><br><iframe src='../static/pics/45_back_piccadilly.jpg' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions45 = {
             maxWidth: "auto", // set max-width
@@ -1396,7 +1426,7 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_46_info =
-            '<b>You are a legend!</b><br><b>All you have to do now is look around and be attentive.</b><br><iframe src="static/media/take_you_dancing_mp3.mp3" width="300" height="60" frameborder="0" ></iframe>';
+            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will find an invader in no time. Use this image as a hint!</b><br><iframe src='../static/pics/46_parsonage_lane.jpg' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions46 = {
             maxWidth: "auto", // set max-width
@@ -1432,7 +1462,7 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_30_info =
-            '<b>You are a legend!</b><br><b>All you have to do now is look around and be attentive.</b><br><iframe src="static/media/take_you_dancing_mp3.mp3" width="300" height="60" frameborder="0" ></iframe>';
+            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will find an invader in no time. Use this image as a hint!</b><br><iframe src='../static/pics/30_pic_gardens.jpg' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions30 = {
             maxWidth: "auto", // set max-width
@@ -1454,7 +1484,7 @@
             L.geoJSON(b_buff_101, {style: midStyle}).addTo(map); 										
 
             // Buffer 'b' popups
-            const b_pop_101_info = ("<h1 style ='text-align:center; color: #263985'> You are very close to South Gardens invader!</h1><b> Look under stone banches of South Gardens. She is hiding under one of them! </b><br> <b> Please take a screenshot of the picture below, it will be handy! </b><iframe src='../static/pics/28_hewitt_street.jpg' width='300' height='300' frameborder='0' ></iframe>")  
+            const b_pop_101_info = ("<h1 style ='text-align:center; color: #263985'> You are very close to South Gardens invader!</h1><b> Look under stone banches of </b><h4>South Gardens</h4><b>. She is hiding under one of them! </b><br> <b> Please take a screenshot of the picture below, it will be handy! </b><iframe src='../static/pics/28_hewitt_street.jpg' width='300' height='300' frameborder='0' ></iframe>")  
             const b_pop_101 = invader_101.bindPopup(b_pop_101_info, { 
                 maxWidth: 320,				 
                 maxHeight: 400
@@ -1469,14 +1499,14 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_101_info =
-            "<b>You are a legend!</b><br><b>All you have to do now is look around and be attentive.</b><br><iframe src='../static/pics/28_hewitt_street.jpg' width='300' height='300' frameborder='0' ></iframe>";
+            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will find an invader in no time. Use this image as a hint!</b><br><iframe src='../static/pics/28_hewitt_street.jpg' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions101 = {
             maxWidth: "auto", // set max-width   
             className: "customPopup", // name custom popup
             };
             const a_pop_101 = L.marker([53.469403,-2.234207], {icon: audioIcon101}).bindPopup(a_pop_101_info, a_customOptions101);
-
+            
 
 
             // Invader # 102        Engineering North                                                                    Christabel parking  [53.492684,-2.226228]
@@ -1490,7 +1520,7 @@
             L.geoJSON(b_buff_102, {style: midStyle}).addTo(map); 										
 
             // Buffer 'b' popups
-            const b_pop_102_info = ("<h1 style ='text-align:center; color: #263985'> You are very close to Northern invader!</h1><b> Look under stone banches of North Gardens. She is hiding under one of them! </b><br> <b> Please take a screenshot of the picture below, it will be handy! </b><iframe src='../static/pics/27_castle_street.jpg' width='300' height='300' frameborder='0' ></iframe>")  
+            const b_pop_102_info = ("<h1 style ='text-align:center; color: #263985'> You are very close to Northern invader!</h1><b> Look under stone banches of </b><h4>North Gardens</h4><b>. She is hiding under one of them! </b><br> <b> Please take a screenshot of the picture below, it will be handy! </b><iframe src='../static/pics/27_castle_street.jpg' width='300' height='300' frameborder='0' ></iframe>")  
             const b_pop_102 = invader_102.bindPopup(b_pop_102_info, { 
                 maxWidth: 320,				 
                 maxHeight: 400
@@ -1505,7 +1535,7 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_102_info =
-            "<b>You are a legend!</b><br><b>All you have to do now is look around and be attentive.</b><br><iframe src='../static/pics/27_castle_street.jpg' width='300' height='300' frameborder='0' ></iframe>";
+            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will find an invader in no time. Use this image as a hint!</b><br><iframe src='../static/pics/27_castle_street.jpg' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions102 = {
             maxWidth: "auto", // set max-width
@@ -1541,7 +1571,7 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_201_info =
-            '<b>You are a legend!</b><br><b>All you have to do now is look around and be attentive.</b><br><iframe src="static/media/take_you_dancing_mp3.mp3" width="300" height="60" frameborder="0" ></iframe>';
+            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will find an invader in no time. Use this image as a hint!</b><br><iframe src='../static/pics/17_bridgewater_place.jpg' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions201 = {
             maxWidth: "auto", // set max-width
@@ -1577,7 +1607,7 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_202_info =
-            '<b>You are a legend!</b><br><b>All you have to do now is look around and be attentive.</b><br><iframe src="static/media/take_you_dancing_mp3.mp3" width="300" height="60" frameborder="0" ></iframe>';
+            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will find an invader in no time. Use this image as a hint!</b><br><iframe src='../static/pics/41_faraday_street.jpg' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions202 = {
             maxWidth: "auto", // set max-width
@@ -1669,7 +1699,7 @@
             a_popups = [a_pop_1,a_pop_2,a_pop_3,a_pop_4,a_pop_5,a_pop_6,a_pop_7,a_pop_8,a_pop_12,a_pop_13,a_pop_14,a_pop_15,a_pop_17,a_pop_18,a_pop_19,a_pop_20,a_pop_23,a_pop_24,a_pop_25,a_pop_27,a_pop_28,a_pop_29,a_pop_32,a_pop_33,a_pop_39,a_pop_40,a_pop_41,a_pop_43,a_pop_45,a_pop_46,a_pop_30,a_pop_101,a_pop_102,a_pop_201,a_pop_202]; 
 
 
-
+            /*
             // SQUARE GRID
             // specify units for measurement
             let gridOptions = {units: 'kilometers'};
@@ -1677,6 +1707,7 @@
             let grid = turf.squareGrid([-2.261447,53.467634,-2.228910,53.491787], 0.1, gridOptions);   // Manchester City Centre [-2.2614472584992407,53.467634498110534,-2.2289109906102555,53.491787507679526]
             // turn grid into geoJson to display on a map
             cover = L.geoJson(grid, {style: {color:'#000000', fill: '#89CFF0', fillOpacity: 0.6, weight: 0.0}}).addTo(map); 
+            */
 
 
 
@@ -1843,7 +1874,8 @@
                 let simplified = turf.simplify(myLine, options);
 
                 // calculate the length of the user track
-                playerPath = turf.lineDistance(simplified, 'kilometers');   
+                playerPath = turf.lineDistance(simplified, 'kilometers');  
+                // Round the number 
                 let rounded = playerPath.toFixed(3);
                 console.log(playerPath);
                 document.getElementById("dist_tracker").innerHTML = rounded;   //playerPath
@@ -1999,7 +2031,7 @@
                 // SQUARE GRID
                 */////////////////////////////////////////////////////////////////////////////////////////////////////
 
-                
+                /*
                 // Loop through each grid square
                 cover.eachLayer(function(layer){
 
@@ -2018,6 +2050,8 @@
                     }
 
                 });
+                */
+
 
             };
 
