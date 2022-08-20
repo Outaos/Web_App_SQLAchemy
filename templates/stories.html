@@ -198,13 +198,13 @@
             const enterstyleIn = { 
                 "color": "#0E6655",    // green
                 "weight": 3,
-                "fillOpacity": 0.5
+                "fillOpacity": 0.3
             };
 
             const enterstyleMid = { 
                 "color": "#2E86C1",   // blue
                 "weight": 3,
-                "fillOpacity": 0.5
+                "fillOpacity": 0.3
             };
 
 
@@ -218,8 +218,8 @@
 							{"loc":[53.474824,-2.238472], "title":"story 1 (Hotel)"},
 							{"loc":[53.475476,-2.234458], "title":"story 2 (Frog)"},
 							{"loc":[53.478758,-2.239871], "title":"story 3 (Dragon)"},
-							{"loc":[53.466813,-2.235488], "title":"story 4"},
-							{"loc":[53.466621,-2.236100], "title":"story 5"}
+							{"loc":[53.476903,-2.236298], "title":"story 4 (Natalie)"},
+							{"loc":[53.480616,-2.229870], "title":"story 5 (Shy friend)"}
 						];
 
             // Map tiles 
@@ -300,7 +300,7 @@
             */
             // Story # 1 Kempinski
             const dot_1  = turf.point([-2.238472,53.474824]);                                        // Wang Ying store = [53.487068,-2.228138]       
-            const a_buff_1 = turf.buffer(dot_1, 0.01, {units:'kilometers',steps:24});              // UoM autolocation = [53.490878,-2.228104]
+            const a_buff_1 = turf.buffer(dot_1, 0.02, {units:'kilometers',steps:24});              // UoM autolocation = [53.490878,-2.228104]
             const b_buff_1 = turf.buffer(dot_1, 0.05, {units:'kilometers', steps:24});                 
                 
             L.geoJSON(a_buff_1,{style: innerStyle}).addTo(map); 
@@ -336,7 +336,7 @@
 
             // Story # 2  Frog
             const dot_2  = turf.point([-2.234458,53.475476]);                           // Christabel = [53.493350,-2.226204]  Rochdale road [53.493023,-2.224488]
-            const a_buff_2 = turf.buffer(dot_2, 0.01, {units:'kilometers',steps:24});
+            const a_buff_2 = turf.buffer(dot_2, 0.02, {units:'kilometers',steps:24});
             const b_buff_2 = turf.buffer(dot_2, 0.05, {units:'kilometers', steps:24});  
             
             var story_2 = L.marker([53.475476,-2.234458], {icon:dot}).bindPopup().addTo(map);  
@@ -371,7 +371,7 @@
             
             // Story # 3  Dragon
             const dot_3  = turf.point([-2.239871,53.478758]);                            // St Patric school [53.489761,-2.224294]// ALB  [53.466781,-2.235710]
-            const a_buff_3 = turf.buffer(dot_3, 0.01, {units:'kilometers',steps:24});                       // Christabel compound [53.489711,-2.224214]
+            const a_buff_3 = turf.buffer(dot_3, 0.03, {units:'kilometers',steps:24});                       // Christabel compound [53.489711,-2.224214]
             const b_buff_3 = turf.buffer(dot_3, 0.05, {units:'kilometers', steps:24});   
     
             var story_3 = L.marker([53.478758,-2.239871], {icon:dot}).bindPopup().addTo(map);   //, {icon:oak}   .addTo(map)
@@ -409,18 +409,18 @@
 
             // FAKE INVADERS FOR TESTING
 
-            // Story # 101  Azamat        ALB East                                                                  Christabel 101  [53.493367,-2.226024]
-            const dot_101  = turf.point([-2.235488,53.466813]);                          
+            // Story # 101  Natalie        ALB East    [53.466813,-2.235488]                                                               Christabel 101  [53.493367,-2.226024]
+            const dot_101  = turf.point([-2.236298,53.476903]);                          
             const a_buff_101 = turf.buffer(dot_101, 0.02, {units:'kilometers',steps:24});     
             const b_buff_101 = turf.buffer(dot_101, 0.05, {units:'kilometers', steps:24});   
    
-            var story_101 = L.marker([53.466813,-2.235488], {icon:dot}).bindPopup().addTo(map);   
+            var story_101 = L.marker([53.476903,-2.236298], {icon:dot}).bindPopup().addTo(map);   
            
             L.geoJSON(a_buff_101,{style: innerStyle}).addTo(map);
             L.geoJSON(b_buff_101, {style: midStyle}).addTo(map); 										
 
             // Buffer 'b' popups
-            const b_pop_101_info = ("<h1 style ='text-align:center; color: #263985'> You are very close to a story about a frog with the beautiful legs!</h1><b> The frog is hinding behind the ugliest and biggest monument to Vimto in the world.</b> <br> <b> Please take a screenshot of the picture below, it will be handy! </b><iframe src='../static/pics/28_hewitt_street.jpg' width='300' height='300' frameborder='0' ></iframe>")  
+            const b_pop_101_info = ("<h1 style ='text-align:center; color: #263985'> You are very close to a story about a Natalie!</h1><b> The story is hidden in a park.</b> <br> <b> Please take a screenshot of the picture below, it will be handy! </b><iframe src='../static/pics/28_hewitt_street.jpg' width='300' height='300' frameborder='0' ></iframe>")  
             const b_pop_101 = story_101.bindPopup(b_pop_101_info, { 
                 maxWidth: 320,				 
                 maxHeight: 400
@@ -435,28 +435,28 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_101_info =
-            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will discover a story in no time.</b><br><iframe src='../static/media/frog_story.mp3' width='300' height='300' frameborder='0' ></iframe>";
+            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will discover a story in no time.</b><br><iframe src='../static/media/Natalie.mp3' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions101 = {
             maxWidth: "auto", // set max-width   
             className: "customPopup", // name custom popup
             };
-            const a_pop_101 = L.marker([53.466813,-2.235488], {icon: audioIcon101}).bindPopup(a_pop_101_info, a_customOptions101);
+            const a_pop_101 = L.marker([53.476903,-2.236298], {icon: audioIcon101}).bindPopup(a_pop_101_info, a_customOptions101);
             
 
 
-            // Story # 102        ALB South                                                                    Christabel parking  [53.492684,-2.226228]
-            const dot_102  = turf.point([-2.236100,53.466621]);                          
+            // Story # 102        ALB South    [53.466621,-2.236100]                                                                Christabel parking  [53.492684,-2.226228]
+            const dot_102  = turf.point([-2.229870,53.480616]);                          
             const a_buff_102 = turf.buffer(dot_102, 0.02, {units:'kilometers',steps:24});     
             const b_buff_102 = turf.buffer(dot_102, 0.05, {units:'kilometers', steps:24});   
    
-            var story_102 = L.marker([53.466621,-2.236100], {icon:dot}).bindPopup().addTo(map);   
+            var story_102 = L.marker([53.480616,-2.229870], {icon:dot}).bindPopup().addTo(map);    
            
             L.geoJSON(a_buff_102,{style: innerStyle}).addTo(map);
             L.geoJSON(b_buff_102, {style: midStyle}).addTo(map); 										
 
             // Buffer 'b' popups
-            const b_pop_102_info = ("<h1 style ='text-align:center; color: #263985'> You are very close a dragon story</h1><b> Walk behind the car park. </b><br> <b> Please take a screenshot of the picture below, it will be handy! </b><iframe src='../static/pics/27_castle_street.jpg' width='300' height='300' frameborder='0' ></iframe>")  
+            const b_pop_102_info = ("<h1 style ='text-align:center; color: #263985'> You are very close a story about a shy guy.</h1><b> Walk towards the cananl. </b><br> <b> Please take a screenshot of the picture below, it will be handy! </b><iframe src='../static/pics/27_castle_street.jpg' width='300' height='300' frameborder='0' ></iframe>")  
             const b_pop_102 = story_102.bindPopup(b_pop_102_info, { 
                 maxWidth: 320,				 
                 maxHeight: 400
@@ -471,13 +471,13 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_102_info =
-            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will discover a story in no time.</b><br><iframe src='../static/media/ChineseDragon.mp3' width='300' height='300' frameborder='0' ></iframe>";
+            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will discover a story in no time.</b><br><iframe src='../static/media/A_shy_friend.mp3' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions102 = {
             maxWidth: "auto", // set max-width
             className: "customPopup", // name custom popup
             };
-            const a_pop_102 = L.marker([53.466621,-2.236100], {icon: audioIcon102}).bindPopup(a_pop_102_info, a_customOptions102);
+            const a_pop_102 = L.marker([53.480616,-2.229870], {icon: audioIcon102}).bindPopup(a_pop_102_info, a_customOptions102);
 
 
 
@@ -562,11 +562,11 @@
                         type: "image", 
                         url: "../static/pics/dragon.png", 
                     },{ 
-                        label: "story 4 (Frog)", 
+                        label: "story 4 (Natalie)", 
                         type: "image", 
                         url: "../static/pics/couple.png",
                     },{ 
-                        label: "story 5 (Dragon)", 
+                        label: "story 5 (A shy guy)", 
                         type: "image", 
                         url: "../static/pics/man_5.jpg", 
                     },]
