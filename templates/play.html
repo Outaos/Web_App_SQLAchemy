@@ -6,49 +6,104 @@
 <html>
 <head>
 <style>
-.button {
-  border: none;
-  color: white;
-  padding: 16px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 60px;
-  margin: 50px 240px;
-  transition-duration: 0.2s;
-  cursor: pointer;
-}
+    .button1 {
+      border: none;
+      color: white;
+      padding: 16px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 40px;
+      width: 400px;
+      height: 100px;
+      margin: 0px;
+      position: absolute;
+      top: 40%;
+      right: 30%;
+      transition-duration: 0.2s;
+      cursor: pointer;
+    }
 
-.button1 {
-  background-color: #F0F3F4;
-  color: black;
-  border: 8px solid #F1C40F;
-}
+    .button2 {
+      border: none;
+      color: white;
+      padding: 16px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 40px;
+      width: 400px;
+      height: 100px;
+      margin: 0px;
+      position: absolute;
+      top: 85%;
+      right: 30%;
+      transition-duration: 0.2s;
+      cursor: pointer;
+    }
+    
+    .button1 {
+      background-color: #2980B9;   /*#3498DB light blue*/
+      color: white;
+      border: 8px solid #2980B9;
+    }
+    
+    .button1:hover {
+      background-color: white;
+      color: white;
+    }
+    
+    .button2 {
+      background-color: #5499C7;
+      color: black;
+      border: 8px solid whitesmoke;
+    }
+    
+    .button2:hover {
+      background-color: white;
+      color: 8px solid black;
+    };
 
-.button1:hover {
-  background-color: #F1C40F;
-  color: white;
-}
+    /* unvisited link */
+        a:link {
+        color: red;
+        }
 
-.button2 {
-  background-color: #F0F3F4;
-  color: black;
-  border: 8px solid #3498DB;
-}
+        /* visited link */
+        a:visited {
+        color: #3498DB;
+        }
 
-.button2:hover {
-  background-color: #3498DB;
-  color: white;
-}
+        /* mouse over link */
+        a:hover {
+        color: #3498DB;
+        }
 
+        /* selected link */
+        a:active {
+        color: #3498DB;
+        }
 </style>
 </head>
 <body>
+    <h1 style= 'font-size: 36px; font-family: Arial; color:white; text-align:center; margin-bottom: -10px; margin-left:10px; text-shadow: 1px 1px whitesmoke'>Please select your game play mode</h1>
+    <br>
+    <br>
+    <hr>
+    <h2 style= 'font-size: 36px; font-family: Arial; color:white; text-align:center; margin-bottom: -10px; margin-left:10px; text-shadow: 1px 1px whitesmoke'>Invader Art</h2>
+    <p style= "font-size: 20px; font-family: Arial; color:rgb(223, 221, 221); text-align:left; margin-bottom: -10px; margin-left:10px">
+        Rule No. 1: Walk!
+        <br>
+        Back in the turbulent 2004 fourty seven space invaders have invaded the city of Manchester! (<a href="https://www.space-invaders.com/world/manchester/" target="_blank">United Invation</a>)
+        However, because Manchester is such a violent place, only 33 of those original invaders survived.
+        <br>
+        The goal of this mode is to find them all!
+        <br> 
+        This mode supplements the FlashInvader app (<a href="https://apps.apple.com/us/app/flashinvaders/id895180919" target="_blank">AppStore</a> / <a href="https://play.google.com/store/apps/details?id=com.ltu.flashInvader&hl=en_GB&gl=US"target="_blank">GooglePlay</a>) which will allow you to 'flash' invaders.
+        <br> 
+        Please take a second to download this app. It's free and awesome!
+    </p>
 
-<h1>The button element - Styled with CSS</h1>
-
-<p>Use the :hover selector to change the style of the button when you move the mouse over it.</p>
-<p><strong>Tip:</strong> Use the transition-duration property to determine the speed of the "hover" effect:</p>
 
 
 <form action="https://outaos.pythonanywhere.com/art">
@@ -59,15 +114,50 @@
             <br>
             <br>
             <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+        <hr>
+<h2 style= 'font-size: 36px; font-family: Arial; color:white; text-align:center; margin-bottom: -10px; margin-left:10px; text-shadow: 1px 1px whitesmoke'>Personal Stories</h2>
+    <p style= "font-size: 20px; font-family: Arial; color:rgb(223, 221, 221); text-align:left; margin-bottom: -10px; margin-left:10px">
+        Rule No. 2: Use the hints!
+        <br>
+        This mode allows you to discover stories recorded by the author of this app (<a href="https://www.instagram.com/ozz_outao/"target="_blank">link for criticism</a>) and his awesome friends.
+        Some of these stories happened in Manchester and some in other distant corners of the world.
+        However, all thess stories are location-based, and who knows, maybe some of them are about you! 
+        <br>
+        You are more than welcomed to add your own stories in the "Create" section to share them with the world!
+        <br>
+        The goal of this mode is to find all the hidden stories! 
+        <br>
+        Good luck and happy exploring!🤍 
+    </p>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 
 <form action="https://outaos.pythonanywhere.com/stories">
     <input type="submit" class="button button2" value="Personal Stories" />
 </form>
 
 
+        <hr>
+
+
+
 </body>
 </html>
 
+        
 
 
 

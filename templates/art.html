@@ -131,16 +131,18 @@
 
         <!-- Create a sidebar --> 
         <div id="sidebar_settings">
-            <h1 style="background-color:white ; color:#061529; text-shadow: 1px 1px white; padding-left:5px;">Invaders discovered:</h1> 				<!-- currently contains miscellaneous stuff --> 
+            <h1 style="background-color: white ;text-shadow: 1px 1px #061529; padding-right:5px;">Invaders discovered:</h1> 				<!-- currently contains miscellaneous stuff --> 
 			<p id="score" style="text-align: center;"></p>
 			<hr>
-            <h1 style="background-color:white ; color:#061529; text-shadow: 1px 1px white; padding-left:5px;">Distance walked (km):</h1> 				<!-- currently contains miscellaneous stuff --> 
+            <h1 style="background-color: white ;text-shadow: 1px 1px #061529; padding-right:5px;">Distance walked (km):</h1> 				<!-- currently contains miscellaneous stuff --> 
 			<p id="dist_tracker" style="text-align: center;"></p>
-            <hr>                    
-			<h1 style="background-color: white ;text-shadow: 1px 1px #061529; padding-right:5px;"> Gameflow </h1> 
+            <hr>
+            <h1 style="background-color: white ;text-shadow: 1px 1px #061529; padding-right:5px;"> Return to <a href="https://outaos.pythonanywhere.com/play">Play</a></h1>                    
+			<hr>
+            <h1 style="background-color: white ;text-shadow: 1px 1px #061529; padding-right:5px;"> Gameflow </h1> 
 			<p> 1. Walk around central Manchester to find space invaders. <br> 2. Touch the 'feet' icon to see how far you are from the nearest invader. <br> 3. Once you enter an invisible geofence the hint will popup and the geofence will appear on the map. <br> 4. Feel free to use "FlashInvader" app to collect newly disocvered invaders <br> 5. If you don't know where to go use a search bar <br> 6. Type "invader " and number and the location will be shown. <br> 7. Happy exploring!</p> 
 			<hr>
-            <h1 style="background-color:white ; color:#061529; text-shadow: 1px 1px white; padding-left:5px;"> Further information</h1>
+            <h1 style="background-color: white ;text-shadow: 1px 1px #061529; padding-right:5px;"> Further information</h1>
             <p> Want to learn more? Check out the links below: </p>
 			<b>About Invader artist and his art: <a href="https://space-invaders.com/about/">Invader</a></b> 
             <br>
@@ -148,6 +150,9 @@
             <b>App Store: <a href="https://apps.apple.com/us/app/flashinvaders/id895180919">FlashInvaders</a></b>
 			<br>
             <b>Google Play: <a href="https://play.google.com/store/apps/details?id=com.ltu.flashInvader&hl=en_GB&gl=US">FlashInvaders</a></b>
+            
+            
+            
 
 		</div>
         
@@ -256,7 +261,7 @@
                             {"loc":[53.483042,-2.246820], "title":"man 46"},
 							{"loc":[53.480715,-2.237221], "title":"man 30"},
                             {"loc":[53.466813,-2.235488], "title":"man 201"},
-                            {"loc":[53.466621,-2.236100], "title":"man 202"}
+                            {"loc":[53.487147,-2.228182], "title":"man 202"}
 						];
 
             // Map tiles 
@@ -1581,12 +1586,12 @@
 
 
 
-            // Invader # 202                                                        ALB West
-            const dot_202  = turf.point([-2.236100,53.466621]);                          
+            // Invader # 202                                                        ALB West  [53.466621,-2.236100]
+            const dot_202  = turf.point([-2.228182,53.487147]);                          
             const a_buff_202 = turf.buffer(dot_202, 0.02, {units:'kilometers',steps:24});     
             const b_buff_202 = turf.buffer(dot_202, 0.05, {units:'kilometers', steps:24});   
    
-            var invader_202 = L.marker([53.466621,-2.236100], {icon:dot}).bindPopup().addTo(map);   
+            var invader_202 = L.marker([53.487147,-2.228182], {icon:dot}).bindPopup().addTo(map);   
            
             L.geoJSON(a_buff_202,{style: innerStyle}).addTo(map);
             L.geoJSON(b_buff_202, {style: midStyle}).addTo(map); 										
@@ -1613,7 +1618,7 @@
             maxWidth: "auto", // set max-width
             className: "customPopup", // name custom popup
             };
-            const a_pop_202 = L.marker([53.466621,-2.236100], {icon: audioIcon202}).bindPopup(a_pop_202_info, a_customOptions202);
+            const a_pop_202 = L.marker([53.487147,-2.228182], {icon: audioIcon202}).bindPopup(a_pop_202_info, a_customOptions202);
 
 
 
@@ -1874,8 +1879,7 @@
                 let simplified = turf.simplify(myLine, options);
 
                 // calculate the length of the user track
-                playerPath = turf.lineDistance(simplified, 'kilometers');  
-                // Round the number 
+                playerPath = turf.lineDistance(simplified, 'kilometers');   
                 let rounded = playerPath.toFixed(3);
                 console.log(playerPath);
                 document.getElementById("dist_tracker").innerHTML = rounded;   //playerPath

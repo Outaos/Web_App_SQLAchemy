@@ -3,14 +3,15 @@ from io import BytesIO
 from flask import Flask, render_template, request, send_file
 from flask_sqlalchemy import SQLAlchemy 
 
-
+# Create a Flask app
 app = Flask(__name__)
+# Establish a database connection
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database'    
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False 
 app.debug = True
 db = SQLAlchemy(app)
 
-
+# Establish a class for a table
 class Upload(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     filename = db.Column(db.String(50))
@@ -67,3 +68,6 @@ def create_tables():
     db.create_all()
 
     # upload = Upload(filename=file.filename, data=file.read(), name=the_name)
+
+
+
