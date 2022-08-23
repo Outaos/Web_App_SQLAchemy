@@ -185,13 +185,13 @@
             const midStyle = {
                 "color": "#2E86C1",
                 "weight": 0,
-                "fillOpacity": 0.15
+                "fillOpacity": 0.2
             };
 
             const innerStyle = {
                 "color": "#2E86C1", 
                 "weight": 0, 
-                "fillOpacity":0.15   
+                "fillOpacity":0.2   
             };
 
             // Style the entered geofences
@@ -218,8 +218,19 @@
 							{"loc":[53.474824,-2.238472], "title":"story 1 (Hotel)"},
 							{"loc":[53.475476,-2.234458], "title":"story 2 (Frog)"},
 							{"loc":[53.478758,-2.239871], "title":"story 3 (Dragon)"},
-							{"loc":[53.476903,-2.236298], "title":"story 4 (Natalie)"},
-							{"loc":[53.480616,-2.229870], "title":"story 5 (Shy friend)"}
+							{"loc":[53.476903,-2.236298], "title":"story 4 (Rachel)"},
+							{"loc":[53.480616,-2.229870], "title":"story 5 (Shy friend)"},
+                            {"loc":[49.555860,25.594887], "title":"історія 1 (Школа 5)"},
+							{"loc":[49.555286,25.594189], "title":"історія 2 (Музична)"},
+							{"loc":[49.559302,25.590379], "title":"історія 3 (Ясна)"},
+							{"loc":[49.550080,25.595328], "title":"історія 4 (Костел)"},
+							{"loc":[49.552022,25.589624], "title":"історія 5 (Хор)"},
+                            {"loc":[39.943479, 116.399206], "title":"gushi di yi"},
+                            {"loc":[39.944166, 116.396679], "title":"gushi di er"},
+							{"loc":[39.941624, 116.396771], "title":"gushi di san"},
+							{"loc":[39.943113, 116.393482], "title":"gushi di si"},
+							{"loc":[39.940535, 116.390257], "title":"gushi di wu"},
+							{"loc":[39.937409, 116.381339], "title":"gushi di liu"}
 						];
 
             // Map tiles 
@@ -270,7 +281,139 @@
 
 
 
-            
+            const stories = {
+            "type": "FeatureCollection",
+            "features": [
+                {
+                "type": "Feature",
+                "properties": {
+                    "stroke": "#909497",
+                    "stroke-width": 2,
+                    "stroke-opacity": 0.2
+                },
+                "geometry": {
+                    "type": "LineString",
+                    "coordinates": [
+                    [
+                        -2.2386467456817623,
+                        53.474899758735255
+                    ],
+                    [
+                        -2.238367795944214,
+                        53.47474650564816
+                    ],
+                    [
+                        -2.237766981124878,
+                        53.474969999548556
+                    ],
+                    [
+                        -2.2376704216003414,
+                        53.474855059975354
+                    ],
+                    [
+                        -2.235342264175415,
+                        53.4753914419867
+                    ],
+                    [
+                        -2.233099937438965,
+                        53.475946973351036
+                    ],
+                    [
+                        -2.2337865829467773,
+                        53.47668767052368
+                    ],
+                    [
+                        -2.2344839572906494,
+                        53.47658550616509
+                    ],
+                    [
+                        -2.2359859943389893,
+                        53.47618961695227
+                    ],
+                    [
+                        -2.2379493713378906,
+                        53.47564685960914
+                    ],
+                    [
+                        -2.2412216663360596,
+                        53.47465072218766
+                    ],
+                    [
+                        -2.2416508197784424,
+                        53.47518710678182
+                    ],
+                    [
+                        -2.240492105484009,
+                        53.47557661991623
+                    ],
+                    [
+                        -2.238560914993286,
+                        53.47614491955103
+                    ],
+                    [
+                        -2.2370588779449463,
+                        53.47691753943111
+                    ],
+                    [
+                        -2.235889434814453,
+                        53.47627901161351
+                    ],
+                    [
+                        -2.2350096702575684,
+                        53.47492530086263
+                    ],
+                    [
+                        -2.2375094890594482,
+                        53.47444638341602
+                    ],
+                    [
+                        -2.2380459308624268,
+                        53.47574902622766
+                    ],
+                    [
+                        -2.2386360168457027,
+                        53.47619600229145
+                    ],
+                    [
+                        -2.240599393844604,
+                        53.477824232422805
+                    ],
+                    [
+                        -2.2399020195007324,
+                        53.478322266808014
+                    ],
+                    [
+                        -2.2402560710906982,
+                        53.47849466196399
+                    ],
+                    [
+                        -2.2394943237304688,
+                        53.479062922518295
+                    ]
+                    ]
+                }
+                }
+            ]
+            };
+
+            const teStories = {"type":"FeatureCollection","features":[{"type":"Feature","id":1,"geometry":{"type":"LineString","coordinates":[[25.592839544071548,49.555370237234214],[25.594147991486821,49.555550971166824],[25.595162908993153,49.555776888079116],[25.594398581925237,49.557221841864411],[25.593431579657857,49.558665302534486],[25.59230223564898,49.558387764255606],[25.591312193391172,49.559604404274211],[25.59024752538782,49.559301054153281]]},"properties":{"OBJECTID":1,"Shape_Length":1300.5897649393742}},{"type":"Feature","id":2,"geometry":{"type":"LineString","coordinates":[[25.59230223564898,49.558387764255606],[25.592147887116859,49.558334915098477],[25.592219456793845,49.558212373244395],[25.592038555858554,49.557555138789624],[25.592023630350113,49.557348594062169],[25.591924128457681,49.55700004745313],[25.591939053966122,49.556254536989435],[25.591272392634206,49.555970529982034],[25.591277367504265,49.555434785352233],[25.591963929214646,49.555108816629748],[25.591764926328079,49.554899034262696],[25.592988797359361,49.55436650520781],[25.593665408431363,49.554485920884652],[25.593590781787459,49.555041040796958],[25.593690283679891,49.555121726329268],[25.593568858402961,49.555470976316741]]},
+            "properties":{"OBJECTID":2,"Shape_Length":1115.3395346205309}},{"type":"Feature","id":3,"geometry":{"type":"LineString","coordinates":[[25.593665408431363,49.554485920884652],[25.595207684620178,49.554982947317654],[25.595162908993153,49.555776888079116]]},"properties":{"OBJECTID":3,"Shape_Length":328.03493289147139}},{"type":"Feature","id":4,"geometry":{"type":"LineString","coordinates":[[25.591949122283825,49.554818887411145],[25.591205486111853,49.55409964903729],[25.591033899807734,49.553666139561578],[25.590886201503661,49.552980287848662],[25.590855107218431,49.552173391150504],[25.587559113880815,49.55189097415699]]},"properties":{"OBJECTID":4,"Shape_Length":852.83628357694727}},{"type":"Feature","id":5,"geometry":{"type":"LineString","coordinates":[[25.590876884177533,49.552738497642153],[25.592835570823052,49.552706730288101],[25.592658575762609,49.551366481705351],[25.592640115383521,49.550887419484937],[25.592806273168382,49.550731030676495],[25.592786419502264,49.550215799446711]]},"properties":{"OBJECTID":5,"Shape_Length":652.17206332022158}},
+            {"type":"Feature","id":6,"geometry":{"type":"LineString","coordinates":[[25.592716097585214,49.550815904358103],[25.593591404319945,49.550821809901038],[25.594011177170749,49.550246871963076],[25.59426770457485,49.549863576245002],[25.595099476255978,49.549389495801712],[25.595278268845316,49.549661840448515],[25.5952549476822,49.551018497350682],[25.595138344561693,49.553116450060593],[25.595207684620178,49.554982947317654]]},"properties":{"OBJECTID":6,"Shape_Length":1365.728524943539}},{"type":"Feature","id":7,"geometry":{"type":"LineString","coordinates":[[25.592835570823052,49.552706730288101],[25.593552536014229,49.552617185984026],[25.595181794275366,49.55233469696001],[25.59768030193127,49.552339814976982],[25.597741667644957,49.551235702000426],[25.595251598762822,49.55107875656752],[25.593591404319945,49.550821809901038]]},"properties":{"OBJECTID":7,"Shape_Length":1205.2174483364852}},{"type":"Feature","id":8,"geometry":{"type":"LineString","coordinates":[[25.592988797359361,49.55436650520781],[25.595117852193439,49.553440100410697]]},"properties":{"OBJECTID":8,"Shape_Length":285.38037026366436}},{"type":"Feature","id":9,"geometry":{"type":"LineString","coordinates":[[25.592656225769833,49.551305496678154],[25.591112776381276,49.551330530142948],[25.590990545315513,49.551930935483306],[25.590855107218431,49.552173391150504]]},"properties":{"OBJECTID":9,"Shape_Length":320.03675251949966}}]};
+
+            const beUserTrack = {"type":"FeatureCollection","features":[{"type":"Feature","id":1,"geometry":{"type":"LineString","coordinates":[[116.40192725695589,39.944000613055515],[116.39660889180901,39.943996798960235],[116.39654421580352,39.945388989525398],[116.39657406592208,39.945846690098222],[116.3965840165605,39.94716256124142],[116.39847960374381,39.947154136598449],[116.39847395783224,39.946407481710409],[116.39795730167805,39.946409777800248],[116.39795861321838,39.945334771636723],[116.39795965436578,39.944481227991922],[116.39796020054146,39.944033698153575]]},"properties":{"OBJECTID":1,"Shape_Length":1773.8885471821766}},{"type":"Feature","id":2,"geometry":{"type":"LineString","coordinates":[[116.39660889180901,39.943996798960235],[116.39681858464748,39.939482829347227],[116.39350220673948,39.93939226575197],[116.39058028266594,39.939312474254336],[116.38982380956857,39.939794070538674],[116.38978748798667,39.940575976100007],[116.39014252554317,39.940992049529221],[116.39024358152105,39.940634445953563]]},
+            "properties":{"OBJECTID":2,"Shape_Length":1699.0678529381835}},{"type":"Feature","id":3,"geometry":{"type":"LineString","coordinates":[[116.39014252554317,39.940992049529221],[116.39018139384889,39.941152970872935],[116.38971918368573,39.941501722825556],[116.38966056412187,39.942410525303089],[116.3906711283923,39.942470124481822],[116.39336855718811,39.942535683174057],[116.39336078316767,39.9432389488883],[116.3966430080269,39.943262412235768]]},"properties":{"OBJECTID":3,"Shape_Length":1108.8274088718726}},{"type":"Feature","id":4,"geometry":{"type":"LineString","coordinates":[[116.39336855718811,39.942535683174057],[116.39351456486281,39.939392603244308]]},"properties":{"OBJECTID":4,"Shape_Length":456.63885337641125}},{"type":"Feature","id":5,"geometry":{"type":"LineString","coordinates":[[116.39336855718811,39.942535683174057],[116.39667535995352,39.942565989963477],[116.40205940721901,39.942619121857071],[116.40192725695589,39.944000613055515]]},"properties":{"OBJECTID":5,"Shape_Length":1168.6637634011036}},{"type":"Feature","id":6,"geometry":{"type":"LineString","coordinates":[[116.39660889180901,39.943996798960235],[116.39331598598108,39.943994438050325],[116.39336078316767,39.9432389488883]]},
+            "properties":{"OBJECTID":6,"Shape_Length":476.37315312895356}},{"type":"Feature","id":7,"geometry":{"type":"LineString","coordinates":[[116.39058028266594,39.939312474254336],[116.38973052671281,39.938786798395682],[116.38977201360761,39.937893678032616],[116.38926167171154,39.937879741359232],[116.38880547127764,39.937648384175887],[116.38743732362518,39.93792255904831],[116.38713415389493,39.937541098057217],[116.3845222348327,39.937994082747402],[116.3843978576917,39.937547058057163],[116.38402575214482,39.937536896508348],[116.38239227719173,39.937785471404979],[116.38234153225967,39.937381529937731],[116.38052941832919,39.937466474378233],[116.38042495144816,39.937740498448584],[116.38063887086004,39.937817418895804],[116.38146473432155,39.9377792731093],[116.38202194402093,39.937748756189244],[116.38238430284697,39.937721994466088]]},"properties":{"OBJECTID":7,"Shape_Length":1706.1809281048086}},{"type":"Feature","id":8,"geometry":{"type":"LineString","coordinates":[[116.38239227719173,39.937785471404979],[116.38246784796503,39.938387031963764],[116.3806040449731,39.93871003056676],[116.38063887086004,39.937817418895804]]},"properties":{"OBJECTID":8,"Shape_Length":430.10630770031025}},{"type":"Feature","id":9,"geometry":{"type":"LineString","coordinates":[[116.38246784796503,39.938387031963764],[116.3845222348327,39.937994082747402]]},
+            "properties":{"OBJECTID":9,"Shape_Length":235.70194703512121}},{"type":"Feature","id":10,"geometry":{"type":"LineString","coordinates":[[116.38743732362518,39.93792255904831],[116.38662104518775,39.938303950413449],[116.38655890961789,39.938435143906631],[116.38671246403928,39.938628351050568],[116.38704235954758,39.938996537635802],[116.38716314432575,39.939350866451164],[116.38889875413338,39.939233814298696],[116.38895887747704,39.939410189347221],[116.38951286671613,39.939800031031169],[116.38982380956857,39.939794070538674]]},"properties":{"OBJECTID":10,"Shape_Length":616.30329942557751}},{"type":"Feature","id":11,"geometry":{"type":"LineString","coordinates":[[116.3966430080269,39.943262412235768],[116.39863930264175,39.943276683219928],[116.39859239261763,39.943998221153613]]},"properties":{"OBJECTID":11,"Shape_Length":327.13172385665825}},{"type":"Feature","id":12,"geometry":{"type":"LineString","coordinates":[[116.39995713026524,39.943999200504187],[116.39995778962867,39.943459004577761],[116.39914118240783,39.943458419166731]]},"properties":{"OBJECTID":12,"Shape_Length":169.33957408988107}}]};
+
+            const myStyle = {
+                "color": "#7B7D7D",
+                "weight": 8,
+                "opacity": 0.4
+            };
+
+            L.geoJSON(stories, {style: myStyle}).addTo(map);
+            L.geoJSON(teStories, {style: myStyle}).addTo(map);
+            L.geoJSON(beUserTrack, {style: myStyle}).addTo(map);
 
 
 
@@ -296,12 +439,12 @@
             const dot = new manIcon({iconUrl: '../static/pics/dot.png'});
             
             /*
-            // SPACE INVADERS  *************************************************************************************************
+            // STORIES  *************************************************************************************************
             */
             // Story # 1 Kempinski
             const dot_1  = turf.point([-2.238472,53.474824]);                                        // Wang Ying store = [53.487068,-2.228138]       
-            const a_buff_1 = turf.buffer(dot_1, 0.02, {units:'kilometers',steps:24});              // UoM autolocation = [53.490878,-2.228104]
-            const b_buff_1 = turf.buffer(dot_1, 0.05, {units:'kilometers', steps:24});                 
+            const a_buff_1 = turf.buffer(dot_1, 0.03, {units:'kilometers',steps:24});              // UoM autolocation = [53.490878,-2.228104]
+            const b_buff_1 = turf.buffer(dot_1, 0.06, {units:'kilometers', steps:24});                 
                 
             L.geoJSON(a_buff_1,{style: innerStyle}).addTo(map); 
             L.geoJSON(b_buff_1, {style: midStyle}).addTo(map); 										
@@ -309,7 +452,7 @@
             const story_1 = L.marker([53.474824,-2.238472], {icon:dot}).bindPopup().addTo(map);
     
             // Buffer 'b' popups
-            const b_pop_1_info = ("<h1 style ='text-align:center; color: #263985'> You are very close to a story about the Great Wall hotel!</h1><b> Walk to the end of Granby Row an ugly car park and a beautiful Kimpton hotel.</b> <br> <b> Please take a screenshot of the picture below, it will be handy! </b> <iframe src='../static/pics/Kimpton.jpg' width='300' height='300' frameborder='0' ></iframe>")   //Add content using HTML tags  width='300' height='300'
+            const b_pop_1_info = ("<h1 style ='text-align:center; color: #263985'> You are very close to a story about the Great Wall hotel!</h1><b> Walk to the end of Granby Row an ugly car park and a beautiful Kimpton hotel.</b> <br> <b> Please take a screenshot of the picture below, it will be handy! </b> <iframe src='../static/pics/hotel.jpg' width='300' height='300' frameborder='0' ></iframe>")   //Add content using HTML tags  width='300' height='300'
             const b_pop_1 = story_1.bindPopup(b_pop_1_info, { 
                 maxWidth: 320,				 
                 maxHeight: 400
@@ -324,7 +467,7 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_1_info =
-            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will discover a story in no time.</b><br><iframe src='../static/media/kempinski_story.mp3' width='300' height='300' frameborder='0' ></iframe>";
+            "<h3>You are a legend!</h3><br><b>Here is a story for you:</b><br><iframe src='../static/media/Kempinski_2.mp3' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions1 = {
             maxWidth: "auto", // set max-width   
@@ -336,8 +479,8 @@
 
             // Story # 2  Frog
             const dot_2  = turf.point([-2.234458,53.475476]);                           // Christabel = [53.493350,-2.226204]  Rochdale road [53.493023,-2.224488]
-            const a_buff_2 = turf.buffer(dot_2, 0.02, {units:'kilometers',steps:24});
-            const b_buff_2 = turf.buffer(dot_2, 0.05, {units:'kilometers', steps:24});  
+            const a_buff_2 = turf.buffer(dot_2, 0.03, {units:'kilometers',steps:24});
+            const b_buff_2 = turf.buffer(dot_2, 0.06, {units:'kilometers', steps:24});  
             
             var story_2 = L.marker([53.475476,-2.234458], {icon:dot}).bindPopup().addTo(map);  
             
@@ -345,7 +488,7 @@
             L.geoJSON(b_buff_2, {style: midStyle}).addTo(map); 														 
 
             // Buffer 'b' popups
-            const b_pop_2_info = ("<h1 style ='text-align:center; color: #263985'> You are very close to a story about a frog with the beautiful legs!</h1><b> The frog is hinding behind the ugliest and biggest monument to Vimto in the world.</b> <br> <b>  Please take a screenshot of the picture below, it will be handy! </b> <iframe src='../static/pics/02_oak_street.jpg' width='300' height='300' frameborder='0' ></iframe>")   //<iframe src='pics/02_oak_street_rs.jpg' width='300' height='300' frameborder='0' ></iframe>
+            const b_pop_2_info = ("<h1 style ='text-align:center; color: #263985'> You are very close to a story about a frog with the beautiful legs!</h1><b> The frog is hinding behind the ugliest and biggest monument to Vimto in the world.</b> <br> <b>  Please take a screenshot of the picture below, it will be handy! </b> <iframe src='../static/pics/frog2.jpg' width='300' height='300' frameborder='0' ></iframe>")   //<iframe src='pics/02_oak_street_rs.jpg' width='300' height='300' frameborder='0' ></iframe>
             const b_pop_2 = story_2.bindPopup(b_pop_2_info, { 
                 maxWidth: 320,				 
                 maxHeight: 400
@@ -360,7 +503,7 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_2_info =
-            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will discover a story in no time.</b><br><iframe src='../static/media/frog_story.mp3' width='300' height='300' frameborder='0' ></iframe>";
+            "<h3>You are a legend!</h3><br><b>Here is a story for you:</b><br><iframe src='../static/media/Frog_2.mp3' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions2 = {
             maxWidth: "auto", // set max-width   
@@ -372,7 +515,7 @@
             // Story # 3  Dragon
             const dot_3  = turf.point([-2.239871,53.478758]);                            // St Patric school [53.489761,-2.224294]// ALB  [53.466781,-2.235710]
             const a_buff_3 = turf.buffer(dot_3, 0.03, {units:'kilometers',steps:24});                       // Christabel compound [53.489711,-2.224214]
-            const b_buff_3 = turf.buffer(dot_3, 0.05, {units:'kilometers', steps:24});   
+            const b_buff_3 = turf.buffer(dot_3, 0.06, {units:'kilometers', steps:24});   
     
             var story_3 = L.marker([53.478758,-2.239871], {icon:dot}).bindPopup().addTo(map);   //, {icon:oak}   .addTo(map)
             
@@ -381,7 +524,7 @@
 
 
             // Buffer 'b' popups
-            const b_pop_3_info = ("<h1 style ='text-align:center; color: #263985'> You are very close to a story about the Chinese dragon!</h1><b> Walk to St. James street, on the other side of the car park</b><br> <b> Please take a screenshot of the picture below, it will be handy! </b><iframe src='../static/pics/03_tib_street.jpg' width='300' height='300' frameborder='0' ></iframe>")   //<iframe src='pics/02_oak_street_rs.jpg' width='300' height='300' frameborder='0' ></iframe>
+            const b_pop_3_info = ("<h1 style ='text-align:center; color: #263985'> You are very close to a story about the Chinese dragon!</h1><b> Walk to St. James street, on the other side of the car park</b><br> <b> Please take a screenshot of the picture below, it will be handy! </b><iframe src='../static/pics/dragon.jpg' width='300' height='300' frameborder='0' ></iframe>")   //<iframe src='pics/02_oak_street_rs.jpg' width='300' height='300' frameborder='0' ></iframe>
             const b_pop_3 = story_3.bindPopup(b_pop_3_info, { 
                 maxWidth: 320,				 
                 maxHeight: 400
@@ -396,7 +539,7 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_3_info =
-            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will discover a story in no time.</b><br><iframe src='../static/media/ChineseDragon.mp3' width='300' height='300' frameborder='0' ></iframe>";
+            "<h3>You are a legend!</h3><br><b>Here is a story for you:</b><br><iframe src='../static/media/Dragon_2.mp3' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions3 = {
             maxWidth: "auto", // set max-width   
@@ -409,10 +552,10 @@
 
             // FAKE INVADERS FOR TESTING
 
-            // Story # 101  Natalie        ALB East    [53.466813,-2.235488]                                                               Christabel 101  [53.493367,-2.226024]
+            // Story # 101  Rachel        ALB East    [53.466813,-2.235488]                                                               Christabel 101  [53.493367,-2.226024]
             const dot_101  = turf.point([-2.236298,53.476903]);                          
-            const a_buff_101 = turf.buffer(dot_101, 0.02, {units:'kilometers',steps:24});     
-            const b_buff_101 = turf.buffer(dot_101, 0.05, {units:'kilometers', steps:24});   
+            const a_buff_101 = turf.buffer(dot_101, 0.03, {units:'kilometers',steps:24});     
+            const b_buff_101 = turf.buffer(dot_101, 0.06, {units:'kilometers', steps:24});   
    
             var story_101 = L.marker([53.476903,-2.236298], {icon:dot}).bindPopup().addTo(map);   
            
@@ -420,7 +563,7 @@
             L.geoJSON(b_buff_101, {style: midStyle}).addTo(map); 										
 
             // Buffer 'b' popups
-            const b_pop_101_info = ("<h1 style ='text-align:center; color: #263985'> You are very close to a story about a Natalie!</h1><b> The story is hidden in a park.</b> <br> <b> Please take a screenshot of the picture below, it will be handy! </b><iframe src='../static/pics/28_hewitt_street.jpg' width='300' height='300' frameborder='0' ></iframe>")  
+            const b_pop_101_info = ("<h1 style ='text-align:center; color: #263985'> You are very close to a story about Rachel (the name is fake, but story's real)!</h1><b> The story is hidden in Sackville Garden park.</b> <br> <b> Please take a screenshot of the picture below, it will be handy! </b><iframe src='../static/pics/hippie.jpg' width='300' height='300' frameborder='0' ></iframe>")  
             const b_pop_101 = story_101.bindPopup(b_pop_101_info, { 
                 maxWidth: 320,				 
                 maxHeight: 400
@@ -435,7 +578,7 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_101_info =
-            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will discover a story in no time.</b><br><iframe src='../static/media/Natalie.mp3' width='300' height='300' frameborder='0' ></iframe>";
+            "<h3>You are a legend!</h3><br><b>Here is a story for you:</b><br><iframe src='../static/media/Natalie_2.mp3' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions101 = {
             maxWidth: "auto", // set max-width   
@@ -447,8 +590,8 @@
 
             // Story # 102        ALB South    [53.466621,-2.236100]                                                                Christabel parking  [53.492684,-2.226228]
             const dot_102  = turf.point([-2.229870,53.480616]);                          
-            const a_buff_102 = turf.buffer(dot_102, 0.02, {units:'kilometers',steps:24});     
-            const b_buff_102 = turf.buffer(dot_102, 0.05, {units:'kilometers', steps:24});   
+            const a_buff_102 = turf.buffer(dot_102, 0.03, {units:'kilometers',steps:24});     
+            const b_buff_102 = turf.buffer(dot_102, 0.06, {units:'kilometers', steps:24});   
    
             var story_102 = L.marker([53.480616,-2.229870], {icon:dot}).bindPopup().addTo(map);    
            
@@ -456,7 +599,7 @@
             L.geoJSON(b_buff_102, {style: midStyle}).addTo(map); 										
 
             // Buffer 'b' popups
-            const b_pop_102_info = ("<h1 style ='text-align:center; color: #263985'> You are very close a story about a shy guy.</h1><b> Walk towards the cananl. </b><br> <b> Please take a screenshot of the picture below, it will be handy! </b><iframe src='../static/pics/27_castle_street.jpg' width='300' height='300' frameborder='0' ></iframe>")  
+            const b_pop_102_info = ("<h1 style ='text-align:center; color: #263985'> You are very close a story about a shy guy.</h1><b> Walk towards the cananl, the story is hidden behind Dakota hotel. </b><br> <b> Please take a screenshot of the picture below, it will be handy! </b><iframe src='../static/pics/shy.jpg' width='300' height='300' frameborder='0' ></iframe>")  
             const b_pop_102 = story_102.bindPopup(b_pop_102_info, { 
                 maxWidth: 320,				 
                 maxHeight: 400
@@ -471,17 +614,454 @@
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_102_info =
-            "<h3>You are a legend!</h3><br><b>All you need now is to be attentive and you will discover a story in no time.</b><br><iframe src='../static/media/A_shy_friend.mp3' width='300' height='300' frameborder='0' ></iframe>";
+            "<h3>You are a legend!</h3><br><b>Here is a story for you:</b><br><iframe src='../static/media/Shy_guy_2.mp3' width='300' height='300' frameborder='0' ></iframe>";
             // specify popup options
             const a_customOptions102 = {
             maxWidth: "auto", // set max-width
             className: "customPopup", // name custom popup
             };
             const a_pop_102 = L.marker([53.480616,-2.229870], {icon: audioIcon102}).bindPopup(a_pop_102_info, a_customOptions102);
+            
 
 
 
 
+            // Story # 103        ALB South    [53.466621,-2.236100]                                                                Christabel parking  [53.492684,-2.226228]
+            const dot_103  = turf.point([-2.226024,53.493367]);                          
+            const a_buff_103 = turf.buffer(dot_103, 0.03, {units:'kilometers',steps:24});     
+            const b_buff_103 = turf.buffer(dot_103, 0.06, {units:'kilometers', steps:24});   
+   
+            var story_103 = L.marker([53.493367,-2.226024], {icon:dot}).bindPopup().addTo(map);    
+           
+            L.geoJSON(a_buff_103,{style: innerStyle}).addTo(map);
+            L.geoJSON(b_buff_103, {style: midStyle}).addTo(map); 										
+
+            // Buffer 'b' popups
+            const b_pop_103_info = ("<h1 style ='text-align:center; color: #263985'> You are very close a story about a shy guy.</h1><b> Walk towards the cananl, behind Dakota hotel. </b><br> <b> Please take a screenshot of the picture below, it will be handy! </b><iframe src='../static/pics/shy.jpg' width='300' height='300' frameborder='0' ></iframe>")  
+            const b_pop_103 = story_103.bindPopup(b_pop_103_info, { 
+                maxWidth: 320,				 
+                maxHeight: 400
+            });
+            story_103.off('click');
+
+            // POPUP 103
+            const audioIcon103 = L.icon({
+                iconUrl: "../static/pinkMusic.png",       // Cold
+                iconSize: [30, 30], // size of the icon   [50, 58]
+                iconAnchor: [12, 41], // changed marker icon position  [20, 58]
+                popupAnchor: [0, -60], // changed popup position
+            });
+            const a_pop_103_info =
+            "<h3>You are a legend!</h3><br><b>Here is a story for you:</b><br><iframe src='../static/media/Shy_guy_2.mp3' width='300' height='300' frameborder='0' ></iframe>";
+            // specify popup options
+            const a_customOptions103 = {
+            maxWidth: "auto", // set max-width
+            className: "customPopup", // name custom popup
+            };
+            const a_pop_103 = L.marker([53.493367,-2.226024], {icon: audioIcon103}).bindPopup(a_pop_103_info, a_customOptions103);
+
+            
+
+            /*
+            // TERNOPIL stories   ///////////////
+            */
+
+
+            // Story # 21        School 5                                                               Christabel parking  [53.492684,-2.226228]
+            const dot_21  = turf.point([25.594887,49.555860]);                          
+            const a_buff_21 = turf.buffer(dot_21, 0.03, {units:'kilometers',steps:24});     
+            const b_buff_21 = turf.buffer(dot_21, 0.06, {units:'kilometers', steps:24});   
+   
+            var story_21 = L.marker([49.555860,25.594887], {icon:dot}).bindPopup().addTo(map);    
+           
+            L.geoJSON(a_buff_21,{style: innerStyle}).addTo(map);
+            L.geoJSON(b_buff_21, {style: midStyle}).addTo(map); 										
+
+            // Buffer 'b' popups
+            const b_pop_21_info = ("<h1 style ='text-align:center; color: #263985'> Ви неймовірно близькі до історії про 9й Б клас!</h1><b> Будь ласка продовжуйте рухатися у напрямку 5ї школи, сподівіюся там є лавка де можна пристіти. </b><br> <b> Сидіти це добре, але ходити незрівнянно корисніше! </b><iframe src='../static/pics/teSchool5.jpg' width='300' height='300' frameborder='0' ></iframe>")  
+            const b_pop_21 = story_21.bindPopup(b_pop_21_info, { 
+                maxWidth: 320,				 
+                maxHeight: 400
+            });
+            story_21.off('click');
+
+            // POPUP 21
+            const audioIcon21 = L.icon({
+                iconUrl: "../static/pinkMusic.png",       // Cold
+                iconSize: [30, 30], // size of the icon   [50, 58]
+                iconAnchor: [12, 41], // changed marker icon position  [20, 58]
+                popupAnchor: [0, -60], // changed popup position
+            });
+            const a_pop_21_info =
+            "<h3>Який ж ви молодець!</h3><br><b>Ось історія що трапилась у старшій школі:</b><br><iframe src='../static/media/teSchola5.mp3' width='300' height='300' frameborder='0' ></iframe>";
+            // specify popup options
+            const a_customOptions21 = {
+            maxWidth: "auto", // set max-width
+            className: "customPopup", // name custom popup
+            };
+            const a_pop_21 = L.marker([49.555860,25.594887], {icon: audioIcon21}).bindPopup(a_pop_21_info, a_customOptions21);
+
+
+
+            // Story # 22        Muzychna                                                                
+            const dot_22  = turf.point([25.594189,49.555286]);                          
+            const a_buff_22 = turf.buffer(dot_22, 0.03, {units:'kilometers',steps:24});     
+            const b_buff_22 = turf.buffer(dot_22, 0.06, {units:'kilometers', steps:24});   
+   
+            var story_22 = L.marker([49.555286,25.594189], {icon:dot}).bindPopup().addTo(map);    
+           
+            L.geoJSON(a_buff_22,{style: innerStyle}).addTo(map);
+            L.geoJSON(b_buff_22, {style: midStyle}).addTo(map); 										
+
+            // Buffer 'b' popups
+            const b_pop_22_info = ("<h1 style ='text-align:center; color: #263985'> Ви неймовірно близькі до історії про музичну школу.</h1><b> Будь ласка пройдіть у місце з якого видно музичну школу. </b><br> <b> Вона виглядає значно бульшою зі сторони двору. </b><iframe src='../static/pics/teMuzychna.jpg' width='300' height='300' frameborder='0' ></iframe>")  
+            const b_pop_22 = story_22.bindPopup(b_pop_22_info, { 
+                maxWidth: 320,				 
+                maxHeight: 400
+            });
+            story_22.off('click');
+
+            // POPUP 22
+            const audioIcon22 = L.icon({
+                iconUrl: "../static/pinkMusic.png",       // Cold
+                iconSize: [30, 30], // size of the icon   [50, 58]
+                iconAnchor: [12, 41], // changed marker icon position  [20, 58]
+                popupAnchor: [0, -60], // changed popup position
+            });
+            const a_pop_22_info =
+            "<h3>Неймовірно, ще одна історія знайдена!</h3><br><b>Ось історія навчання грі на скрипці:</b><br><iframe src='../static/media/teMuzychna.mp3' width='300' height='300' frameborder='0' ></iframe>";
+            // specify popup options
+            const a_customOptions22 = {
+            maxWidth: "auto", // set max-width
+            className: "customPopup", // name custom popup
+            };
+            const a_pop_22 = L.marker([49.555286,25.594189], {icon: audioIcon22}).bindPopup(a_pop_22_info, a_customOptions22);
+
+
+
+            // Story # 23        Yasna                                                               
+            const dot_23  = turf.point([25.590379,49.559302]);                          
+            const a_buff_23 = turf.buffer(dot_23, 0.03, {units:'kilometers',steps:24});     
+            const b_buff_23 = turf.buffer(dot_23, 0.06, {units:'kilometers', steps:24});   
+   
+            var story_23 = L.marker([49.559302,25.590379], {icon:dot}).bindPopup().addTo(map);    
+           
+            L.geoJSON(a_buff_23,{style: innerStyle}).addTo(map);
+            L.geoJSON(b_buff_23, {style: midStyle}).addTo(map); 										
+
+            // Buffer 'b' popups
+            const b_pop_23_info = ("<h1 style ='text-align:center; color: #263985'> Ви дуже близькі до будинку на Ясній.</h1><b> Будь ласка пройдіть до кінця вулиці Ясна. </b><br> <b> Будинок про який мова буде ліворуч. </b><iframe src='../static/pics/teYasna.png' width='300' height='300' frameborder='0' ></iframe>")  
+            const b_pop_23 = story_23.bindPopup(b_pop_23_info, { 
+                maxWidth: 320,				 
+                maxHeight: 400
+            });
+            story_23.off('click');
+
+            // POPUP 23
+            const audioIcon23 = L.icon({
+                iconUrl: "../static/pinkMusic.png",       // Cold
+                iconSize: [30, 30], // size of the icon   [50, 58]
+                iconAnchor: [12, 41], // changed marker icon position  [20, 58]
+                popupAnchor: [0, -60], // changed popup position
+            });
+            const a_pop_23_info =
+            "<h3>Ще одна історія знайдена!</h3><br><b>Ця про бабусю:</b><br><iframe src='../static/media/teYasna.mp3' width='300' height='300' frameborder='0' ></iframe>";
+            // specify popup options
+            const a_customOptions23 = {
+            maxWidth: "auto", // set max-width
+            className: "customPopup", // name custom popup
+            };
+            const a_pop_23 = L.marker([49.559302,25.590379], {icon: audioIcon23}).bindPopup(a_pop_23_info, a_customOptions23);
+
+
+
+            // Story # 24        Kostel                                                              
+            const dot_24  = turf.point([25.595328,49.550080]);                          
+            const a_buff_24 = turf.buffer(dot_24, 0.03, {units:'kilometers',steps:24});     
+            const b_buff_24 = turf.buffer(dot_24, 0.06, {units:'kilometers', steps:24});   
+   
+            var story_24 = L.marker([49.550080,25.595328], {icon:dot}).bindPopup().addTo(map);    
+           
+            L.geoJSON(a_buff_24,{style: innerStyle}).addTo(map);
+            L.geoJSON(b_buff_24, {style: midStyle}).addTo(map); 										
+
+            // Buffer 'b' popups
+            const b_pop_24_info = ("<h1 style ='text-align:center; color: #263985'> Ви неймовірно близькі до будинку поряд старого костелу!</h1><b> На жаль костелу вже немає, але будинок є! </b><br> <b> Нас цікавить бульвар Тараса Шевченка 28. </b><iframe src='../static/pics/teKostel.jpg' width='300' height='300' frameborder='0' ></iframe>")  
+            const b_pop_24 = story_24.bindPopup(b_pop_24_info, { 
+                maxWidth: 320,				 
+                maxHeight: 400
+            });
+            story_24.off('click');
+
+            // POPUP 24
+            const audioIcon24 = L.icon({
+                iconUrl: "../static/pinkMusic.png",       // Cold
+                iconSize: [30, 30], // size of the icon   [50, 58]
+                iconAnchor: [12, 41], // changed marker icon position  [20, 58]
+                popupAnchor: [0, -60], // changed popup position
+            });
+            const a_pop_24_info =
+            "<h3>Який ж ви молодець!</h3><br><b>Ця історія про мої літературні спроби:</b><br><iframe src='../static/media/teKostel.mp3' width='300' height='300' frameborder='0' ></iframe>";
+            // specify popup options
+            const a_customOptions24 = {
+            maxWidth: "auto", // set max-width
+            className: "customPopup", // name custom popup
+            };
+            const a_pop_24 = L.marker([49.550080,25.595328], {icon: audioIcon24}).bindPopup(a_pop_24_info, a_customOptions24);
+
+
+            // Story # 25        Khor                                                                Christabel parking  [53.492684,-2.226228]
+            const dot_25  = turf.point([25.589624,49.552022]);                          
+            const a_buff_25 = turf.buffer(dot_25, 0.03, {units:'kilometers',steps:24});     
+            const b_buff_25 = turf.buffer(dot_25, 0.06, {units:'kilometers', steps:24});   
+   
+            var story_25 = L.marker([49.552022,25.589624], {icon:dot}).bindPopup().addTo(map);    
+           
+            L.geoJSON(a_buff_25,{style: innerStyle}).addTo(map);
+            L.geoJSON(b_buff_25, {style: midStyle}).addTo(map); 										
+
+            // Buffer 'b' popups
+            const b_pop_25_info = ("<h1 style ='text-align:center; color: #263985'> Ви дуже близькі до вулиці Перля.</h1><b> Спробуйте знайти один з тих будинків котрі залишилися від старлого єврейського району. </b><br> <b> Звідти теж має бути видно катедральні вежі! </b><iframe src='../static/pics/teKhoir.jpg' width='300' height='300' frameborder='0' ></iframe>")  
+            const b_pop_25 = story_25.bindPopup(b_pop_25_info, { 
+                maxWidth: 320,				 
+                maxHeight: 400
+            });
+            story_25.off('click');
+
+            // POPUP 25
+            const audioIcon25 = L.icon({
+                iconUrl: "../static/pinkMusic.png",       // Cold
+                iconSize: [30, 30], // size of the icon   [50, 58]
+                iconAnchor: [12, 41], // changed marker icon position  [20, 58]
+                popupAnchor: [0, -60], // changed popup position
+            });
+            const a_pop_25_info =
+            "<h3>Вас просто не спинити!</h3><br><b>Ця історія про хор і двох хлопчаків що у ньому співали:</b><br><iframe src='../static/media/teKhor.mp3' width='300' height='300' frameborder='0' ></iframe>";
+            // specify popup options
+            const a_customOptions25 = {
+            maxWidth: "auto", // set max-width
+            className: "customPopup", // name custom popup
+            };
+            const a_pop_25 = L.marker([49.552022,25.589624], {icon: audioIcon25}).bindPopup(a_pop_25_info, a_customOptions25);
+
+
+
+            /*
+            // Beijing   ///////////////
+            */
+
+            // Story #31   Apartment       
+            const dot_31  = turf.point([116.399206,39.943479]);                          
+            const a_buff_31 = turf.buffer(dot_31, 0.03, {units:'kilometers',steps:24});     
+            const b_buff_31 = turf.buffer(dot_31, 0.06, {units:'kilometers', steps:24});   
+   
+            var story_31 = L.marker([39.943479, 116.399206], {icon:dot}).bindPopup().addTo(map);    
+           
+            L.geoJSON(a_buff_31,{style: innerStyle}).addTo(map);
+            L.geoJSON(b_buff_31, {style: midStyle}).addTo(map); 										
+
+            // Buffer 'b' popups
+            const b_pop_31_info = ("<h1 style ='text-align:center; color: #263985'> You are very close to the apartment story.</h1><b> Walk down the Cheniandian Hutong </b><br> <b> Please take a screenshot of the picture below, it will be handy!  </b><iframe src='../static/pics/beApartment.png' width='300' height='300' frameborder='0' ></iframe>")  
+            const b_pop_31 = story_31.bindPopup(b_pop_31_info, { 
+                maxWidth: 320,				 
+                maxHeight: 400
+            });
+            story_31.off('click');
+
+            // POPUP 31
+            const audioIcon31 = L.icon({
+                iconUrl: "../static/pinkMusic.png",       // Cold
+                iconSize: [30, 30], // size of the icon   [50, 58]
+                iconAnchor: [12, 41], // changed marker icon position  [20, 58]
+                popupAnchor: [0, -60], // changed popup position
+            });
+            const a_pop_31_info =
+            "<h3>You are a legend!</h3><br><b>This story is about a cute, lovely flatmate:</b><br><iframe src='../static/media/beAndingmen.mp3' width='300' height='300' frameborder='0' ></iframe>";
+            // specify popup options
+            const a_customOptions31 = {
+            maxWidth: "auto", // set max-width
+            className: "customPopup", // name custom popup
+            };
+            const a_pop_31 = L.marker([39.943479, 116.399206], {icon: audioIcon31}).bindPopup(a_pop_31_info, a_customOptions31);
+
+
+
+            // Story #32      Mai Bar    
+            const dot_32  = turf.point([116.396679,39.944166]);                          
+            const a_buff_32 = turf.buffer(dot_32, 0.03, {units:'kilometers',steps:24});     
+            const b_buff_32 = turf.buffer(dot_32, 0.06, {units:'kilometers', steps:24});   
+   
+            var story_32 = L.marker([39.944166, 116.396679], {icon:dot}).bindPopup().addTo(map);    
+           
+            L.geoJSON(a_buff_32,{style: innerStyle}).addTo(map);
+            L.geoJSON(b_buff_32, {style: midStyle}).addTo(map); 										
+
+            // Buffer 'b' popups
+            const b_pop_32_info = ("<h1 style ='text-align:center; color: #263985'> You are very close to the harassment story.</h1><b> Walk towards Mai bar (I hope it still exists).</b><iframe src='../static/pics/beMaiBar.jpg' width='300' height='300' frameborder='0' ></iframe>")  
+            const b_pop_32 = story_32.bindPopup(b_pop_32_info, { 
+                maxWidth: 320,				 
+                maxHeight: 400
+            });
+            story_32.off('click');
+
+            // POPUP 32
+            const audioIcon32 = L.icon({
+                iconUrl: "../static/pinkMusic.png",       // Cold
+                iconSize: [30, 30], // size of the icon   [50, 58]
+                iconAnchor: [12, 41], // changed marker icon position  [20, 58]
+                popupAnchor: [0, -60], // changed popup position
+            });
+            const a_pop_32_info =
+            "<h3>You are unstoppable!</h3><br><b>This is an embarrassing story, you can shame me for it:</b><br><iframe src='../static/media/beMaiBar.mp3' width='300' height='300' frameborder='0' ></iframe>";
+            // specify popup options
+            const a_customOptions32 = {
+            maxWidth: "auto", // set max-width
+            className: "customPopup", // name custom popup
+            };
+            const a_pop_32 = L.marker([39.944166, 116.396679], {icon: audioIcon32}).bindPopup(a_pop_32_info, a_customOptions32);
+
+
+
+            // Story #33          Nina bar       
+            const dot_33  = turf.point([116.396771,39.941624]);                          
+            const a_buff_33 = turf.buffer(dot_33, 0.03, {units:'kilometers',steps:24});     
+            const b_buff_33 = turf.buffer(dot_33, 0.06, {units:'kilometers', steps:24});   
+   
+            var story_33 = L.marker([39.941624, 116.396771], {icon:dot}).bindPopup().addTo(map);    
+           
+            L.geoJSON(a_buff_33,{style: innerStyle}).addTo(map);
+            L.geoJSON(b_buff_33, {style: midStyle}).addTo(map); 										
+
+            // Buffer 'b' popups
+            const b_pop_33_info = ("<h1 style ='text-align:center; color: #263985'> You are very close to another lovely hutong bar.</h1><b> Walk towards Nina bar, it's on BeiLouGuXiang. </b><br> <b> Please take a screenshot of the picture below, it will be handy! </b><iframe src='../static/pics/beNina.jpg' width='300' height='300' frameborder='0' ></iframe>")  
+            const b_pop_33 = story_33.bindPopup(b_pop_33_info, { 
+                maxWidth: 320,				 
+                maxHeight: 400
+            });
+            story_33.off('click');
+
+            // POPUP 33
+            const audioIcon33 = L.icon({
+                iconUrl: "../static/pinkMusic.png",       // Cold
+                iconSize: [30, 30], // size of the icon   [50, 58]
+                iconAnchor: [12, 41], // changed marker icon position  [20, 58]
+                popupAnchor: [0, -60], // changed popup position
+            });
+            const a_pop_33_info =
+            "<h3>You are a legend!</h3><br><b>This is the place where I met Dan!</b><br><iframe src='../static/media/beNinaBar.mp3' width='300' height='300' frameborder='0' ></iframe>";
+            // specify popup options
+            const a_customOptions33 = {
+            maxWidth: "auto", // set max-width
+            className: "customPopup", // name custom popup
+            };
+            const a_pop_33 = L.marker([39.941624, 116.396771], {icon: audioIcon33}).bindPopup(a_pop_33_info, a_customOptions33);
+
+
+
+            // Story #34               Modernista      
+            const dot_34  = turf.point([116.393482,39.943113]);                          
+            const a_buff_34 = turf.buffer(dot_34, 0.03, {units:'kilometers',steps:24});     
+            const b_buff_34 = turf.buffer(dot_34, 0.06, {units:'kilometers', steps:24});   
+   
+            var story_34 = L.marker([39.943113, 116.393482], {icon:dot}).bindPopup().addTo(map);    
+           
+            L.geoJSON(a_buff_34,{style: innerStyle}).addTo(map);
+            L.geoJSON(b_buff_34, {style: midStyle}).addTo(map); 										
+
+            // Buffer 'b' popups
+            const b_pop_34_info = ("<h1 style ='text-align:center; color: #263985'> You are very close to a story about my performance failure.</h1><b> Walk towards Modernista. </b><br> <b> I wonder whether people still get waisted in there. </b><iframe src='../static/pics/beModernista.jpg' width='300' height='300' frameborder='0' ></iframe>")  
+            const b_pop_34 = story_34.bindPopup(b_pop_34_info, { 
+                maxWidth: 320,				 
+                maxHeight: 400
+            });
+            story_34.off('click');
+
+            // POPUP 34
+            const audioIcon34 = L.icon({
+                iconUrl: "../static/pinkMusic.png",       // Cold
+                iconSize: [30, 30], // size of the icon   [50, 58]
+                iconAnchor: [12, 41], // changed marker icon position  [20, 58]
+                popupAnchor: [0, -60], // changed popup position
+            });
+            const a_pop_34_info =
+            "<h3>Well done!</h3><br><b>This is a story about Modernista:</b><br><iframe src='../static/media/beModernista.mp3' width='300' height='300' frameborder='0' ></iframe>";
+            // specify popup options
+            const a_customOptions34 = {
+            maxWidth: "auto", // set max-width
+            className: "customPopup", // name custom popup
+            };
+            const a_pop_34 = L.marker([39.943113, 116.393482], {icon: audioIcon34}).bindPopup(a_pop_34_info, a_customOptions34);
+
+
+
+            // Story #35              Yunnan       
+            const dot_35  = turf.point([116.390257,39.940535]);                          
+            const a_buff_35 = turf.buffer(dot_35, 0.03, {units:'kilometers',steps:24});     
+            const b_buff_35 = turf.buffer(dot_35, 0.06, {units:'kilometers', steps:24});   
+   
+            var story_35 = L.marker([39.940535, 116.390257], {icon:dot}).bindPopup().addTo(map);    
+           
+            L.geoJSON(a_buff_35,{style: innerStyle}).addTo(map);
+            L.geoJSON(b_buff_35, {style: midStyle}).addTo(map); 										
+
+            // Buffer 'b' popups
+            const b_pop_35_info = ("<h1 style ='text-align:center; color: #263985'> You are very close to ZhongLou!</h1><b> Unfortunately the way ahead lies through a public toilet. Sorry. </b><br> <b> Please take a screenshot of the picture below, it will be handy! </b><iframe src='../static/pics/beYunnan.jpg' width='300' height='300' frameborder='0' ></iframe>")  
+            const b_pop_35 = story_35.bindPopup(b_pop_35_info, { 
+                maxWidth: 320,				 
+                maxHeight: 400
+            });
+            story_35.off('click');
+
+            // POPUP 35
+            const audioIcon35 = L.icon({
+                iconUrl: "../static/pinkMusic.png",       // Cold
+                iconSize: [30, 30], // size of the icon   [50, 58]
+                iconAnchor: [12, 41], // changed marker icon position  [20, 58]
+                popupAnchor: [0, -60], // changed popup position
+            });
+            const a_pop_35_info =
+            "<h3>OMG you are so close to the best food in town!</h3><br><b>This is a story about Yunnan food:</b><br><iframe src='../static/media/beYunnan.mp3' width='300' height='300' frameborder='0' ></iframe>";
+            // specify popup options
+            const a_customOptions35 = {
+            maxWidth: "auto", // set max-width
+            className: "customPopup", // name custom popup
+            };
+            const a_pop_35 = L.marker([39.940535, 116.390257], {icon: audioIcon35}).bindPopup(a_pop_35_info, a_customOptions35);
+
+
+            // Story #36     Wedding       
+            const dot_36  = turf.point([116.381339,39.937409]);                          
+            const a_buff_36 = turf.buffer(dot_36, 0.03, {units:'kilometers',steps:24});     
+            const b_buff_36 = turf.buffer(dot_36, 0.06, {units:'kilometers', steps:24});   
+   
+            var story_36 = L.marker([39.937409, 116.381339], {icon:dot}).bindPopup().addTo(map);    
+           
+            L.geoJSON(a_buff_36,{style: innerStyle}).addTo(map);
+            L.geoJSON(b_buff_36, {style: midStyle}).addTo(map); 										
+
+            // Buffer 'b' popups
+            const b_pop_36_info = ("<h1 style ='text-align:center; color: #263985'> You are very close to a wedding party!</h1><b> The address is 36, DaXiangFeng hutong. </b><br> <b> Please take a screenshot of the picture below, it will be handy! </b><iframe src='../static/pics/beWedding.jpg' width='300' height='300' frameborder='0' ></iframe>")  
+            const b_pop_36 = story_36.bindPopup(b_pop_36_info, { 
+                maxWidth: 320,				 
+                maxHeight: 400
+            });
+            story_36.off('click');
+
+            // POPUP 36
+            const audioIcon36 = L.icon({
+                iconUrl: "../static/pinkMusic.png",       // Cold
+                iconSize: [30, 30], // size of the icon   [50, 58]
+                iconAnchor: [12, 41], // changed marker icon position  [20, 58]
+                popupAnchor: [0, -60], // changed popup position
+            });
+            const a_pop_36_info =
+            "<h3>You are a legend!</h3><br><b>This is a story about how difficult it was to find a proper SiHeYuan in Beijing:</b><br><iframe src='../static/media/beWedding.mp3' width='300' height='300' frameborder='0' ></iframe>";
+            // specify popup options
+            const a_customOptions36 = {
+            maxWidth: "auto", // set max-width
+            className: "customPopup", // name custom popup
+            };
+            const a_pop_36 = L.marker([39.937409, 116.381339], {icon: audioIcon36}).bindPopup(a_pop_36_info, a_customOptions36);
 
             /*
             // Geofences   ///////////////
@@ -489,28 +1069,28 @@
 
             // To inform a player if she's not in the geofence     
             // Areas outside of the largest buffers  
-            outofBufferB = [b_buff_1, b_buff_2, b_buff_3, b_buff_101,b_buff_102];
+            outofBufferB = [b_buff_1, b_buff_2, b_buff_3, b_buff_101,b_buff_102,b_buff_103,b_buff_21,b_buff_22,b_buff_23,b_buff_24,b_buff_25,b_buff_31,b_buff_32,b_buff_33,b_buff_34,b_buff_35,b_buff_36];
             // Points in the centre of each buffer
-            dots = turf.featureCollection([dot_1, dot_2, dot_3, dot_101,dot_102]);
+            dots = turf.featureCollection([dot_1, dot_2, dot_3, dot_101,dot_102,dot_103,dot_21,dot_22,dot_23,dot_24,dot_25,dot_31,dot_32,dot_33,dot_34,dot_35,dot_36]);
 
             // OUTER buffers list (larger buffers)
-            b_buffers = [b_buff_1, b_buff_2, b_buff_3, b_buff_101,b_buff_102];   
+            b_buffers = [b_buff_1, b_buff_2, b_buff_3, b_buff_101,b_buff_102, b_buff_103,b_buff_21,b_buff_22,b_buff_23,b_buff_24,b_buff_25,b_buff_31,b_buff_32,b_buff_33,b_buff_34,b_buff_35,b_buff_36];   
             // OUTER buffers' popups
-            b_popups = [b_pop_1, b_pop_2, b_pop_3, b_pop_101,b_pop_102]; 
+            b_popups = [b_pop_1, b_pop_2, b_pop_3, b_pop_101,b_pop_102, b_pop_103,b_pop_21,b_pop_22,b_pop_23,b_pop_24,b_pop_25,b_pop_31,b_pop_32,b_pop_33,b_pop_34,b_pop_35,b_pop_36]; 
             // INNER buffers' popups
             // a_popups = [a_pop_1, a_pop_2, a_pop_3, a_pop_4]; 
 
             // INNER buffers list (smaller buffers) 
-            a_buffers = [a_buff_1,a_buff_2, a_buff_3, a_buff_101,a_buff_102];
+            a_buffers = [a_buff_1,a_buff_2, a_buff_3, a_buff_101,a_buff_102, a_buff_103,a_buff_21,a_buff_22,a_buff_23,a_buff_24,a_buff_25,a_buff_31,a_buff_32,a_buff_33,a_buff_34,a_buff_35,a_buff_36];
             // Audio popups
-            popup_audio = [a_pop_1, a_pop_2, a_pop_3, a_pop_101, a_pop_102]; 
+            popup_audio = [a_pop_1, a_pop_2, a_pop_3, a_pop_101, a_pop_102, a_pop_103,a_pop_21,a_pop_22,a_pop_23,a_pop_24,a_pop_25,a_pop_31,a_pop_32,a_pop_33,a_pop_34,a_pop_35,a_pop_36]; 
 
             
             // SQUARE GRID
             // specify units for measurement
             let gridOptions = {units: 'kilometers'};
             // get grid as a turf polygon 
-            let grid = turf.squareGrid([-2.255898,53.463189,-2.228916,53.485829], 0.1, gridOptions);   // Manchester City Centre [-2.257649,53.459561,-2.220493,53.494114]
+            let grid = turf.squareGrid([-2.242425,53.472759,-2.227574,53.481928], 0.1, gridOptions);   // Manchester City Centre [-2.257649,53.459561,-2.220493,53.494114]
             // turn grid into geoJson to display on a map
             cover = L.geoJson(grid, {style: {color:'#000000', fill: '#89CFF0', fillOpacity: 0.6, weight: 0.0}}).addTo(map); 
             
@@ -552,31 +1132,91 @@
                     legends: [{ 
                         label : "story 1 (Hotel)", 
                         type: "image", 
-                        url: "../static/pics/skyscraper.png",  
+                        url: "../static/pics/skyscraper.png",
+                        attribution: '<a href="https://www.flaticon.com/free-icons/skyscraper" title="skyscraper icons">Skyscraper icons created by Freepik - Flaticon</a>',  
                     },{ 
                         label: "story 2 (Frog)", 
                         type: "image", 
-                        url: "../static/pics/frog.png", 
+                        url: "../static/pics/frog.png",
+                        attribution: '<a href="https://www.flaticon.com/free-icons/frog" title="frog icons">Frog icons created by Freepik - Flaticon</a>', 
                     },{ 
                         label: "story 3 (Dragon)", 
                         type: "image", 
-                        url: "../static/pics/dragon.png", 
+                        url: "../static/pics/dragon.png",
+                        attribution: '<a href="https://www.flaticon.com/free-icons/dragon" title="dragon icons">Dragon icons created by Freepik - Flaticon</a>', 
                     },{ 
-                        label: "story 4 (Natalie)", 
+                        label: "story 4 (Rachel)", 
                         type: "image", 
                         url: "../static/pics/couple.png",
+                        attribution: '<a href="https://www.flaticon.com/free-icons/couple" title="couple icons">Couple icons created by Freepik - Flaticon</a>',
                     },{ 
                         label: "story 5 (A shy guy)", 
                         type: "image", 
-                        url: "../static/pics/man_5.jpg", 
+                        url: "../static/pics/mashy.png",
+                        attribution: '<a href="https://www.flaticon.com/free-icons/shy" title="shy icons">Shy icons created by Freepik - Flaticon</a>', 
+                    },
+                    { 
+                        label : "історія 1 (Школа 5)", 
+                        type: "image", 
+                        url: "../static/pics/tegraduation.png",
+                        attribution: '<a href="https://www.flaticon.com/free-icons/school" title="school icons">School icons created by bqlqn - Flaticon</a>',  
+                    },{ 
+                        label: "історія 2 (Музична)", 
+                        type: "image", 
+                        url: "../static/pics/temusicalnote.png",
+                        attribution: '<a href="https://www.flaticon.com/free-icons/music" title="music icons">Music icons created by Freepik - Flaticon</a>', 
+                    },{ 
+                        label: "історія 3 (Ясна)", 
+                        type: "image", 
+                        url: "../static/pics/tewoman.png",
+                        attribution: '<a href="https://www.flaticon.com/free-icons/grandma" title="grandma icons">Grandma icons created by Freepik - Flaticon</a>', 
+                    },{ 
+                        label: "історія 4 (Костел)", 
+                        type: "image", 
+                        url: "../static/pics/tewrite.png",
+                        attribution: '<a href="https://www.flaticon.com/free-icons/pen" title="pen icons">Pen icons created by Freepik - Flaticon</a>',
+                    },{ 
+                        label: "історія 5 (Хор)", 
+                        type: "image", 
+                        url: "../static/pics/techoir.png",
+                        attribution: '<a href="https://www.flaticon.com/free-icons/choir" title="choir icons">Choir icons created by Freepik - Flaticon</a>', 
+                    },
+                    { 
+                        label: "故事第一 (房间)", 
+                        type: "image", 
+                        url: "../static/pics/besofa.png",
+                        attribution: '<a href="https://www.flaticon.com/free-icons/living-room" title="living room icons">Living room icons created by Icongeek26 - Flaticon</a>', 
+                    },
+                    { 
+                        label : "故事第二 (麦吧)", 
+                        type: "image", 
+                        url: "../static/pics/becocktails.png",
+                        attribution: '<a href="https://www.flaticon.com/free-icons/cocktail" title="cocktail icons">Cocktail icons created by Freepik - Flaticon</a>',  
+                    },{ 
+                        label: "故事第三 (意大利的)", 
+                        type: "image", 
+                        url: "../static/pics/bestandup.png",
+                        attribution: '<a href="https://www.flaticon.com/free-icons/show" title="show icons">Show icons created by Freepik - Flaticon</a>', 
+                    },{ 
+                        label: "故事第四 (跳舞)", 
+                        type: "image", 
+                        url: "../static/pics/betheatre.png",
+                        attribution: '<a href="https://www.flaticon.com/free-icons/theater" title="theater icons">Theater icons created by srip - Flaticon</a>', 
+                    },{ 
+                        label: "故事第五 (好吃的)", 
+                        type: "image", 
+                        url: "../static/pics/bedimsum.png",
+                        attribution: '<a href="https://www.flaticon.com/free-icons/chinese-food" title="chinese food icons">Chinese food icons created by BZZRINCANTATION - Flaticon</a>',
+                    },{ 
+                        label: "故事第六 (四合院)", 
+                        type: "image", 
+                        url: "../static/pics/beconfetti.png", 
+                        attribution: '<a href="https://www.flaticon.com/free-icons/party" title="party icons">Party icons created by pongsakornRed - Flaticon</a>',
                     },]
                 }).addTo(map);
                 //////////////////////////////////////////////////////////////////////////////////////////////////////
         };
-
   
-            
-
 
             /*
             // GEOLOCATION FUNCTION   *************************************************************************************************
@@ -669,7 +1309,7 @@
                         let distance = Math.round(turf.distance(player,nearest,{units:'kilometers'})*1000)/1000;  //var
                         // 5 km/hr is an average speed of a person
                         let time_dist =  Math.round(60*distance)/5;             
-						position.bindPopup("<h1 style ='text-align:center; color: #061529'>Yes! There are space invaders hiding here!</h1> <b>The nearest invader is about: " + time_dist.toString()+" minutes away!</b>", {maxWidth: 200});
+						position.bindPopup("<h1 style ='text-align:center; color: #061529'>Yes! There are some stories in here!</h1> <b>The nearest story is about: " + time_dist.toString()+" minutes away!</b>", {maxWidth: 200});
                         }
                     else {
                         position.bindPopup("<strong>You very close.</strong><br />Keep exploring!.<br> <b> Walking towards the centre of the circle would help. </b>", {maxWidth: 500});
