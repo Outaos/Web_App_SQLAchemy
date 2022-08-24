@@ -33,6 +33,26 @@ def home():
 def play():
     return render_template('./play.html')
 
+@app.route('/manchester')
+def manchester():
+    return render_template('./manchester.html')
+
+@app.route('/ternopil')
+def ternopil():
+    return render_template('./ternopil.html')
+
+@app.route('/beijing')
+def beijing():
+    return render_template('./beijing.html')
+
+@app.route('/storieste')
+def storieste():
+    return render_template('./storiesTe.html')
+
+@app.route('/storiesbe')
+def storiesbe():
+    return render_template('./storiesBe.html')
+
 @app.route('/art')
 def art():
     return render_template('./art.html')

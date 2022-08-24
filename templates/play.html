@@ -18,8 +18,8 @@
       height: 100px;
       margin: 0px;
       position: absolute;
-      top: 40%;
-      right: 30%;
+      top: 20%;
+      right: 40%;
       transition-duration: 0.2s;
       cursor: pointer;
     }
@@ -36,30 +36,59 @@
       height: 100px;
       margin: 0px;
       position: absolute;
-      top: 85%;
-      right: 30%;
+      top: 50%;
+      right: 40%;
       transition-duration: 0.2s;
       cursor: pointer;
     }
-    
+
+    .button3 {
+      border: none;
+      color: white;
+      padding: 16px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 40px;
+      width: 400px;
+      height: 100px;
+      margin: 0px;
+      position: absolute;
+      top: 80%;
+      right: 40%;
+      transition-duration: 0.2s;
+      cursor: pointer;
+    }
+
     .button1 {
       background-color: #2980B9;   /*#3498DB light blue*/
       color: white;
       border: 8px solid #2980B9;
     }
-    
+
     .button1:hover {
       background-color: white;
       color: white;
     }
-    
+
     .button2 {
       background-color: #5499C7;
       color: black;
       border: 8px solid whitesmoke;
     }
-    
+
     .button2:hover {
+      background-color: white;
+      color: 8px solid black;
+    };
+
+    .button3 {
+      background-color: #5499C7;
+      color: black;
+      border: 8px solid whitesmoke;
+    }
+
+    .button3:hover {
       background-color: white;
       color: 8px solid black;
     };
@@ -83,32 +112,67 @@
         a:active {
         color: #3498DB;
         }
+
+
+
+        .container1 {
+              position: absolute;
+                top: 20%;
+                right: 30%;
+              width: 100%;
+              max-width: 400px;
+            }
+
+            .container img {
+              width: 100%;
+              height: auto;
+            }
+
+        .container2 {
+              position: absolute;
+                top: 50%;
+                right: 30%;
+              width: 100%;
+              max-width: 400px;
+            }
+
+            .container img {
+              width: 100%;
+              height: auto;
+            }
+
+
+       .container3 {
+              position: absolute;
+                top: 80%;
+                right: 30%;
+              width: 100%;
+              max-width: 400px;
+            }
+
+            .container img {
+              width: 100%;
+              height: auto;
+            }
+
+
+
 </style>
 </head>
 <body>
-    <h1 style= 'font-size: 36px; font-family: Arial; color:white; text-align:center; margin-bottom: -10px; margin-left:10px; text-shadow: 1px 1px whitesmoke'>Please select your game play mode</h1>
+    <br>
+    <h1 style= 'font-size: 36px; font-family: Arial; color:white; text-align:center; margin-bottom: -10px; margin-left:10px; text-shadow: 1px 1px whitesmoke'>Please select a city</h1>
     <br>
     <br>
     <hr>
-    <h2 style= 'font-size: 36px; font-family: Arial; color:white; text-align:center; margin-bottom: -10px; margin-left:10px; text-shadow: 1px 1px whitesmoke'>Invader Art</h2>
-    <p style= "font-size: 20px; font-family: Arial; color:rgb(223, 221, 221); text-align:left; margin-bottom: -10px; margin-left:10px">
-        Rule No. 1: Walk!
-        <br>
-        Back in the turbulent 2004, forty-seven space invaders invaded the city of Manchester! (<a href="https://www.space-invaders.com/world/manchester/" target="_blank">United Invation</a>)
-        However, because Manchester is such a violent place, only 35 of those original invaders survived.
-        <br>
-        The goal of this mode is to find them all!
-        <br> 
-        This mode supplements the FlashInvader app (<a href="https://apps.apple.com/us/app/flashinvaders/id895180919" target="_blank">AppStore</a> / <a href="https://play.google.com/store/apps/details?id=com.ltu.flashInvader&hl=en_GB&gl=US"target="_blank">GooglePlay</a>) which will allow you to 'flash' invaders.
-        <br> 
-        Please take a second to download this app. It's free and awesome!
-    </p>
-
-
-
-<form action="https://outaos.pythonanywhere.com/art">
-    <input type="submit" class="button button1" value="Invader Art" />
+<div class="container container1">
+  <img src="../static/pics/manchester.jpg" alt="Snow" style="width:100%">
+  <form action="https://outaos.pythonanywhere.com/manchester">
+    <input type="submit" class="button button1" value="Manchester" />
 </form>
+</div>
+
+
 
             <br>
             <br>
@@ -120,44 +184,39 @@
             <br>
             <br>
 
-        <hr>
-<h2 style= 'font-size: 36px; font-family: Arial; color:white; text-align:center; margin-bottom: -10px; margin-left:10px; text-shadow: 1px 1px whitesmoke'>Personal Stories</h2>
-    <p style= "font-size: 20px; font-family: Arial; color:rgb(223, 221, 221); text-align:left; margin-bottom: -10px; margin-left:10px">
-        Rule No. 2: Use the hints!
-        <br>
-        This mode allows you to discover stories recorded by the author of this app (<a href="https://www.instagram.com/ozz_outao/"target="_blank">link for criticism</a>) and his awesome friends.
-        Some of these stories happened in Manchester and others in other distant towns.
-        However, all these stories are location-based, and who knows, maybe some of them are about you! 
-        <br>
-        You are more than welcome to add your own stories in the "Create" section to share them with the world!
-        <br>
-        The goal of this mode is to find all the hidden stories! 
-        <br>
-        Good luck and happy exploring!🤍 
-    </p>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
 
-<form action="https://outaos.pythonanywhere.com/stories">
-    <input type="submit" class="button button2" value="Personal Stories" />
+<div class="container container2">
+  <img src="../static/pics/ternopil1.jpg" alt="Snow" style="width:100%">
+  <form action="https://outaos.pythonanywhere.com/ternopil">
+    <input type="submit" class="button button2" value="Ternopil" />
 </form>
+</div>
 
 
-        <hr>
 
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+
+<div class="container container3">
+  <img src="../static/pics/beijing.jpg" alt="Snow" style="width:100%">
+  <form action="https://outaos.pythonanywhere.com/beijing">
+    <input type="submit" class="button button3" value="Beijing" />
+</form>
+</div>
 
 
 </body>
 </html>
 
-        
+
 
 
 
