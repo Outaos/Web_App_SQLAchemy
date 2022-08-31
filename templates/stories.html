@@ -6,32 +6,29 @@
 
         <title>A location-based game to rediscover your city</title>
 
-        <!-- Leafet CSS -->
+		<!-- Leafet CSS -->
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
         integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
         crossorigin=""/>
-        <!--  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"/>  -->
+
         <!--Leaflet js -->
         <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
         integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
         crossorigin=""></script>
-        <!--  <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>   -->
 
         <!-- Turf js -->
-        <script src='https://unpkg.com/@turf/turf@6.3.0/turf.min.js'></script>
+		<script src='https://unpkg.com/@turf/turf@6.3.0/turf.min.js'></script>
 
-        <link rel="stylesheet"  href="../static/leaflet-sidebar-master/L.Control.Sidebar.css"  /> <!-- Leaflet sidebar  V1 CSS -->
-        <script src="../static/leaflet-sidebar-master/L.Control.Sidebar.js"></script> <!-- Leaflet sidebar V1 js -->
-
-        <link rel="stylesheet"  href="../static/Leaflet.Legend-master/leaflet.legend.css"  /> <!-- Leaflet legend CSS -->
-        <script src="../static/Leaflet.Legend-master/leaflet.legend.js"></script> <!-- Leaflet legend js -->
-
-
-        <!-- leaflet search  -->
-        <link rel="stylesheet" href="../static/leaflet-search-master/leaflet-search.css" /> <!-- ADDED -->
-        <link rel="stylesheet" href="../static/leaflet-search-master/style.css" /> <!-- ADDED -->
-        <script src="../static/leaflet-search-master/leaflet-search.js"></script> <!-- ADDED -->
-
+        <!-- Leaflet sidebar  -->
+        <link rel="stylesheet"  href="../static/leaflet-sidebar-master/L.Control.Sidebar.css"  /> 
+        <script src="../static/leaflet-sidebar-master/L.Control.Sidebar.js"></script> 
+        <!-- Leaflet legend  -->
+        <link rel="stylesheet"  href="../static/Leaflet.Legend-master/leaflet.legend.css"  /> 
+        <script src="../static/Leaflet.Legend-master/leaflet.legend.js"></script> 
+		<!-- leaflet search  -->
+		<link rel="stylesheet" href="../static/leaflet-search-master/leaflet-search.css" /> 
+		<link rel="stylesheet" href="../static/leaflet-search-master/style.css" /> 
+        <script src="../static/leaflet-search-master/leaflet-search.js"></script> 
         <!-- leaflet locate-->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css"/>
         <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js"></script>
@@ -40,23 +37,23 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <!-- Set size to fit mobile browser -->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
         <style>
 
-                         /* set the size web page to full size */
+                /* Set the size of web page */
                 html, body {
                     padding:0;
                     margin: 0;
                     width: 100%;
                     height: 100%;
                 }
-                /* set the size of the map */
+                /* Set the size of the map */
                 #map {
                     width: 100%;
                     height: 85%;
                 }
-
+                /* Set size and style for sidebar menu icon */
                 #open_slidebar {
                     background-image: url("../static/pics/menuBlack.png");
                     border: none;
@@ -70,16 +67,7 @@
                     background-color: #ebebf0;
                 }
 
-                .figureborder {
-                    border-style: solid;
-                    border-color:#898989;
-                    padding: 2px;
-                    border-width: thin;
-                    background-color: #DCDADA;
-                }
-
-                /*  NOT SURE I NEED THIS */
-                /* Button style */
+                /* Menu button style */
                 button {
                     background: #0084ff;
                     border: none;
@@ -89,24 +77,12 @@
                     color: #fff;
                 }
 
-                #banner-message.alt {
-                    background: #0084ff;
-                    color: #fff;
-                    margin-top: 40px;
-                    width: 200px;
-                }
-
-                #banner-message.alt button {
-                    background: #fff;
-                    color: #000;
-                }
 
         </style>
     </head>
 
 
     <!-- Set background colour -->
-    <!--style="background-color: #061529"-->
     <body onload="initMap()", style="background-color: #061529">
 
         <h1 style= 'font-size: 36px; font-family: Arial; color:white; text-align:center; margin-bottom: -10px; margin-left:10px; text-shadow: 1px 1px whitesmoke'> Manc Stories </h1>
@@ -119,19 +95,17 @@
         <!-- A division to hold the map -->
 		<div id='map'></div>
 
-        <!-- Load Leaflet -->
-
-
         <!-- Create a sidebar -->
         <div id="sidebar_settings">
-            <h1 style="background-color: white ;text-shadow: 1px 1px #061529; padding-right:5px;">Stories discovered:</h1> 				<!-- currently contains miscellaneous stuff -->
+            <h1 style="background-color: white ;text-shadow: 1px 1px #061529; padding-right:5px;">Stories discovered:</h1> 				
 			<p id="score" style="text-align: center;"></p>
 			<hr>
-            <h1 style="background-color: white ;text-shadow: 1px 1px #061529; padding-right:5px;">Distance walked (km):</h1> 				<!-- currently contains miscellaneous stuff -->
+            <h1 style="background-color: white ;text-shadow: 1px 1px #061529; padding-right:5px;">Distance walked (km):</h1> 				
 			<p id="dist_tracker" style="text-align: center;"></p>
             <hr>
             <h1 style="background-color: white ;text-shadow: 1px 1px #061529; padding-right:5px;"> Add your own story here: <a href="https://outaos.pythonanywhere.com/" target="_blank">Create!</a></h1>
 			<hr>
+            <!-- "Personal Stories" rules -->
 			<h1 style="background-color: white ;text-shadow: 1px 1px #061529; padding-right:5px;"> Gameflow </h1>
 			<p> 1. Walk around central Manchester to discover stories. <br> 2. Touch the 'feet' icon to see how far you are from the nearest story. <br> 3. Once you enter an invisible geofence the hint will popup and the geofence will appear on the map. <br> 4. Walk inside the geofence and the story will appear on the map. <br> 5. Dare to add you own stories <a href="https://outaos.pythonanywhere.com/">here</a>. <br> 6. Share this web app with friends!</p>
 			<hr>
@@ -157,11 +131,8 @@
             // Set location variable to 'null' to account for no info when user just enters the game
             let position = null;
 
-            //Counter for score
+            // Counter for score
 			let geofence_tracker = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-
-            //Counter for score
-			//let distance_tracker = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 
             // initialise empty array for updated coords
             let locationList = []
@@ -170,7 +141,6 @@
             let enterBuffer_b
             let flag_b
             let flag_a
-
 
             // Variable for arrays of buffers
             let dots, outofBufferB, b_buffers, a_buffers;
@@ -185,7 +155,7 @@
 
 
 
-            // Style the geofences
+            // Style inner and outer geofences. Make them invisible
             const midStyle = {
                 "color": "#2E86C1",
                 "weight": 0,
@@ -217,7 +187,7 @@
          */
         function initMap(){
 
-            //sample data values to populate map
+            // Coordinate information for the location of stories hidden in Manchester
             var data = [
 							{"loc":[53.474824,-2.238472], "title":"story 1 (Hotel)"},
 							{"loc":[53.475476,-2.234458], "title":"story 2 (Frog)"},
@@ -229,8 +199,8 @@
             // Map tiles
             map = L.map('map');
             const mapCentre = L.latLng(53.4808,-2.2426);
-            map.setView(mapCentre,16); //13
-            // Change tiles
+            map.setView(mapCentre,16); 
+            // Simple map tiles without irrelevant information
             L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
                         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
                         subdomains: 'abcd',
@@ -248,25 +218,21 @@
                         enableHighAccuracy: true
                     },
                     strings: {
-                        title: "Show me where I am, yo!"
+                        title: "Show me where I am!"
                     }
                 }).addTo(map);
 
-            // Search bar function
+            // A function for specific search of the locations of stories
             function localData(text, callResponse)
                 {
-                //here can use custom criteria or merge data from multiple layers
-
                 callResponse(data);
-
                 return {	//called to stop previous requests on map move
                     abort: function() {
                         console.log('aborted request:'+ text);
                     }
                 };
                 }
-
-                map.addControl( new L.Control.Search({sourceData: localData, text:'Color...', markerLocation:true}) );
+                map.addControl( new L.Control.Search({sourceData: localData, text:'Name...', markerLocation:true}) );
 
 
 
@@ -276,15 +242,13 @@
                 position: 'right'
             });
             map.addControl(sidebar_settings);
-
             document.getElementById("open_slidebar").onclick = Toggle;
-
             function Toggle () {
                 sidebar_settings.toggle();
             };
 
 
-
+            // GeoJSON streets layer. Shows where stories might be hidden.
             const stories = {
             "type": "FeatureCollection",
             "features": [
@@ -400,7 +364,7 @@
             ]
             };
 
-
+            // GeoJSON style
             const myStyle = {
                 "color": "#7B7D7D",
                 "weight": 8,
@@ -415,7 +379,7 @@
             // TRACK PLAYER'S LOCATION  *************************************************************************************************
             */
             // Leaflet function that tracks player's geolocation
-            map.locate({setView: false, maxZoom: 16, watch: true, enableHighAccuracy: true});   // setView to false to make a map more managable
+            map.locate({setView: false, maxZoom: 16, watch: true, enableHighAccuracy: true});   
 
 
             /*/////////////////////////////////////////////////////////
@@ -429,23 +393,29 @@
                     popupAnchor: [-5, -37]
                 }
             });
-
             const dot = new manIcon({iconUrl: '../static/pics/dot.png'});
+
+
 
             /*
             // STORIES  *************************************************************************************************
             */
             // Story # 1 Kempinski
-            const dot_1  = turf.point([-2.238472,53.474824]);                                        // Wang Ying store = [53.487068,-2.228138]
-            const a_buff_1 = turf.buffer(dot_1, 0.03, {units:'kilometers',steps:24});              // UoM autolocation = [53.490878,-2.228104]
+            // Create a turf point for the location of the story
+            const dot_1  = turf.point([-2.238472,53.474824]);      
+            // Use the turf point as a centre for inner and outer buffers                                     
+            const a_buff_1 = turf.buffer(dot_1, 0.03, {units:'kilometers',steps:24});              
             const b_buff_1 = turf.buffer(dot_1, 0.06, {units:'kilometers', steps:24});
 
+            // Style and add inner buffer to the map
             L.geoJSON(a_buff_1,{style: innerStyle}).addTo(map);
+            // Style and add outer buffer to the map
             L.geoJSON(b_buff_1, {style: midStyle}).addTo(map);
 
+            // Create a marker for the popup
             const story_1 = L.marker([53.474824,-2.238472], {icon:dot}).bindPopup().addTo(map);
 
-            // Buffer 'b' popups
+            // Buffer 'b' popups (Outer geofence)
             const b_pop_1_info = ("<h1 style ='text-align:center; color: #263985'> You are very close to a story about the Great Wall hotel!</h1><b> Walk to the end of Granby Row an ugly car park and a beautiful Kimpton hotel.</b> <br> <b> Please take a screenshot of the picture below, it will be handy! </b> <iframe src='../static/pics/hotel.jpg' width='300' height='300' frameborder='0' ></iframe>")   //Add content using HTML tags  width='300' height='300'
             const b_pop_1 = story_1.bindPopup(b_pop_1_info, {
                 maxWidth: 320,
@@ -453,16 +423,17 @@
             });
             story_1.off('click');
 
-            // POPUP 1
+            // POPUP 1 (Inner geofence)
             const audioIcon1 = L.icon({
-                iconUrl: "../static/pinkMusic.png",       // Yellow
-                iconSize: [30, 30], // size of the icon  [50, 58]
-                iconAnchor: [12, 41], // changed marker icon position  [20, 58]
-                popupAnchor: [0, -60], // changed popup position
+                iconUrl: "../static/pinkMusic.png",       
+                iconSize: [30, 30], // size of the icon  
+                iconAnchor: [12, 41], // marker icon position  
+                popupAnchor: [0, -60], // popup position
             });
+            // Inner buffer popup content
             const a_pop_1_info =
             "<h3>You are a legend!</h3><br><b>Here is a story for you:</b><br><iframe src='../static/media/Kempinski_2.mp3' width='300' height='300' frameborder='0' ></iframe>";
-            // specify popup options
+            // Specify popup options
             const a_customOptions1 = {
             maxWidth: "auto", // set max-width
             className: "customPopup", // name custom popup
@@ -472,7 +443,7 @@
 
 
             // Story # 2  Frog
-            const dot_2  = turf.point([-2.234458,53.475476]);                           // Christabel = [53.493350,-2.226204]  Rochdale road [53.493023,-2.224488]
+            const dot_2  = turf.point([-2.234458,53.475476]);                       
             const a_buff_2 = turf.buffer(dot_2, 0.03, {units:'kilometers',steps:24});
             const b_buff_2 = turf.buffer(dot_2, 0.06, {units:'kilometers', steps:24});
 
@@ -491,9 +462,9 @@
 
             // POPUP 2
             const audioIcon2 = L.icon({
-                iconUrl: "../static/pinkMusic.png",       // Yellow
-                iconSize: [30, 30], // size of the icon  [50, 58]
-                iconAnchor: [12, 41], // changed marker icon position  [20, 58]
+                iconUrl: "../static/pinkMusic.png",      
+                iconSize: [30, 30], // size of the icon  
+                iconAnchor: [12, 41], // changed marker icon position  
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_2_info =
@@ -507,11 +478,11 @@
 
 
             // Story # 3  Dragon
-            const dot_3  = turf.point([-2.239871,53.478758]);                            // St Patric school [53.489761,-2.224294]// ALB  [53.466781,-2.235710]
-            const a_buff_3 = turf.buffer(dot_3, 0.03, {units:'kilometers',steps:24});                       // Christabel compound [53.489711,-2.224214]
+            const dot_3  = turf.point([-2.239871,53.478758]);                           
+            const a_buff_3 = turf.buffer(dot_3, 0.03, {units:'kilometers',steps:24});                      
             const b_buff_3 = turf.buffer(dot_3, 0.06, {units:'kilometers', steps:24});
 
-            var story_3 = L.marker([53.478758,-2.239871], {icon:dot}).bindPopup().addTo(map);   //, {icon:oak}   .addTo(map)
+            var story_3 = L.marker([53.478758,-2.239871], {icon:dot}).bindPopup().addTo(map);   
 
             L.geoJSON(a_buff_3,{style: innerStyle}).addTo(map);
             L.geoJSON(b_buff_3, {style: midStyle}).addTo(map);
@@ -527,9 +498,9 @@
 
             // POPUP 3
             const audioIcon3 = L.icon({
-                iconUrl: "../static/pinkMusic.png",       // Yellow
-                iconSize: [30, 30], // size of the icon  [50, 58]
-                iconAnchor: [12, 41], // changed marker icon position  [20, 58]
+                iconUrl: "../static/pinkMusic.png",       
+                iconSize: [30, 30], // size of the icon  
+                iconAnchor: [12, 41], // changed marker icon position  
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_3_info =
@@ -546,7 +517,7 @@
 
             // FAKE INVADERS FOR TESTING
 
-            // Story # 101  Rachel        ALB East    [53.466813,-2.235488]                                                               Christabel 101  [53.493367,-2.226024]
+            // Story # 101  Rachel                                                                
             const dot_101  = turf.point([-2.236298,53.476903]);
             const a_buff_101 = turf.buffer(dot_101, 0.03, {units:'kilometers',steps:24});
             const b_buff_101 = turf.buffer(dot_101, 0.06, {units:'kilometers', steps:24});
@@ -566,9 +537,9 @@
 
             // POPUP 101
             const audioIcon101 = L.icon({
-                iconUrl: "../static/pinkMusic.png",       // Yellow
-                iconSize: [30, 30], // size of the icon  [50, 58]
-                iconAnchor: [12, 41], // changed marker icon position  [20, 58]
+                iconUrl: "../static/pinkMusic.png",       
+                iconSize: [30, 30], // size of the icon  
+                iconAnchor: [12, 41], // changed marker icon position  
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_101_info =
@@ -582,7 +553,7 @@
 
 
 
-            // Story # 102        ALB South    [53.466621,-2.236100]                                                                Christabel parking  [53.492684,-2.226228]
+            // Story # 102                                                               
             const dot_102  = turf.point([-2.229870,53.480616]);
             const a_buff_102 = turf.buffer(dot_102, 0.03, {units:'kilometers',steps:24});
             const b_buff_102 = turf.buffer(dot_102, 0.06, {units:'kilometers', steps:24});
@@ -602,9 +573,9 @@
 
             // POPUP 102
             const audioIcon102 = L.icon({
-                iconUrl: "../static/pinkMusic.png",       // Cold
-                iconSize: [30, 30], // size of the icon   [50, 58]
-                iconAnchor: [12, 41], // changed marker icon position  [20, 58]
+                iconUrl: "../static/pinkMusic.png",       
+                iconSize: [30, 30], // size of the icon   
+                iconAnchor: [12, 41], // changed marker icon position  
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_102_info =
@@ -620,7 +591,7 @@
 
 
 
-            // Story # 103        ALB South    [53.466621,-2.236100]                                                                Christabel parking  [53.492684,-2.226228]
+            // Story # 103        ALB South    [53.466621,-2.236100]                                                             
             const dot_103  = turf.point([-2.226024,53.493367]);
             const a_buff_103 = turf.buffer(dot_103, 0.03, {units:'kilometers',steps:24});
             const b_buff_103 = turf.buffer(dot_103, 0.06, {units:'kilometers', steps:24});
@@ -640,9 +611,9 @@
 
             // POPUP 103
             const audioIcon103 = L.icon({
-                iconUrl: "../static/pinkMusic.png",       // Cold
-                iconSize: [30, 30], // size of the icon   [50, 58]
-                iconAnchor: [12, 41], // changed marker icon position  [20, 58]
+                iconUrl: "../static/pinkMusic.png",       
+                iconSize: [30, 30], // size of the icon   
+                iconAnchor: [12, 41], // changed marker icon position 
                 popupAnchor: [0, -60], // changed popup position
             });
             const a_pop_103_info =
@@ -659,7 +630,6 @@
             // Geofences   ///////////////
             */
 
-            // To inform a player if she's not in the geofence
             // Areas outside of the largest buffers
             outofBufferB = [b_buff_1, b_buff_2, b_buff_3, b_buff_101,b_buff_102,b_buff_103];
             // Points in the centre of each buffer
@@ -677,14 +647,12 @@
 
 
             // SQUARE GRID
-            // specify units for measurement
+            // Specify units for measurement
             let gridOptions = {units: 'kilometers'};
-            // get grid as a turf polygon
-            let grid = turf.squareGrid([-2.242425,53.472759,-2.227574,53.481928], 0.1, gridOptions);   // Manchester City Centre [-2.257649,53.459561,-2.220493,53.494114]
-            // turn grid into geoJson to display on a map
+            // Get grid as a turf polygon
+            let grid = turf.squareGrid([-2.242425,53.472759,-2.227574,53.481928], 0.1, gridOptions);   
+            // Turn grid into geoJson to display on a map
             cover = L.geoJson(grid, {style: {color:'#000000', fill: '#89CFF0', fillOpacity: 0.6, weight: 0.0}}).addTo(map);
-
-
 
 
             // A function to set the flag variable to 'false' for every buffer in enterBuffer_b
@@ -712,10 +680,9 @@
             map.on('locationfound', onLocationFound);
             map.on('locationerror', onLocationError);
 
-                        /////////////////////////////////////////////////////////////////////////////////////////////////////
-            // LEGEND WITH ALL HIDDEN INVADERS
-
-            //Legend
+            ////////////////////////////////
+            // LEGEND WITH ALL HIDDEN STORIES
+            ////////////////////////////////
             L.control.Legend({
                     position: "bottomright",
                     collapsed: true,
@@ -759,7 +726,7 @@
                 // Player's location   ///////////////
                 */
 
-                // use turf to create a turf.Point() object (which is stored as GeoJSON) Create a turf point to be able to interact with the other features
+                // Create a turf point to be able to interact with the other features
                 player = turf.point([e.latlng.lng, e.latlng.lat]);
                 // Geolocation icon
                 const playerIcon = L.icon({
@@ -768,7 +735,7 @@
                     iconAnchor: [17, 37],
                     popupAnchor: [0,-37],
                 })
-                // Print the coords to the console. DELETE LATER ON
+                // Print the coords to the console.
                 console.log("Your current position is at:" +e.latlng);
                 // This accounts for the geolocation when the user just opens the game
                 if (position == null) {
@@ -779,18 +746,18 @@
                 }
 
                 // Push the person's location to the array
-                locationList.push([e.latlng.lng, e.latlng.lat]);  // [e.latlng.lng, e.latlng.lat]
+                locationList.push([e.latlng.lng, e.latlng.lat]); 
                 console.log(locationList);
 
                 // Create a lineString
-                let myLine = turf.lineString(locationList, {name:"user track"});   // Array.from(coordsArray) // Uncaught Error: coordinates must be an array of two or more positions
+                let myLine = turf.lineString(locationList, {name:"user track"}); 
                 // let myLineJson = L.geoJson(myLine);
                 // Simplify the line using a turf function
-                const options = {tolerance: 0.000001, highQuality: false}; //0.000833
+                const options = {tolerance: 0.000001, highQuality: false}; 
                 let simplified = turf.simplify(myLine, options);
 
                 // calculate the length of the user track
-                playerPath = turf.lineDistance(simplified, 'kilometers');   //length(simplified);
+                playerPath = turf.lineDistance(simplified, 'kilometers');   
                 // Round the number
                 let rounded = playerPath.toFixed(3);
                 console.log(playerPath);
@@ -803,32 +770,12 @@
                     geoLine.remove();
                     };
                 // add a Json line to the map
-                geoLine = L.geoJson(simplified, {style: {       // simplified
+                geoLine = L.geoJson(simplified, {style: {      
                                                 weight: 2,
                                                 color: '#1A5276',
                                                 fillOpacity: 1,
                                                 fillColor: 'lightgrey',
                                             }}).addTo(map);
-
-                /*
-                // Function to connect coords every 50 meters
-                for (i=0; i<locationList.length; i++){
-                let myLine = turf.lineString([locationList[0], locationList[i]], {name:"user track"});
-
-                let geoLine = L.geoJson(myLine, {style: {
-                                                weight: 0.5,
-                                                color: 'red',
-                                                fillOpacity: 1,
-                                                fillColor: 'lightgrey',
-                                            }}).addTo(map);                // {type: "Point", coordinates: [13.42493130000003, 52.50074619999999 ]}
-                console.log(geoLine)
-                const options = {tolerance: 0.000833, highQuality: false};
-                let simplified = turf.simplify(geoLine, options).addTo(map);     // Uncaught Error: unknown GeoJSON type
-                };
-                */
-
-
-
 
 
                 // calculate the nearest point
@@ -838,7 +785,7 @@
                 for ( let i=0; i<outofBufferB.length; i++) {
                     inside = turf.booleanWithin(player, outofBufferB[i],)
                     if (inside === false) {
-                        let distance = Math.round(turf.distance(player,nearest,{units:'kilometers'})*1000)/1000;  //var
+                        let distance = Math.round(turf.distance(player,nearest,{units:'kilometers'})*1000)/1000;  
                         // 5 km/hr is an average speed of a person
                         let time_dist =  Math.round(60*distance)/5;
 						position.bindPopup("<h1 style ='text-align:center; color: #061529'>Yes! There are some stories in here!</h1> <b>The nearest story is about: " + time_dist.toString()+" minutes away!</b>", {maxWidth: 200});
@@ -846,11 +793,8 @@
                     else {
                         position.bindPopup("<strong>You very close.</strong><br />Keep exploring!.<br> <b> Walking towards the centre of the circle would help. </b>", {maxWidth: 500});
                     }
-                }
-                // Calculate nearest point function info
-                // https://stackoverflow.com/questions/56306097/get-nearest-point-from-another-one-in-javascript
-                // nearest point info
-                // https://www.npmjs.com/package/@turf/nearest-point
+                };
+
 
 
                 // BUFFER B
@@ -860,35 +804,31 @@
                     geoJSON = L.geoJSON(b_buffers[i]).addTo(map);
                     if (geoJSON) map.removeLayer(geoJSON);
 
-
-                    // are we in the geofence?
+                    // Check whether a player is within the geofence 
                     const currentlyWithin_b = turf.booleanWithin(player, b_buffers[i]);
 
-
-                    // if we were NOT within the buffer at the last location
+                    // If player was NOT within the buffer at the last location
                     if (!flag_b[i]) {
 
-                        // enter the geofence
+                        // Enter the geofence
                         if (currentlyWithin_b){
 
-                            // Open a popup
+                            // Open a popup for outer buffers
                             b_popups[i].openPopup();
-                            // create marker object
+                            // Create marker object
                             L.geoJSON(b_buffers[i], {style: enterstyleMid}).addTo(map);
 
-                            // update the flag
+                            // Update the flag
                             flag_b[i] = true;
 
-                        // still outside the geofence
                         };
 
-                    // if we WERE within the buffer at the last location
+                    // If player WAS within the buffer at the last location
                     } else {
 
-                        // update the flag
+                        // Update the flag
                         flag_b[i] = currentlyWithin_b;
                     }
-
 
                 };
 
@@ -900,35 +840,31 @@
                     geoJSON = L.geoJSON(a_buffers[i]).addTo(map);
                     if (geoJSON) map.removeLayer(geoJSON);
 
-
-                    // are we in the geofence?
+                    // Check whether a player is within the geofence 
                     const currentlyWithin_a = turf.booleanWithin(player, a_buffers[i]);
 
-                    // if we were NOT within the buffer at the last location
+                    // If player was NOT within the buffer at the last location
                     if (!flag_a[i]) {
 
-                        // enter the geofence
+                        // Enter the geofence
                         if (currentlyWithin_a){
-
-                            /* do something here (popups etc...) */
-                            // a_popups[i].openPopup();
-                            // create marker object
+                            // Create marker object
                             L.geoJSON(a_buffers[i], {style: enterstyleIn}).addTo(map);
                             // update the flag
                             flag_a[i] = true;
 
-                        // still outside the geofence
                         };
 
-                    // if we WERE within the buffer at the last location
+                    // If player WAS within the buffer at the last location
                     } else {
 
-                        // update the flag
+                        // Update the flag
                         flag_a[i] = currentlyWithin_a;
                     }
 
                 };
 
+                // For loop for Inner Buffer audio Popups
                 for ( let i = 0; i < a_buffers.length; i++) {
                     if (turf.booleanWithin(player, a_buffers[i])) {
                         popup_audio[i].addTo(map);   // .openPopup()
@@ -953,24 +889,16 @@
 
                     // Get grid as a turf polygon
                     let poly = turf.polygon(layer.feature.geometry.coordinates);
-
                     // Check if avatar intersects with grid
                     let ptIntersect = turf.booleanPointInPolygon(player, poly);
-
                     // Get bounds of the grid and zoom to it
                     if(ptIntersect === true){
-
                         // Update the layer to ensure that only squares where the player is located are see-through
                         layer.setStyle({fillOpacity: 0})
-
                     }
-
                 });
 
             };
-
-
-
 
         </script>
     </body>
