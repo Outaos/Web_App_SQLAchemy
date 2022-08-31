@@ -13,18 +13,15 @@ db = SQLAlchemy(app)
 
 # Establish a class for a table
 class Upload(db.Model):
+    # Create table columns, specify data type
     id = db.Column(db.Integer, primary_key=True)
     filename = db.Column(db.String(50))
     data = db.Column(db.LargeBinary)
     story = db.Column(db.String(50))
-    lng = db.Column(db.Float)                   # String(50)
-    lat = db.Column(db.Float)                    # String(50)
+    lng = db.Column(db.Float)                   
+    lat = db.Column(db.Float)                   
 
-
-#@app.route("/")
-#def base():
-    #return render_template('./base.html')   # index page
-
+# Create routes and connect them to relevant HTML files
 @app.route('/home')
 def home():
     return render_template('./home.html')
@@ -65,12 +62,12 @@ def stories():
 def create():
     if request.method == 'POST':
         file = request.files['file']
-        add_story = request.form['story']   #args
-        add_lng = request.form['insert_longitude']    #args   lng = float(request.args['lng'])
-        add_lat = request.form['insert_latitude']    #args   lat = float(request.args['lat']) 
+        add_story = request.form['story']  
+        add_lng = request.form['insert_longitude']    
+        add_lat = request.form['insert_latitude']    
 
 
-        upload = Upload(filename=file.filename, data=file.read(), story=add_story, lng=add_lng, lat=add_lat)      #
+        upload = Upload(filename=file.filename, data=file.read(), story=add_story, lng=add_lng, lat=add_lat) 
         db.session.add(upload)
         db.session.commit()
 
@@ -86,8 +83,3 @@ def download(upload_id):
 @app.before_first_request
 def create_tables():
     db.create_all()
-
-    # upload = Upload(filename=file.filename, data=file.read(), name=the_name)
-
-
-

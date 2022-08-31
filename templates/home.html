@@ -2,6 +2,7 @@
 
 {% block content %}
 <style>
+    /* Size and position of Play button. Fixed to make it noticeable */
     .button1 {
       border: none;
       color: white;
@@ -20,6 +21,7 @@
       cursor: pointer;
     }
 
+    /* Size and position of Create button. Fixed to make it noticeable */
     .button2 {
       border: none;
       color: white;
@@ -38,30 +40,34 @@
       cursor: pointer;
     }
 
+    /* Play button colours*/
     .button1 {
       background-color: whitesmoke;
       color: #3498DB;
       border: 8px solid #3498DB;
     }
 
+    /* Play button hover colours*/
     .button1:hover {
       background-color: #3498DB;
       color: white;
     }
 
+    /* Create button colours*/
     .button2 {
       background-color: black;
       color: white;
       border: 8px solid whitesmoke;
     }
 
+    /* Create button hover colours*/
     .button2:hover {
       background-color: whitesmoke;
       color: 8px solid black;
     }
 
     </style>
-
+    <!-- Styled and positioned welcome message. -->
     <h1 style= 'font-size: 36px; font-family: Arial; color:white; text-align:center; margin-bottom: -10px; margin-left:10px; text-shadow: 1px 1px whitesmoke'>{% block title %} Welcome to Manc Stories!  {% endblock %}</h1>
     <p>
         <br>
@@ -73,6 +79,7 @@
         <br>
         <br>
     </p>
+        <!-- General information. -->
     <p style= "font-size: 20px; font-family: Arial; color:rgb(223, 221, 221); text-align:center; margin-bottom: -10px; margin-left:10px">
         This location-based game lets you discover street art and personal stories.
         <br>
@@ -81,10 +88,12 @@
         🤍 💙 🤍
         <br>
     </p>
+        <!-- A form holding button 1 -->
     <form action="https://outaos.pythonanywhere.com/play">
         <input type="submit" class="button button1" value="Play" />
     </form>
-    <form action="https://outaos.pythonanywhere.com/play">
+        <!-- A form holding button 2 -->
+    <form action="https://outaos.pythonanywhere.com/">
         <input type="submit" class="button button2" value="Create" />
     </form>
     <p style= "font-size: 20px; font-family: Arial; color:rgb(223, 221, 221); text-align:center; margin-bottom: -10px; margin-left:10px">
@@ -92,6 +101,7 @@
     <br>
     </p>
     <hr>
+        <!-- Rules and explanations for "Play" section. Relevant links are added with the help of <a></a> -->
     <h1 style= 'font-size: 36px; font-family: Arial; color:white; text-align:center; margin-bottom: -10px; margin-left:10px; text-shadow: 1px 1px whitesmoke'> "Play" the game &#127952;</h1>
     <p style= "font-size: 20px; font-family: Arial; color:rgb(223, 221, 221); text-align:left; margin-bottom: -10px; margin-left:10px">
             1. Choose a city.
@@ -107,6 +117,7 @@
     </p>
     <hr>
     <br>
+        <!-- Rules and explanations for "Create" section. Relevant links are added with the help of <a></a> -->
     <h2 style= 'font-size: 36px; font-family: Arial; color:white; text-align:center; margin-bottom: -10px; margin-left:10px; text-shadow: 1px 1px whitesmoke'> “Create” your own stories &#128168;</h2>
     <p style= "font-size: 20px; font-family: Arial; color:rgb(223, 221, 221); text-align:left; margin-bottom: -10px; margin-left:10px">
         To contribute to the game and connect to your friends, hide your own stories in the “Create” section.
@@ -119,6 +130,7 @@
         <br>
     </p>
     <hr>
+        <!-- Additional information -->
     <h2 style= 'font-size: 36px; font-family: Arial; color:white; text-align:center; margin-bottom: -10px; margin-left:10px; text-shadow: 1px 1px whitesmoke'> If you are lost don’t suffer in silence, <br> use the hints! &#128173;</h2>
     <p style= "font-size: 20px; font-family: Arial; color:rgb(223, 221, 221); text-align:left; margin-bottom: -10px; margin-left:10px">
         Once you are in the game, there will be a special search bar in the top left corner of the map.
@@ -128,21 +140,5 @@
         <br>Just walk there, and more hints will pop up!
         <br> Happy exploring!🤍
     </p>
-    <!-- -->
-            <!-- Leaflet sidebar  V1 CSS -->
-            <link  href="{{url_for('static', filename = 'leaflet-sidebar-master/L.Control.Sidebar.css')}}" rel="stylesheet">
-            <!-- Leaflet sidebar V1 js -->
-            <link  href="{{url_for('static', filename = 'leaflet-sidebar-master/L.Control.Sidebar.js')}}" rel="stylesheet" >
 
-            <!-- Leaflet legend CSS -->
-            <link  href="{{url_for('static', filename = 'Leaflet.Legend-master/leaflet.legend.css')}}" rel="stylesheet">
-            <!-- Leaflet legend js -->
-            <link  href="{{url_for('static', filename = 'Leaflet.Legend-master/leaflet.legend.js')}}" rel="stylesheet">
-
-
-
-            <!-- leaflet search  -->
-            <link href="{{url_for('static', filename = 'leaflet-search-master/leaflet-search.css')}}" rel="stylesheet">
-            <link href="{{url_for('static', filename = 'leaflet-search-master/style.css')}}" rel="stylesheet">
-            <link href="{{url_for('static', filename = 'leaflet-search-master/leaflet-search.js')}}" rel="stylesheet">
 {% endblock %}

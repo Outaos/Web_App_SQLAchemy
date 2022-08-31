@@ -6,6 +6,7 @@
 <html>
 <head>
 <style>
+    /* Size and position button for Manchester */
     .button1 {
       border: none;
       color: white;
@@ -19,11 +20,12 @@
       margin: 0px;
       position: absolute;
       top: 20%;
-      right: 40%;
+      right: 120%;
       transition-duration: 0.2s;
       cursor: pointer;
     }
 
+    /* Size and position button for Ternopil */
     .button2 {
       border: none;
       color: white;
@@ -36,12 +38,13 @@
       height: 100px;
       margin: 0px;
       position: absolute;
-      top: 50%;
-      right: 40%;
+      top: 45%;
+      right: 120%;
       transition-duration: 0.2s;
       cursor: pointer;
     }
 
+    /* Size and position button for Beijing */   
     .button3 {
       border: none;
       color: white;
@@ -54,14 +57,15 @@
       height: 100px;
       margin: 0px;
       position: absolute;
-      top: 80%;
-      right: 40%;
+      top: 75%;
+      right: 120%;
       transition-duration: 0.2s;
       cursor: pointer;
     }
 
+    /* Buttons colours and hover information */   
     .button1 {
-      background-color: #2980B9;   /*#3498DB light blue*/
+      background-color: #2980B9;   
       color: white;
       border: 8px solid #2980B9;
     }
@@ -95,7 +99,7 @@
 
     /* unvisited link */
         a:link {
-        color: red;
+        color: blue;
         }
 
         /* visited link */
@@ -114,13 +118,13 @@
         }
 
 
-
+        /* Position of containers for images */
         .container1 {
               position: absolute;
                 top: 20%;
-                right: 30%;
+                right: 10%;
               width: 100%;
-              max-width: 400px;
+              max-width: 300px;
             }
 
             .container img {
@@ -131,9 +135,9 @@
         .container2 {
               position: absolute;
                 top: 50%;
-                right: 30%;
+                right: 10%;
               width: 100%;
-              max-width: 400px;
+              max-width: 300px;
             }
 
             .container img {
@@ -145,13 +149,13 @@
        .container3 {
               position: absolute;
                 top: 80%;
-                right: 30%;
+                right: 10%;
               width: 100%;
-              max-width: 400px;
+              max-width: 300px;
             }
 
             .container img {
-              width: 100%;
+              width: 80%;
               height: auto;
             }
 
@@ -165,8 +169,10 @@
     <br>
     <br>
     <hr>
+    <!-- A container for Manchester image -->
 <div class="container container1">
   <img src="../static/pics/manchester.jpg" alt="Snow" style="width:100%">
+  <!-- Form holding Manchester button -->
   <form action="https://outaos.pythonanywhere.com/manchester">
     <input type="submit" class="button button1" value="Manchester" />
 </form>
@@ -184,9 +190,10 @@
             <br>
             <br>
 
-
+    <!-- A container for Ternopil image -->
 <div class="container container2">
   <img src="../static/pics/ternopil1.jpg" alt="Snow" style="width:100%">
+    <!-- Form holding Ternopil button -->
   <form action="https://outaos.pythonanywhere.com/ternopil">
     <input type="submit" class="button button2" value="Ternopil" />
 </form>
@@ -204,9 +211,10 @@
             <br>
             <br>
 
-
+    <!-- A container for Beijing image -->
 <div class="container container3">
   <img src="../static/pics/beijing.jpg" alt="Snow" style="width:100%">
+      <!-- Form holding Beijing button -->
   <form action="https://outaos.pythonanywhere.com/beijing">
     <input type="submit" class="button button3" value="Beijing" />
 </form>
